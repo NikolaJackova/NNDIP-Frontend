@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NNDIP.Maui", "NNDIP.Maui\NNDIP.Maui.csproj", "{47E078AA-11C9-40EE-8B08-EEE4D787E866}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69505A3B-5208-441C-BFA0-7FF6E470D2A2} = {69505A3B-5208-441C-BFA0-7FF6E470D2A2}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NNDIP.ApiClient", "NNDIP.ApiClient\NNDIP.ApiClient.csproj", "{69505A3B-5208-441C-BFA0-7FF6E470D2A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47E078AA-11C9-40EE-8B08-EEE4D787E866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E078AA-11C9-40EE-8B08-EEE4D787E866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E078AA-11C9-40EE-8B08-EEE4D787E866}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{47E078AA-11C9-40EE-8B08-EEE4D787E866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E078AA-11C9-40EE-8B08-EEE4D787E866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E078AA-11C9-40EE-8B08-EEE4D787E866}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{69505A3B-5208-441C-BFA0-7FF6E470D2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69505A3B-5208-441C-BFA0-7FF6E470D2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69505A3B-5208-441C-BFA0-7FF6E470D2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69505A3B-5208-441C-BFA0-7FF6E470D2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal

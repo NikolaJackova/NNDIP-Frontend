@@ -1,6 +1,6 @@
 using NNDIP.Maui.ViewModels.Startup;
 
-namespace NNDIP.Maui.Pages.Startup;
+namespace NNDIP.Maui.Views.Startup;
 
 public partial class LoadingPage : ContentPage
 {

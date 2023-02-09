@@ -1,11 +1,35 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
+using NNDIP.ApiClient;
 using NNDIP.Maui.Controls;
+using NNDIP.Maui.Models;
+using NNDIP.Maui.Services;
 
 namespace NNDIP.Maui.ViewModels.Dashboard;
 
-public class DashboardPageViewModel : BaseViewModel
+public partial class DashboardPageViewModel : BaseViewModel
 {
-	public DashboardPageViewModel()
+    [ObservableProperty]
+    private AddressStateResultDto _addressStateResult;
+    public DashboardPageViewModel()
 	{
-        AppShell.Current.FlyoutHeader = new FlyoutHeaderControl();
+        Shell.Current.FlyoutHeader = new FlyoutHeaderControl();
     }
+
+    #region Commands
+    [RelayCommand]
+    async void Load()
+    {
+        try
+        {
+            AddressStateResult = await RestService.API.ApiAddressStateResultsAsync();
+        }
+        catch (ApiClientException ex)
+        {
+            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+            return;
+        }
+    }
+    #endregion
 }

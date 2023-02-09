@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NNDIP.Maui.Models;
-using NNDIP.Maui.Pages.Startup;
+using NNDIP.Maui.Views.Startup;
 
 namespace NNDIP.Maui.ViewModels.Startup
 {

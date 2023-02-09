@@ -1,5 +1,5 @@
 ﻿using NNDIP.Maui.Controls;
-using NNDIP.Maui.Pages.Dashboard;
+using NNDIP.Maui.Views.Dashboard;
 using System;
 using System.Collections.Generic;
 using System.Linq;

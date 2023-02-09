@@ -1,6 +1,6 @@
 using NNDIP.Maui.ViewModels.Dashboard;
 
-namespace NNDIP.Maui.Pages.Dashboard;
+namespace NNDIP.Maui.Views.Dashboard;
 
 public partial class DashboardPage : ContentPage
 {

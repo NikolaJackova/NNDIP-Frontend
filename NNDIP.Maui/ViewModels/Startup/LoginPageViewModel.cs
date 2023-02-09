@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
+using NNDIP.ApiClient;
 using NNDIP.Maui.Models;
 using NNDIP.Maui.Services;
 
@@ -25,23 +26,33 @@ namespace NNDIP.Maui.ViewModels.Startup
         {
             if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
             {
-                var userDetails = new UserInfo();
-                userDetails.Username = Username;
-
-                ApiClient.TokenDto tokenDto = await RestService.API.LoginAsync(new ApiClient.LoginDto
+                var userDetails = new UserInfo
                 {
-                    Username = Username,
-                    Password = Password
-                }); 
+                    Username = Username
+                };
+                TokenDto tokenDto;
+                try
+                {
+                    tokenDto = await RestService.API.ApiLoginAsync(new LoginDto
+                    {
+                        Username = Username,
+                        Password = Password
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                    return;
+                }
 
                 if (Preferences.ContainsKey(nameof(App.UserDetails)))
                 {
                     Preferences.Remove(nameof(App.UserDetails));
                 }
-
                 userDetails.Token = tokenDto.Token;
                 string userDetailStr = JsonConvert.SerializeObject(userDetails);
                 Preferences.Set(nameof(App.UserDetails), userDetailStr);
+                RestService.SetAuthorization(tokenDto.Token);
                 App.UserDetails = userDetails;
                 await AppConstant.AddFlyoutMenusDetails();
             }

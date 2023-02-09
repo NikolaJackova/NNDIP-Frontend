@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using NNDIP.Maui.Pages.Startup;
+using NNDIP.Maui.Views.Startup;
+using NNDIP.Maui.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace NNDIP.Maui.ViewModels
             if (Preferences.ContainsKey(nameof(App.UserDetails)))
             {
                 Preferences.Remove(nameof(App.UserDetails));
+                RestService.ClearAuthorization();
             }
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }

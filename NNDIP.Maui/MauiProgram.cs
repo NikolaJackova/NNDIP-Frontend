@@ -1,5 +1,5 @@
-﻿using NNDIP.Maui.Pages.Dashboard;
-using NNDIP.Maui.Pages.Startup;
+﻿using NNDIP.Maui.Views.Dashboard;
+using NNDIP.Maui.Views.Startup;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.ViewModels.Dashboard;
 using NNDIP.Maui.ViewModels.Startup;

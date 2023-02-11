@@ -14,11 +14,13 @@ namespace NNDIP.Maui.ViewModels.Startup
 {
     public partial class LoginPageViewModel : BaseViewModel
     {
+        #region Properites
         [ObservableProperty]
         private string _username;
 
         [ObservableProperty]
         private string _password;
+        #endregion
 
         #region Commands
         [RelayCommand]

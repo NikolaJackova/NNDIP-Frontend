@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:NNDIP.Maui.Converters"
+             xmlns:local="clr-namespace:NNDIP.Maui.Converters" 
+             xmlns:api="clr-namespace:NNDIP.ApiClient;assembly=NNDIP.ApiClient"
+             xmlns:models="clr-namespace:NNDIP.Maui.Models.Sensor"
+             xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
              Title="Dashboard">
     <StackLayout>
@@ -22,14 +25,40 @@
                         </Image.Source>
                     </Image>
                     <Label Padding="8" Grid.Column="1" Text="Air Condition"/>
-                    <Label Grid.Column="2" Text="Ikonky"/>
+                    <Image HeightRequest="40" WidthRequest="40" Grid.Column="2">
+                        <Image.Source>
+                            <Binding Path="AddressStateResult.AcUnitMode">
+                                <Binding.Converter>
+                                    <local:ACUnitModeConverter/>
+                                </Binding.Converter>
+                            </Binding>
+                        </Image.Source>
+                    </Image>
                 </Grid>
             </Frame>
             <Frame Padding="10">
                 <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 3*, 2*">
-                    <Image Source="off_button.png" HeightRequest="40" WidthRequest="40" />
-                    <Label Padding="8" Grid.Column="1" Text="Air Condition"/>
-                    <Label Grid.Column="2" Text="{Binding AddressStateResult.IsRecuperationOn}"/>
+                    <Image HeightRequest="40" WidthRequest="40">
+                        <Image.Source>
+                            <Binding Path="AddressStateResult.IsFanOn">
+                                <Binding.Converter>
+                                    <local:BoolToObjectConverter x:TypeArguments="x:String"
+                                                             TrueObject="on_button.png"
+                                                             FalseObject="off_button.png" />
+                                </Binding.Converter>
+                            </Binding>
+                        </Image.Source>
+                    </Image>
+                    <Label Padding="8" Grid.Column="1" Text="Ventilator"/>
+                    <Image HeightRequest="40" WidthRequest="40" Grid.Column="2">
+                        <Image.Source>
+                            <Binding Path="AddressStateResult.AcUnitFanSpeed">
+                                <Binding.Converter>
+                                    <local:FanSpeedToIconConverter/>
+                                </Binding.Converter>
+                            </Binding>
+                        </Image.Source>
+                    </Image>
                 </Grid>
             </Frame>
             <Frame Padding="10">
@@ -46,11 +75,46 @@
                         </Image.Source>
                     </Image>
                     <Label Padding="8" Grid.Column="1" Text="Recuperation"/>
-                    <Label Grid.Column="2" Text="Ikonky"/>
                 </Grid>
             </Frame>
-            <Button Text="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoadCommand}" />
         </VerticalStackLayout>
-        
+
+        <VerticalStackLayout Padding="10" VerticalOptions="FillAndExpand">
+            <Label FontSize="Title" Text="Sensor status"/>
+            <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}" VerticalOptions="FillAndExpand">
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate x:DataType="models:SensorGroup">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label FontSize="Title" VerticalOptions="Center" Text="{Binding Sensor.Name}" HorizontalOptions="Start"/>
+                            <Label FontSize="Default" VerticalOptions="Center" Text="{Binding Sensor.DataTimestamp.LocalDateTime}" HorizontalOptions="End"/>
+                            <Image Source="{Binding GroupIcon}" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
+                            <HorizontalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
+                            </HorizontalStackLayout.GestureRecognizers>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="api:SimpleDataDto">
+                        <Frame Padding="10">
+                            <Grid ColumnDefinitions="*, 3*, 2*">
+                                <Image HeightRequest="40" WidthRequest="40">
+                                    <Image.Source>
+                                        <Binding Path="TypeName">
+                                            <Binding.Converter>
+                                                <local:SensorDataTypeConverter />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+                                <Label Grid.Column="1" Text="{Binding Value}"/>
+                                <Label Grid.Column="2" Text="{Binding Value}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoaddCommand}" />
+        </VerticalStackLayout>
     </StackLayout>
 </ContentPage>

@@ -108,8 +108,14 @@
                                         </Binding>
                                     </Image.Source>
                                 </Image>
-                                <Label VerticalOptions="Center" Grid.Column="1" Text="{Binding Value}"/>
-                                <Label VerticalOptions="Center" Grid.Column="2" Text="{Binding Value}"/>
+                                <Label VerticalOptions="Center" Grid.Column="2">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="Value" />
+                                            <Binding Path="UnitMeas" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
                             </Grid>
                         </Frame>
                     </DataTemplate>

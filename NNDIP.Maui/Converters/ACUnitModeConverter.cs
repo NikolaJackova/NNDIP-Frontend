@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NNDIP.Maui.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace NNDIP.Maui.Converters
 {
     internal class ACUnitModeConverter : IValueConverter
     {
-        public string Auto { get; set; } = "auto.png";
-        public string Cool { get; set; } = "cold_color.png";
-        public string Dry { get; set; } = "dry_color.png";
-        public string Heat { get; set; } = "heat_wave_color.png";
-        public string Fan { get; set; } = "fan.png";
+        public string Auto { get; set; } = Icons.DeviceStatusAutoLight;
+        public string Cool { get; set; } = Icons.DeviceStatusColdLight;
+        public string Dry { get; set; } = Icons.DeviceStatusDryLight;
+        public string Heat { get; set; } = Icons.DeviceStatusHeatWaveLight;
+        public string Fan { get; set; } = Icons.DeviceStatusFanLight;
         public string None { get; set; } = "";
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

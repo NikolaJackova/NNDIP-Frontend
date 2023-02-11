@@ -39,6 +39,8 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Include="Resources\Images\DeviceStatus\*" />
+		<MauiImage Include="Resources\Images\SensorStatus\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->

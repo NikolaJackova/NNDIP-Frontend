@@ -14,7 +14,7 @@ namespace NNDIP.Maui.Models.Sensor
     {
         public Sensor Sensor { get; set; }
 
-        private string _groupIcon = "down_arrow.png";
+        private string _groupIcon = Icons.DownArrow;
         public string GroupIcon
         {
             get => _groupIcon;

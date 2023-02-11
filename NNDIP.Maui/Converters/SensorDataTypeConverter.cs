@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NNDIP.Maui.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace NNDIP.Maui.Converters
 {
     public class SensorDataTypeConverter : IValueConverter
     {
-        public string Temperature { get; set; } = "temp.png";
-        public string Humidity { get; set; } = "humidity.png";
-        public string Co2 { get; set; } = "co2.png";
-        public string None { get; set; } = "unknown_type.png";
+        public string Temperature { get; set; } = Icons.SensorStatusTemperatureLight;
+        public string Humidity { get; set; } = Icons.SensorStatusHumidityLight;
+        public string Co2 { get; set; } = Icons.SensorStatusCo2Light;
+        public string None { get; set; } = Icons.SensorStatusUnknownTypeLight;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

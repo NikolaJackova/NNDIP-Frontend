@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NNDIP.Maui.Converters" 
              xmlns:api="clr-namespace:NNDIP.ApiClient;assembly=NNDIP.ApiClient"
-             xmlns:models="clr-namespace:NNDIP.Maui.Models.Sensor"
+             xmlns:sensor="clr-namespace:NNDIP.Maui.Models.Sensor"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
+             xmlns:models="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
              Title="Dashboard">
     <StackLayout>
@@ -12,7 +13,7 @@
         <VerticalStackLayout Padding="10">
             <Label FontSize="Title" Text="Device status"/>
             <Frame Padding="10">
-                <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 3*, 2*">
+                <Grid ColumnDefinitions="*, 3*, 2*">
                     <Image HeightRequest="40" WidthRequest="40">
                         <Image.Source>
                             <Binding Path="AddressStateResult.IsACUnitOn">
@@ -37,7 +38,7 @@
                 </Grid>
             </Frame>
             <Frame Padding="10">
-                <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 3*, 2*">
+                <Grid ColumnDefinitions="*, 3*, 2*">
                     <Image HeightRequest="40" WidthRequest="40">
                         <Image.Source>
                             <Binding Path="AddressStateResult.IsFanOn">
@@ -62,7 +63,7 @@
                 </Grid>
             </Frame>
             <Frame Padding="10">
-                <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 3*, 2*">
+                <Grid ColumnDefinitions="*, 3*, 2*">
                     <Image HeightRequest="40" WidthRequest="40">
                         <Image.Source>
                             <Binding Path="AddressStateResult.IsRecuperationOn">
@@ -79,15 +80,15 @@
             </Frame>
         </VerticalStackLayout>
 
-        <VerticalStackLayout Padding="10" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout Padding="10">
             <Label FontSize="Title" Text="Sensor status"/>
-            <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}" VerticalOptions="FillAndExpand">
+            <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}">
                 <CollectionView.GroupHeaderTemplate>
-                    <DataTemplate x:DataType="models:SensorGroup">
-                        <HorizontalStackLayout Spacing="10">
-                            <Label FontSize="Title" VerticalOptions="Center" Text="{Binding Sensor.Name}" HorizontalOptions="Start"/>
-                            <Label FontSize="Default" VerticalOptions="Center" Text="{Binding Sensor.DataTimestamp.LocalDateTime}" HorizontalOptions="End"/>
-                            <Image Source="{Binding GroupIcon}" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
+                    <DataTemplate x:DataType="sensor:SensorGroup">
+                        <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="Start">
+                            <Label VerticalOptions="Center" FontSize="Title" Text="{Binding Sensor.Name}"/>
+                            <Label VerticalOptions="Center" FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}" />
+                            <Image VerticalOptions="Center" Source="{Binding GroupIcon}" HeightRequest="20" WidthRequest="20" />
                             <HorizontalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
                             </HorizontalStackLayout.GestureRecognizers>
@@ -107,8 +108,8 @@
                                         </Binding>
                                     </Image.Source>
                                 </Image>
-                                <Label Grid.Column="1" Text="{Binding Value}"/>
-                                <Label Grid.Column="2" Text="{Binding Value}"/>
+                                <Label VerticalOptions="Center" Grid.Column="1" Text="{Binding Value}"/>
+                                <Label VerticalOptions="Center" Grid.Column="2" Text="{Binding Value}"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>

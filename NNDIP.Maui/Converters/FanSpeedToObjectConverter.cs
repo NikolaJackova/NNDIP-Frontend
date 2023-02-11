@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NNDIP.Maui.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace NNDIP.Maui.Converters
 {
     internal class FanSpeedToIconConverter : IValueConverter
     {
-        public string Speed0 { get; set; } = "signal_empty.png";
-        public string Speed1 { get; set; } = "signal_1.png";
-        public string Speed2 { get; set; } = "signal_2.png";
-        public string Speed3 { get; set; } = "signal_3.png";
-        public string Speed4 { get; set; } = "signal_4.png";
+        public string Speed0 { get; set; } = Icons.DeviceStatusSignalEmptyLight;
+        public string Speed1 { get; set; } = Icons.DeviceStatusSignal1Light;
+        public string Speed2 { get; set; } = Icons.DeviceStatusSignal2Light;
+        public string Speed3 { get; set; } = Icons.DeviceStatusSignal3Light;
+        public string Speed4 { get; set; } = Icons.DeviceStatusSignal4Light;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -3,6 +3,7 @@ using NNDIP.Maui.Views.Startup;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.ViewModels.Dashboard;
 using NNDIP.Maui.ViewModels.Startup;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace NNDIP.Maui;
 
@@ -12,7 +13,8 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
+            .UseSkiaSharp(true)
+            .UseMauiApp<App>()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -26,6 +28,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<DashboardPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
+
+        builder.Services.AddSingleton<DashboardTest>();
+        builder.Services.AddSingleton<DashboardTestViewModel>();
 
         return builder.Build();
 	}

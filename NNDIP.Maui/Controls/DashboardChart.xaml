@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
+             x:Class="NNDIP.Maui.Controls.DashboardChart">
+    <ContentView.BindingContext>
+        <viewModels:DashboardTestViewModel/>
+    </ContentView.BindingContext>
+    <Grid BackgroundColor="DarkGreen" RowDefinitions="3*,*">
+        <lvc:CartesianChart Grid.Row="0"
+                Series="{Binding ChartSeries}" ZoomMode="Both" TooltipPosition="Top">
+        </lvc:CartesianChart>
+        <Button Grid.Row="1" Text ="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoaddCommand}" />
+    </Grid>
+</ContentView>

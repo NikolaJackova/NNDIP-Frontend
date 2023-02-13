@@ -33,8 +33,8 @@ namespace NNDIP.Maui.Models
                                 new ShellContent
                                 {
                                     Icon = Icons.Dashboard,
-                                    Title = "Dashboard 1",
-                                    ContentTemplate = new DataTemplate(typeof(DashboardPage)),
+                                    Title = "Dashboard Test",
+                                    ContentTemplate = new DataTemplate(typeof(DashboardTest)),
                                 },
                             }
             };

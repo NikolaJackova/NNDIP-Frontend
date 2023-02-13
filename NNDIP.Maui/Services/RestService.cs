@@ -11,7 +11,7 @@ namespace NNDIP.Maui.Services
     {
         //TODO uri put somewhere else
         //public static string URI { get; set; } = "http://10.0.2.2:8081";
-        public static string URI { get; set; } = "http://192.168.5.27:8081";
+        public static string URI { get; set; } = "http://192.168.5.30:8081";
 
         private static IApiClient _API = CreateApiClient();
         public static IApiClient API { get => _API; }

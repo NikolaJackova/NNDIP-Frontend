@@ -1,5 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore;
 using Newtonsoft.Json;
 using NNDIP.ApiClient;
 using NNDIP.Maui.Controls;
@@ -9,6 +11,9 @@ using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using static Android.Content.ClipData;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace NNDIP.Maui.ViewModels.Dashboard;
 
@@ -23,6 +28,10 @@ public partial class DashboardPageViewModel : BaseViewModel
 
     [ObservableProperty]
     private ObservableCollection<SensorGroup> _sensorGroups;
+
+    private ISeries[] chartSeries;
+
+    private ICollection<DataDto> _data;
     #endregion
 
     public DashboardPageViewModel()
@@ -37,6 +46,17 @@ public partial class DashboardPageViewModel : BaseViewModel
         {
             AddressStateResult = await RestService.API.ApiAddressStateResultsAsync();
             SensorsData = new ObservableCollection<SensorsDataDto>(await RestService.API.ApiSensorDataAsync());
+            _data = await RestService.API.ApiDataHistoricalGetAsync(1, new DateTimeOffset(new DateTime(2022,10,6)), new DateTimeOffset(new DateTime(2022, 10, 7)));
+
+            ChartSeries = new ISeries[]
+            {
+                new LineSeries<double>
+                {
+                    Values = _data.Where(item => item.Temperature is not null).Select(item => item.Temperature.Value).ToList(),
+                    Fill = new SolidColorPaint(SKColors.AliceBlue),
+                    Stroke = new SolidColorPaint(SKColors.Black, 3)
+                }
+            };
         }
         catch (ApiClientException ex)
         {
@@ -83,5 +103,7 @@ public partial class DashboardPageViewModel : BaseViewModel
             sensorGroup.GroupIcon = "down_arrow.png";
         }
     });
+
+    public ISeries[] ChartSeries { get => chartSeries; set => chartSeries = value; }
     #endregion
 }

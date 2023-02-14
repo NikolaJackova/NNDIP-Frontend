@@ -1,12 +1,7 @@
-﻿using LiveChartsCore;
-using LiveChartsCore.Kernel.Sketches;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView;
-using NNDIP.ApiClient;
+﻿using NNDIP.ApiClient;
 using NNDIP.Maui.Models.Sensor;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,31 +9,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using NNDIP.Maui.Models.Data;
 
 namespace NNDIP.Maui.ViewModels.Dashboard
 {
     public partial class DashboardTestViewModel : BaseViewModel
     {
-        public ISeries[] ChartSeries { get => chartSeries; set => chartSeries = value; }
-
-        private ISeries[] chartSeries;
-
+        public ObservableCollection<Data> ChartData { get; set; }
         private ICollection<DataDto> _data;
         public async void Load()
         {
             try
             {
                 _data = await RestService.API.ApiDataHistoricalGetAsync(1, new DateTimeOffset(new DateTime(2022, 10, 6)), new DateTimeOffset(new DateTime(2022, 10, 7)));
-
-                ChartSeries = new ISeries[]
+                List<DataDto> dataDtos = _data.Where(item => item.Temperature is not null).ToList();
+                ChartData = new ObservableCollection<Data>();
+                foreach (var item in dataDtos)
                 {
-                new LineSeries<double>
-                {
-                    Values = _data.Where(item => item.Temperature is not null).Select(item => item.Temperature.Value).ToList(),
-                    Fill = new SolidColorPaint(SKColors.AliceBlue),
-                    Stroke = new SolidColorPaint(SKColors.Black, 3)
+                    ChartData.Add(new Data()
+                    {
+                        Value = item.Temperature.Value,
+                        Time = new DateTime(item.DataTimestamp.Year, item.DataTimestamp.Month, item.DataTimestamp.Day, item.DataTimestamp.Hour, item.DataTimestamp.Minute, 0)
+                    });
                 }
-                };
             }
             catch (ApiClientException ex)
             {
@@ -52,7 +45,7 @@ namespace NNDIP.Maui.ViewModels.Dashboard
         }
 
         [RelayCommand]
-        async void Loadd()
+        void Loadd()
         {
             Load();
         }

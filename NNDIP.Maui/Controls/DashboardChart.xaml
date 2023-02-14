@@ -3,14 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              x:Class="NNDIP.Maui.Controls.DashboardChart">
-    <ContentView.BindingContext>
-        <viewModels:DashboardTestViewModel/>
-    </ContentView.BindingContext>
-    <Grid BackgroundColor="DarkGreen" RowDefinitions="3*,*">
-        <lvc:CartesianChart Grid.Row="0"
-                Series="{Binding ChartSeries}" ZoomMode="Both" TooltipPosition="Top">
-        </lvc:CartesianChart>
-        <Button Grid.Row="1" Text ="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoaddCommand}" />
-    </Grid>
+    <VerticalStackLayout>
+        <chart:SfCartesianChart>
+
+            <chart:SfCartesianChart.BindingContext>
+                <viewModels:DashboardTestViewModel/>
+            </chart:SfCartesianChart.BindingContext>
+
+            <chart:SfCartesianChart.XAxes>
+                <chart:NumericalAxis/>
+            </chart:SfCartesianChart.XAxes>
+
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis/>
+            </chart:SfCartesianChart.YAxes>
+
+            <chart:SfCartesianChart.Series>
+                <chart:LineSeries ItemsSource = "{Binding ChartData}" XBindingPath="Time" YBindingPath="Value"/>
+            </chart:SfCartesianChart.Series>
+        </chart:SfCartesianChart>
+        <Button Text="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoaddCommand}" />
+    </VerticalStackLayout>
 </ContentView>

@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardTest"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
-             xmlns:controls="clr-namespace:NNDIP.Maui.Controls"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
+             xmlns:controls="clr-namespace:NNDIP.Maui.Controls"           
              Title="DashboardTest">
     <controls:DashboardChart />
 </ContentPage>

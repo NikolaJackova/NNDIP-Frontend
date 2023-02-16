@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NNDIP.Maui.Converters
 {
-    internal class ACUnitModeConverter : IValueConverter
+    internal class ACUnitModeToObjectConverter : IValueConverter
     {
         public string Auto { get; set; } = Icons.DeviceStatusAutoLight;
         public string Cool { get; set; } = Icons.DeviceStatusColdLight;

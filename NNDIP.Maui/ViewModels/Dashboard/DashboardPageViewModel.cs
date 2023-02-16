@@ -24,6 +24,9 @@ public partial class DashboardPageViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<SensorGroup> _sensorGroups;
 
+    [ObservableProperty]
+    private bool _isRefreshing;
+
     private ICollection<DataDto> _data;
     #endregion
 
@@ -70,6 +73,7 @@ public partial class DashboardPageViewModel : BaseViewModel
     void Refresh()
     {
         Load();
+        IsRefreshing = false;
     }
 
     public ICommand AddOrRemoveGroupDataCommand => new Command<SensorGroup>((sensorGroup) =>

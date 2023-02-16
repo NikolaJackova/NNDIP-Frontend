@@ -8,10 +8,10 @@
              xmlns:models="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
              Title="Dashboard">
-    <RefreshView Command="{Binding RefreshCommand}}">
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
-            <VerticalStackLayout>
-                
+            <VerticalStackLayout BackgroundColor="AliceBlue" VerticalOptions="Fill">
+
                 <!-- DEVICE STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
                     <Label FontSize="Title" Text="Device status"/>
@@ -82,7 +82,7 @@
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
-                
+
                 <!-- SENSOR STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
                     <Label FontSize="Title" Text="Sensor status"/>
@@ -125,6 +125,20 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+                </VerticalStackLayout>
+
+                <!-- CHART -->
+                <VerticalStackLayout Padding="8" Spacing="5">
+                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,2*" >
+                        <Label VerticalOptions="Center" Text="Unit:" />
+                        <Entry Grid.Column="1" Placeholder="Unit"/>
+                        <Label Grid.Row="1" VerticalOptions="Center" Text="Sensor:" />
+                        <Entry Grid.Row="1" Grid.Column="1" Placeholder="Sensor"/>
+                        <Label Grid.Row="2" VerticalOptions="Center" Text="From:" />
+                        <DatePicker Grid.Row="2" Grid.Column="1" />
+                        <Label Grid.Row="3" VerticalOptions="Center" Text="To:" />
+                        <DatePicker Grid.Row="3" Grid.Column="1" />
+                    </Grid>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:NNDIP.Maui.Converters" 
+             xmlns:converters="clr-namespace:NNDIP.Maui.Converters" 
              xmlns:api="clr-namespace:NNDIP.ApiClient;assembly=NNDIP.ApiClient"
              xmlns:sensor="clr-namespace:NNDIP.Maui.Models.Sensor"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
@@ -10,7 +10,7 @@
              Title="Dashboard">
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
-            <VerticalStackLayout BackgroundColor="AliceBlue" VerticalOptions="Fill">
+            <VerticalStackLayout BackgroundColor="AliceBlue">
 
                 <!-- DEVICE STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
@@ -21,7 +21,7 @@
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.IsACUnitOn">
                                         <Binding.Converter>
-                                            <local:BoolToObjectConverter x:TypeArguments="x:String"
+                                            <converters:BoolToObjectConverter x:TypeArguments="x:String"
                                                              TrueObject="on_button.png"
                                                              FalseObject="off_button.png" />
                                         </Binding.Converter>
@@ -33,7 +33,7 @@
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitMode">
                                         <Binding.Converter>
-                                            <local:ACUnitModeConverter/>
+                                            <converters:ACUnitModeToObjectConverter/>
                                         </Binding.Converter>
                                     </Binding>
                                 </Image.Source>
@@ -46,7 +46,7 @@
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.IsFanOn">
                                         <Binding.Converter>
-                                            <local:BoolToObjectConverter x:TypeArguments="x:String"
+                                            <converters:BoolToObjectConverter x:TypeArguments="x:String"
                                                              TrueObject="on_button.png"
                                                              FalseObject="off_button.png" />
                                         </Binding.Converter>
@@ -58,7 +58,7 @@
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitFanSpeed">
                                         <Binding.Converter>
-                                            <local:FanSpeedToIconConverter/>
+                                            <converters:FanSpeedToIconConverter/>
                                         </Binding.Converter>
                                     </Binding>
                                 </Image.Source>
@@ -71,7 +71,7 @@
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.IsRecuperationOn">
                                         <Binding.Converter>
-                                            <local:BoolToObjectConverter x:TypeArguments="x:String"
+                                            <converters:BoolToObjectConverter x:TypeArguments="x:String"
                                                              TrueObject="on_button.png"
                                                              FalseObject="off_button.png" />
                                         </Binding.Converter>
@@ -91,7 +91,7 @@
                             <DataTemplate x:DataType="sensor:SensorGroup">
                                 <HorizontalStackLayout Padding="0,8" Spacing="10">
                                     <Label VerticalOptions="Center" FontSize="Title" Text="{Binding Sensor.Name}"/>
-                                    <Label VerticalOptions="Center" FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}" />
+                                    <Label VerticalOptions="Center" FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}"/>
                                     <Image VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Source="{Binding GroupIcon}" />
                                     <HorizontalStackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
@@ -107,7 +107,7 @@
                                             <Image.Source>
                                                 <Binding Path="TypeName">
                                                     <Binding.Converter>
-                                                        <local:SensorDataTypeConverter />
+                                                        <converters:SensorDataTypeToObjectConverter />
                                                     </Binding.Converter>
                                                 </Binding>
                                             </Image.Source>
@@ -129,11 +129,11 @@
 
                 <!-- CHART -->
                 <VerticalStackLayout Padding="8" Spacing="5">
-                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,2*" >
+                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,3*" >
                         <Label VerticalOptions="Center" Text="Unit:" />
-                        <Entry Grid.Column="1" Placeholder="Unit"/>
+                        <Picker Grid.Column="1" Title="Select an unit"/>
                         <Label Grid.Row="1" VerticalOptions="Center" Text="Sensor:" />
-                        <Entry Grid.Row="1" Grid.Column="1" Placeholder="Sensor"/>
+                        <Picker Grid.Row="1" Grid.Column="1" Title="Select a sensor" ItemsSource="{Binding SensorGroups}" ItemDisplayBinding="{Binding Sensor.Name}"/>
                         <Label Grid.Row="2" VerticalOptions="Center" Text="From:" />
                         <DatePicker Grid.Row="2" Grid.Column="1" />
                         <Label Grid.Row="3" VerticalOptions="Center" Text="To:" />

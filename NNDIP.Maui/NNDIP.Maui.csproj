@@ -58,7 +58,6 @@
 	  <PackageReference Include="Microsoft.AppCenter.Distribute" Version="5.0.1" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	  <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-	  <PackageReference Include="Syncfusion.Maui.Charts" Version="20.4.49" />
 	</ItemGroup>
 
 	<ItemGroup>

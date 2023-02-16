@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NNDIP.Maui.Converters
 {
-    public class SensorDataTypeConverter : IValueConverter
+    public class SensorDataTypeToObjectConverter : IValueConverter
     {
         public string Temperature { get; set; } = Icons.SensorStatusTemperatureLight;
         public string Humidity { get; set; } = Icons.SensorStatusHumidityLight;

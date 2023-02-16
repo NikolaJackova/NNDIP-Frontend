@@ -3,7 +3,7 @@ using NNDIP.Maui.Views.Startup;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.ViewModels.Dashboard;
 using NNDIP.Maui.ViewModels.Startup;
-using SkiaSharp.Views.Maui.Controls.Hosting;
+using Syncfusion.Maui.Core.Hosting;
 
 namespace NNDIP.Maui;
 
@@ -13,9 +13,9 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-            .UseSkiaSharp(true)
             .UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .ConfigureSyncfusionCore()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");

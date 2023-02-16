@@ -128,12 +128,6 @@
                     </CollectionView>
                     <Button Text="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoaddCommand}" />
                 </VerticalStackLayout>
-
-                <VerticalStackLayout BackgroundColor="DarkGreen" MinimumHeightRequest="200">
-                    <lvc:CartesianChart
-                Series="{Binding ChartSeries}" ZoomMode="Both" TooltipPosition="Top">
-                    </lvc:CartesianChart>
-                </VerticalStackLayout>
             </StackLayout>
         </ScrollView>
     </RefreshView>

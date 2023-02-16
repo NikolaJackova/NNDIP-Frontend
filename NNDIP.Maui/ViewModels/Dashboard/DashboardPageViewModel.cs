@@ -67,7 +67,7 @@ public partial class DashboardPageViewModel : BaseViewModel
     }
     #region Commands
     [RelayCommand]
-    void Loadd()
+    void Refresh()
     {
         Load();
     }

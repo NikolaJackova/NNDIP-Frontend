@@ -4,6 +4,7 @@ using NNDIP.Maui.Services;
 using NNDIP.Maui.ViewModels.Dashboard;
 using NNDIP.Maui.ViewModels.Startup;
 using Syncfusion.Maui.Core.Hosting;
+using NNDIP.Maui.Controls;
 
 namespace NNDIP.Maui;
 
@@ -28,9 +29,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<DashboardPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
-
-        builder.Services.AddSingleton<DashboardTest>();
-        builder.Services.AddSingleton<DashboardTestViewModel>();
 
         return builder.Build();
 	}

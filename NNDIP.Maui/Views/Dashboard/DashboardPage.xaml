@@ -6,18 +6,16 @@
              xmlns:sensor="clr-namespace:NNDIP.Maui.Models.Sensor"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
              xmlns:models="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Maui;assembly=LiveChartsCore.SkiaSharpView.Maui"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
              Title="Dashboard">
-    <ContentPage.BindingContext>
-        <viewModels:DashboardPageViewModel/>
-    </ContentPage.BindingContext>
-    <RefreshView BackgroundColor="Brown">
-        <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand" BackgroundColor="DarkGrey">
-            <StackLayout BackgroundColor="Aquamarine">
-                <VerticalStackLayout Padding="10" BackgroundColor="AliceBlue">
+    <RefreshView Command="{Binding RefreshCommand}}">
+        <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
+            <VerticalStackLayout>
+                
+                <!-- DEVICE STATUS -->
+                <VerticalStackLayout Padding="8" Spacing="5">
                     <Label FontSize="Title" Text="Device status"/>
-                    <Frame Padding="10">
+                    <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
                             <Image HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
@@ -30,8 +28,8 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Padding="8" Grid.Column="1" Text="Air Condition"/>
-                            <Image HeightRequest="40" WidthRequest="40" Grid.Column="2">
+                            <Label Grid.Column="1" VerticalOptions="Center" Text="Air Condition"/>
+                            <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" >
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitMode">
                                         <Binding.Converter>
@@ -42,7 +40,7 @@
                             </Image>
                         </Grid>
                     </Frame>
-                    <Frame Padding="10">
+                    <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
                             <Image HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
@@ -55,8 +53,8 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Padding="8" Grid.Column="1" Text="Ventilator"/>
-                            <Image HeightRequest="40" WidthRequest="40" Grid.Column="2">
+                            <Label Grid.Column="1" VerticalOptions="Center" Text="Ventilator"/>
+                            <Image Grid.Column="2" HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitFanSpeed">
                                         <Binding.Converter>
@@ -67,7 +65,7 @@
                             </Image>
                         </Grid>
                     </Frame>
-                    <Frame Padding="10">
+                    <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
                             <Image HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
@@ -80,20 +78,21 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Padding="8" Grid.Column="1" Text="Recuperation"/>
+                            <Label Grid.Column="1" VerticalOptions="Center" Text="Recuperation"/>
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
-
-                <VerticalStackLayout Padding="10" BackgroundColor="AntiqueWhite" >
+                
+                <!-- SENSOR STATUS -->
+                <VerticalStackLayout Padding="8" Spacing="5">
                     <Label FontSize="Title" Text="Sensor status"/>
                     <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}">
                         <CollectionView.GroupHeaderTemplate>
                             <DataTemplate x:DataType="sensor:SensorGroup">
-                                <HorizontalStackLayout Padding="10" Spacing="10" HorizontalOptions="Start">
+                                <HorizontalStackLayout Padding="0,8" Spacing="10">
                                     <Label VerticalOptions="Center" FontSize="Title" Text="{Binding Sensor.Name}"/>
                                     <Label VerticalOptions="Center" FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}" />
-                                    <Image VerticalOptions="Center" Source="{Binding GroupIcon}" HeightRequest="20" WidthRequest="20" />
+                                    <Image VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Source="{Binding GroupIcon}" />
                                     <HorizontalStackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
                                     </HorizontalStackLayout.GestureRecognizers>
@@ -102,7 +101,7 @@
                         </CollectionView.GroupHeaderTemplate>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="api:SimpleDataDto">
-                                <Frame Padding="10">
+                                <Frame Padding="8" Margin="0,0,0,5">
                                     <Grid ColumnDefinitions="*, 3*, 2*">
                                         <Image HeightRequest="40" WidthRequest="40">
                                             <Image.Source>
@@ -113,7 +112,7 @@
                                                 </Binding>
                                             </Image.Source>
                                         </Image>
-                                        <Label VerticalOptions="Center" Grid.Column="2">
+                                        <Label Grid.Column="2" VerticalOptions="Center">
                                             <Label.Text>
                                                 <MultiBinding StringFormat="{}{0} {1}">
                                                     <Binding Path="Value" />
@@ -126,9 +125,8 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Button Text="Load" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoaddCommand}" />
                 </VerticalStackLayout>
-            </StackLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </RefreshView>
 </ContentPage>

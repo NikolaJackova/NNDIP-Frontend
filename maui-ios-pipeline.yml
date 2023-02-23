@@ -1,22 +1,10 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- master
 
 pool:
-  vmImage: 'macos-latest'
+  vmImage: macos-latest
 
-variables:
-  - group: maui-ios-pipeline
-
-      
 steps:
-
-# https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-apple-ios-macos-tvos-or-watchos-app
-# Setup Secret Pipeline Variable or Library Secrets Variable for iOS Certificate Password
 - task: InstallAppleCertificate@2
   inputs:
     certSecureFile: '$(p12FileName)'
@@ -29,44 +17,34 @@ steps:
     provProfileSecureFile: '$(provisioningProfile)'
 
 - task: UseDotNet@2
-  displayName: .NET Version
   inputs:
     packageType: 'sdk'
     version: '7.x'
 
-- task: Bash@3
-  displayName: Install MAUI
+- task: CmdLine@2
+  displayName: 'dotnet workload install maui'
   inputs:
-    targetType: 'inline'
-    script: |
-      dotnet nuget locals all --clear
-      dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-      dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
+    script: 'dotnet workload install maui'
 
-- task: Bash@3
-  displayName: Restore nuget
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish (Release)'
   inputs:
-    targetType: 'inline'
-    script: |
-      # cd NNDIP.Maui
-      dotnet restore NNDIP.Maui.csproj
-# https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
-- task: Bash@3
-  displayName: Build iOS App
-  inputs:
-    targetType: 'inline'
-    script: |
-      cd NNDIP.Maui
-      dotnet publish -f net7.0-ios -c Release
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'NNDIP.Maui/NNDIP.Maui.csproj'
+    arguments: '-f:net7.0-ios -c:Release /p:ArchiveOnBuild=true /p:EnableAssemblyILStripping=false'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
 - task: CopyFiles@2
   inputs:
-    Contents: |
-      **/*.app
-      **/*.ipa
+    SourceFolder: '$(Agent.BuildDirectory)'
+    Contents: '**/*.ipa'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop_ios'
+    ArtifactName: 'drop'
     publishLocation: 'Container'

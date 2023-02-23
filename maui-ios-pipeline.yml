@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: macos-latest
 
+variables:
+  - group: maui-ios-pipeline
+
 steps:
 - task: InstallAppleCertificate@2
   inputs:

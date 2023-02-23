@@ -1,6 +1,9 @@
 trigger:
 - master
 
+variables:
+  - group: maui-ios-pipeline
+
 pool:
   vmImage: macos-latest
 
@@ -19,7 +22,7 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '6.x'
+    version: '7.x'
 
 - task: CmdLine@2
   displayName: 'dotnet workload install maui'

@@ -27,6 +27,9 @@ public partial class DashboardPageViewModel : BaseViewModel
     [ObservableProperty]
     private bool _isRefreshing;
 
+    [ObservableProperty]
+    private DateTime? _datePickerDate;
+
     private ICollection<DataDto> _data;
     #endregion
 
@@ -42,7 +45,7 @@ public partial class DashboardPageViewModel : BaseViewModel
         {
             AddressStateResult = await RestService.API.ApiAddressStateResultsAsync();
             SensorsData = new ObservableCollection<SensorsDataDto>(await RestService.API.ApiSensorDataAsync());
-            _data = await RestService.API.ApiDataHistoricalGetAsync(1, new DateTimeOffset(new DateTime(2022,10,6)), new DateTimeOffset(new DateTime(2022, 10, 7)));
+            _data = await RestService.API.ApiDataHistoricalGetAsync(1, new DateTimeOffset(new DateTime(2022, 10, 6)), new DateTimeOffset(new DateTime(2022, 10, 7)));
         }
         catch (ApiClientException ex)
         {
@@ -53,13 +56,13 @@ public partial class DashboardPageViewModel : BaseViewModel
             }
             return;
         }
-        IEnumerable<SensorGroup> groupedData = SensorsData.Select(sensor => new SensorGroup (new Sensor() 
-                                                                                            {
-                                                                                                Id = sensor.Id, 
-                                                                                                Name = sensor.Name, 
-                                                                                                SensorType = sensor.SensorType, 
-                                                                                                DataTimestamp = sensor.DataTimestamp 
-                                                                                            }, sensor.Data.ToList()));
+        IEnumerable<SensorGroup> groupedData = SensorsData.Select(sensor => new SensorGroup(new Sensor()
+        {
+            Id = sensor.Id,
+            Name = sensor.Name,
+            SensorType = sensor.SensorType,
+            DataTimestamp = sensor.DataTimestamp
+        }, sensor.Data.ToList()));
         foreach (var item in groupedData)
         {
             if (!SensorGroups.Any(groupedData => groupedData.Sensor.Id == item.Sensor.Id))
@@ -67,6 +70,10 @@ public partial class DashboardPageViewModel : BaseViewModel
                 SensorGroups.Add(item);
             }
         }
+    }
+    public void SetDefault()
+    {
+        DatePickerDate = DateTime.Today;
     }
 
     #region Commands
@@ -91,5 +98,17 @@ public partial class DashboardPageViewModel : BaseViewModel
             sensorGroup.GroupIcon = "down_arrow.png";
         }
     });
+
+    [RelayCommand]
+    void Plus()
+    {
+        DatePickerDate = DatePickerDate is null ? DateTime.Today.AddDays(1) : DatePickerDate.Value.AddDays(1);
+    }
+
+    [RelayCommand]
+    void Minus()
+    {
+        DatePickerDate = DatePickerDate is null ? DateTime.Today.AddDays(-1) : DatePickerDate.Value.AddDays(-1);
+    }
     #endregion
 }

@@ -10,10 +10,10 @@ namespace NNDIP.Maui.Converters
 {
     public class SensorDataTypeToObjectConverter : IValueConverter
     {
-        public string Temperature { get; set; } = Icons.SensorStatusTemperatureLight;
-        public string Humidity { get; set; } = Icons.SensorStatusHumidityLight;
-        public string Co2 { get; set; } = Icons.SensorStatusCo2Light;
-        public string None { get; set; } = Icons.SensorStatusUnknownTypeLight;
+        public string Temperature { get; set; } = Icons.SensorStatusTemperatureDark;
+        public string Humidity { get; set; } = Icons.SensorStatusHumidityDark;
+        public string Co2 { get; set; } = Icons.SensorStatusCo2Dark;
+        public string None { get; set; } = Icons.SensorStatusUnknownTypeDark;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

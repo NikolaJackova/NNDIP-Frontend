@@ -5,16 +5,22 @@
              xmlns:api="clr-namespace:NNDIP.ApiClient;assembly=NNDIP.ApiClient"
              xmlns:sensor="clr-namespace:NNDIP.Maui.Models.Sensor"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
-             xmlns:models="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
-             Title="Dashboard">
+             Title="{x:Static lang:AppResources.dashboardPage_PageTitle}">
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*">
+            <Label Text="{x:Static lang:AppResources.dashboardPage_PageTitle}" VerticalOptions="Center"/>
+            <Image Grid.Column="1" Source="dashboard.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
-            <VerticalStackLayout BackgroundColor="AliceBlue">
+            <VerticalStackLayout>
 
                 <!-- DEVICE STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
-                    <Label FontSize="Title" Text="Device status"/>
+                    <Label FontSize="Title" Text="{x:Static lang:AppResources.dashboardPage_DeviceStatus}"/>
                     <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
                             <Image HeightRequest="40" WidthRequest="40">
@@ -28,7 +34,7 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Grid.Column="1" VerticalOptions="Center" Text="Air Condition"/>
+                            <Label Grid.Column="1" VerticalOptions="Center" Text="{x:Static lang:AppResources.dashboardPage_AirCondition}"/>
                             <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" >
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitMode">
@@ -53,7 +59,7 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Grid.Column="1" VerticalOptions="Center" Text="Ventilator"/>
+                            <Label Grid.Column="1" VerticalOptions="Center" Text="{x:Static lang:AppResources.dashboardPage_Ventilator}"/>
                             <Image Grid.Column="2" HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitFanSpeed">
@@ -78,14 +84,14 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Grid.Column="1" VerticalOptions="Center" Text="Recuperation"/>
+                            <Label Grid.Column="1" VerticalOptions="Center" Text="{x:Static lang:AppResources.dashboardPage_Recuperation}"/>
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
 
                 <!-- SENSOR STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
-                    <Label FontSize="Title" Text="Sensor status"/>
+                    <Label FontSize="Title" Text="{x:Static lang:AppResources.dashboardPage_SensorStatus}"/>
                     <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}">
                         <CollectionView.GroupHeaderTemplate>
                             <DataTemplate x:DataType="sensor:SensorGroup">
@@ -128,17 +134,21 @@
                 </VerticalStackLayout>
 
                 <!-- CHART -->
-                <VerticalStackLayout Padding="8" Spacing="5">
-                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,3*" >
-                        <Label VerticalOptions="Center" Text="Unit:" />
-                        <Picker Grid.Column="1" Title="Select an unit"/>
-                        <Label Grid.Row="1" VerticalOptions="Center" Text="Sensor:" />
-                        <Picker Grid.Row="1" Grid.Column="1" Title="Select a sensor" ItemsSource="{Binding SensorGroups}" ItemDisplayBinding="{Binding Sensor.Name}"/>
-                        <Label Grid.Row="2" VerticalOptions="Center" Text="From:" />
-                        <DatePicker Grid.Row="2" Grid.Column="1" />
-                        <Label Grid.Row="3" VerticalOptions="Center" Text="To:" />
-                        <DatePicker Grid.Row="3" Grid.Column="1" />
-                    </Grid>
+                <VerticalStackLayout Padding="8">
+                    <Frame Padding="8">
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,2*,*,2*" RowSpacing="10">
+                            <Label VerticalOptions="Center" Text="{x:Static lang:AppResources.dashboardPage_Unit}" />
+                            <Picker Grid.Column="1" Title="{x:Static lang:AppResources.dashboardPage_SelectUnit}"/>
+                            <Label Grid.Column="2" VerticalOptions="Center" Text="{x:Static lang:AppResources.dashboardPage_Sensor}" />
+                            <Picker Grid.Column="3" Title="{x:Static lang:AppResources.dashboardPage_SelectSensor}" ItemsSource="{Binding SensorGroups}" ItemDisplayBinding="{Binding Sensor.Name}"/>
+                            <Label Grid.Row="2" VerticalOptions="Center" Text="{x:Static lang:AppResources.dashboardPage_Date}" />
+                            <DatePicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Date="{Binding DatePickerDate}"/>
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="3" Spacing="5">
+                                <Button Text="+" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding PlusCommand}"/>
+                                <Button Text="−" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding MinusCommand}"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Frame>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

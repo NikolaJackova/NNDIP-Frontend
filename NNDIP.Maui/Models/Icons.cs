@@ -24,6 +24,11 @@ namespace NNDIP.Maui.Models
         #endregion
 
         #region Dark
+        public const string DeviceStatusAutoDark = "auto_dark.png";
+        public const string DeviceStatusColdDark = "cold_dark.png";
+        public const string DeviceStatusDryDark = "dry_dark.png";
+        public const string DeviceStatusFanDark = "fan_dark.png";
+        public const string DeviceStatusHeatWaveDark = "heat_wave_dark.png";
         public const string DeviceStatusSignal1Dark = "signal_1_dark.png";
         public const string DeviceStatusSignal2Dark = "signal_2_dark.png";
         public const string DeviceStatusSignal3Dark = "signal_3_dark.png";

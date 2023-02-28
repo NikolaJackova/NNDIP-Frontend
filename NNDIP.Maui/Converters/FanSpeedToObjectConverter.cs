@@ -10,11 +10,11 @@ namespace NNDIP.Maui.Converters
 {
     internal class FanSpeedToIconConverter : IValueConverter
     {
-        public string Speed0 { get; set; } = Icons.DeviceStatusSignalEmptyLight;
-        public string Speed1 { get; set; } = Icons.DeviceStatusSignal1Light;
-        public string Speed2 { get; set; } = Icons.DeviceStatusSignal2Light;
-        public string Speed3 { get; set; } = Icons.DeviceStatusSignal3Light;
-        public string Speed4 { get; set; } = Icons.DeviceStatusSignal4Light;
+        public string Speed0 { get; set; } = Icons.DeviceStatusSignalEmptyDark;
+        public string Speed1 { get; set; } = Icons.DeviceStatusSignal1Dark;
+        public string Speed2 { get; set; } = Icons.DeviceStatusSignal2Dark;
+        public string Speed3 { get; set; } = Icons.DeviceStatusSignal3Dark;
+        public string Speed4 { get; set; } = Icons.DeviceStatusSignal4Dark;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -9,7 +9,7 @@
     Shell.TabBarIsVisible="False">
 
     <ShellContent FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"
-        ContentTemplate="{DataTemplate startupPages:LoadingPage}" Route="LoadingPage" />
+        ContentTemplate="{DataTemplate startupPages:LoadingPage}" Route="LoadingPage"/>
 
     <ShellContent
         Title="Login Page" FlyoutItemIsVisible="False" Shell.FlyoutBehavior="Disabled"

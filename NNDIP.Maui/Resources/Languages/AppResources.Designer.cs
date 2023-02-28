@@ -160,6 +160,114 @@ namespace NNDIP.Maui.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CO2.
+        /// </summary>
+        public static string limitPlanPage_Co2 {
+            get {
+                return ResourceManager.GetString("limitPlanPage_Co2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event:.
+        /// </summary>
+        public static string limitPlanPage_Event {
+            get {
+                return ResourceManager.GetString("limitPlanPage_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High value.
+        /// </summary>
+        public static string limitPlanPage_HighTemperature {
+            get {
+                return ResourceManager.GetString("limitPlanPage_HighTemperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low value.
+        /// </summary>
+        public static string limitPlanPage_LowTemperature {
+            get {
+                return ResourceManager.GetString("limitPlanPage_LowTemperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optimal value.
+        /// </summary>
+        public static string limitPlanPage_OptimalCo2 {
+            get {
+                return ResourceManager.GetString("limitPlanPage_OptimalCo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optimal value.
+        /// </summary>
+        public static string limitPlanPage_OptimalTemperature {
+            get {
+                return ResourceManager.GetString("limitPlanPage_OptimalTemperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limit Plan.
+        /// </summary>
+        public static string limitPlanPage_PageTitle {
+            get {
+                return ResourceManager.GetString("limitPlanPage_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an event.
+        /// </summary>
+        public static string limitPlanPage_SelectEvent {
+            get {
+                return ResourceManager.GetString("limitPlanPage_SelectEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summer.
+        /// </summary>
+        public static string limitPlanPage_Summer {
+            get {
+                return ResourceManager.GetString("limitPlanPage_Summer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temperature.
+        /// </summary>
+        public static string limitPlanPage_Temperature {
+            get {
+                return ResourceManager.GetString("limitPlanPage_Temperature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Threshold value.
+        /// </summary>
+        public static string limitPlanPage_ThresholdCo2 {
+            get {
+                return ResourceManager.GetString("limitPlanPage_ThresholdCo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Winter.
+        /// </summary>
+        public static string limitPlanPage_Winter {
+            get {
+                return ResourceManager.GetString("limitPlanPage_Winter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login to your account.
         /// </summary>
         public static string loginPage_LoginToAccount {

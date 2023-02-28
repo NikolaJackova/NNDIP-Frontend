@@ -150,6 +150,42 @@
   <data name="dashboardPage_Ventilator" xml:space="preserve">
     <value>Ventilator</value>
   </data>
+  <data name="limitPlanPage_Co2" xml:space="preserve">
+    <value>CO2</value>
+  </data>
+  <data name="limitPlanPage_Event" xml:space="preserve">
+    <value>Event:</value>
+  </data>
+  <data name="limitPlanPage_HighTemperature" xml:space="preserve">
+    <value>High value</value>
+  </data>
+  <data name="limitPlanPage_LowTemperature" xml:space="preserve">
+    <value>Low value</value>
+  </data>
+  <data name="limitPlanPage_OptimalCo2" xml:space="preserve">
+    <value>Optimal value</value>
+  </data>
+  <data name="limitPlanPage_OptimalTemperature" xml:space="preserve">
+    <value>Optimal value</value>
+  </data>
+  <data name="limitPlanPage_PageTitle" xml:space="preserve">
+    <value>Limit Plan</value>
+  </data>
+  <data name="limitPlanPage_SelectEvent" xml:space="preserve">
+    <value>Select an event</value>
+  </data>
+  <data name="limitPlanPage_Summer" xml:space="preserve">
+    <value>Summer</value>
+  </data>
+  <data name="limitPlanPage_Temperature" xml:space="preserve">
+    <value>Temperature</value>
+  </data>
+  <data name="limitPlanPage_ThresholdCo2" xml:space="preserve">
+    <value>Threshold value</value>
+  </data>
+  <data name="limitPlanPage_Winter" xml:space="preserve">
+    <value>Winter</value>
+  </data>
   <data name="loginPage_LoginToAccount" xml:space="preserve">
     <value>Login to your account</value>
   </data>

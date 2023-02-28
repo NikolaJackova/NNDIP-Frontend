@@ -1,5 +1,7 @@
 ﻿using NNDIP.Maui.Controls;
+using NNDIP.Maui.Resources.Languages;
 using NNDIP.Maui.Views.Dashboard;
+using NNDIP.Maui.Views.Plan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace NNDIP.Maui.Models
             if (dashboardInfo != null) Shell.Current.Items.Remove(dashboardInfo);
             var flyoutItem = new FlyoutItem()
             {
-                Title = "Dashboard Page",
+                Title = AppResources.dashboardPage_PageTitle,
                 Route = nameof(DashboardPage),
                 FlyoutDisplayOptions = FlyoutDisplayOptions.AsMultipleItems,
                 Items =
@@ -27,14 +29,14 @@ namespace NNDIP.Maui.Models
                                 new ShellContent
                                 {
                                     Icon = Icons.Dashboard,
-                                    Title = "Dashboard",
+                                    Title = AppResources.dashboardPage_PageTitle,
                                     ContentTemplate = new DataTemplate(typeof(DashboardPage)),
                                 },
                                 new ShellContent
                                 {
                                     Icon = Icons.Dashboard,
-                                    Title = "Dashboard Test",
-                                    ContentTemplate = new DataTemplate(typeof(DashboardPage)),
+                                    Title = AppResources.limitPlanPage_PageTitle,
+                                    ContentTemplate = new DataTemplate(typeof(LimitPlanPage)),
                                 },
                             }
             };

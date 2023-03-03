@@ -16,7 +16,7 @@ public partial class DashboardPageViewModel : BaseViewModel
 {
     #region Properites
     [ObservableProperty]
-    private AddressStateResultDto _addressStateResult;
+    private AddressStateResult _addressStateResult;
 
     [ObservableProperty]
     private ObservableCollection<SensorsDataDto> _sensorsData;

@@ -153,6 +153,9 @@
   <data name="limitPlanPage_Co2" xml:space="preserve">
     <value>CO2</value>
   </data>
+  <data name="limitPlanPage_DegreeCelsiusUnit" xml:space="preserve">
+    <value>°C</value>
+  </data>
   <data name="limitPlanPage_Event" xml:space="preserve">
     <value>Event:</value>
   </data>
@@ -170,6 +173,15 @@
   </data>
   <data name="limitPlanPage_PageTitle" xml:space="preserve">
     <value>Limit Plan</value>
+  </data>
+  <data name="limitPlanPage_PercentageUnit" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="limitPlanPage_PpmUnit" xml:space="preserve">
+    <value>ppm</value>
+  </data>
+  <data name="limitPlanPage_Save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="limitPlanPage_SelectEvent" xml:space="preserve">
     <value>Select an event</value>

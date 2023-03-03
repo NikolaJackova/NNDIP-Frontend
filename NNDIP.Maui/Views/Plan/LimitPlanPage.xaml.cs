@@ -9,4 +9,11 @@ public partial class LimitPlanPage : ContentPage
 		InitializeComponent();
 		BindingContext = limitPlanPageViewModel;
     }
+
+    override protected void OnAppearing()
+    {
+        base.OnAppearing();
+        LimitPlanPageViewModel viewModel = BindingContext as LimitPlanPageViewModel;
+        viewModel.Load();
+    }
 }

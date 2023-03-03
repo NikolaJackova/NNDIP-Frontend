@@ -169,6 +169,15 @@ namespace NNDIP.Maui.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to °C.
+        /// </summary>
+        public static string limitPlanPage_DegreeCelsiusUnit {
+            get {
+                return ResourceManager.GetString("limitPlanPage_DegreeCelsiusUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event:.
         /// </summary>
         public static string limitPlanPage_Event {
@@ -219,6 +228,33 @@ namespace NNDIP.Maui.Resources.Languages {
         public static string limitPlanPage_PageTitle {
             get {
                 return ResourceManager.GetString("limitPlanPage_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        public static string limitPlanPage_PercentageUnit {
+            get {
+                return ResourceManager.GetString("limitPlanPage_PercentageUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ppm.
+        /// </summary>
+        public static string limitPlanPage_PpmUnit {
+            get {
+                return ResourceManager.GetString("limitPlanPage_PpmUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string limitPlanPage_Save {
+            get {
+                return ResourceManager.GetString("limitPlanPage_Save", resourceCulture);
             }
         }
         

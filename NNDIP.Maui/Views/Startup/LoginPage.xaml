@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              x:Class="NNDIP.Maui.Views.Startup.LoginPage"
-             Title="Login">
+             Title="{x:Static lang:AppResources.loginPage_PageTitle}">
     <VerticalStackLayout 
             Spacing="25" 
             Padding="30,0" 
@@ -11,28 +12,28 @@
         <Image Source="dotnet_bot.svg" HeightRequest="150" WidthRequest="150" />
 
         <VerticalStackLayout Spacing="5">
-            <Label Text="Welcome!" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
-            <Label Text="Login to your account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center" />
+            <Label Text="{x:Static lang:AppResources.loginPage_Welcome}" FontSize="28" HorizontalTextAlignment="Center" />
+            <Label Text="{x:Static lang:AppResources.loginPage_LoginToAccount}" FontSize="18" HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+            <Frame ZIndex="1" HasShadow="True" HeightRequest="56" WidthRequest="56" CornerRadius="28">
                 <Image Source="user.png" HeightRequest="20" WidthRequest="20" />
             </Frame>
-            <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding Username}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Username" Keyboard="Text" />
+            <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand">
+                <Entry Text="{Binding Username}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="{x:Static lang:AppResources.loginPage_Username}" Keyboard="Text" />
             </Frame>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal">
-            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
+            <Frame ZIndex="1" HasShadow="True" HeightRequest="56" WidthRequest="56" CornerRadius="28">
                 <Image Source="lock.png" HeightRequest="20" WidthRequest="20" />
             </Frame>
-            <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" BorderColor="White"  HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding Password}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="True" />
+            <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand">
+                <Entry Text="{Binding Password}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="{x:Static lang:AppResources.loginPage_Password}" IsPassword="True" />
             </Frame>
         </StackLayout>
 
-        <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoginCommand}" />
+        <Button Text="{x:Static lang:AppResources.loginPage_SignIn}" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Command="{Binding LoginCommand}" />
     </VerticalStackLayout>
 </ContentPage>

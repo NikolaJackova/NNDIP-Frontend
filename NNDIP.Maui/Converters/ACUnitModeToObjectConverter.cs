@@ -10,11 +10,11 @@ namespace NNDIP.Maui.Converters
 {
     internal class ACUnitModeToObjectConverter : IValueConverter
     {
-        public string Auto { get; set; } = Icons.DeviceStatusAutoLight;
-        public string Cool { get; set; } = Icons.DeviceStatusColdLight;
-        public string Dry { get; set; } = Icons.DeviceStatusDryLight;
-        public string Heat { get; set; } = Icons.DeviceStatusHeatWaveLight;
-        public string Fan { get; set; } = Icons.DeviceStatusFanLight;
+        public string Auto { get; set; } = Icons.DeviceStatusAutoDark;
+        public string Cool { get; set; } = Icons.DeviceStatusColdDark;
+        public string Dry { get; set; } = Icons.DeviceStatusDryDark;
+        public string Heat { get; set; } = Icons.DeviceStatusHeatWaveDark;
+        public string Fan { get; set; } = Icons.DeviceStatusFanDark;
         public string None { get; set; } = "";
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

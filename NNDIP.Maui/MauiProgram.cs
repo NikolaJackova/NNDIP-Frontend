@@ -5,6 +5,8 @@ using NNDIP.Maui.ViewModels.Dashboard;
 using NNDIP.Maui.ViewModels.Startup;
 //using Syncfusion.Maui.Core.Hosting;
 using NNDIP.Maui.Controls;
+using NNDIP.Maui.Views.Plan;
+using NNDIP.Maui.ViewModels.Plan;
 
 namespace NNDIP.Maui;
 
@@ -12,7 +14,7 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
+        var builder = MauiApp.CreateBuilder();
 		builder
             .UseMauiApp<App>()
             //.ConfigureSyncfusionCore()
@@ -23,12 +25,14 @@ public static class MauiProgram
 			});
 
         builder.Services.AddSingleton<LoginPage>();
-        builder.Services.AddSingleton<DashboardPage>();
         builder.Services.AddSingleton<LoadingPage>();
+        builder.Services.AddSingleton<DashboardPage>();
+        builder.Services.AddSingleton<LimitPlanPage>();
 
         builder.Services.AddSingleton<LoginPageViewModel>();
-        builder.Services.AddSingleton<DashboardPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
+        builder.Services.AddSingleton<DashboardPageViewModel>();
+        builder.Services.AddSingleton<LimitPlanPageViewModel>();
 
         return builder.Build();
 	}

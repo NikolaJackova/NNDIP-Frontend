@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NNDIP.Maui.Views.Plan.LimitPlanPage"
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
+             Title="{x:Static lang:AppResources.limitPlanPage_PageTitle}">
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="8" Spacing="10">
+                
+                <!-- WINTER/SUMMER PLAN -->
+                <Frame Padding="8">
+                    <Grid ColumnDefinitions="*,*">
+                        <RadioButton Content="{x:Static lang:AppResources.limitPlanPage_Summer}" IsChecked="{Binding LimitSettings.IsSummerActive}"/>
+                        <RadioButton Grid.Column="1" Content="{x:Static lang:AppResources.limitPlanPage_Winter}" IsChecked="{Binding LimitSettings.IsWinterActive}"/>
+                    </Grid>
+                </Frame>
+                
+                <!-- TEMPERATURE -->
+                <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.limitPlanPage_Temperature}"/>
+                <Frame Padding="8">
+                    <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,3*,*, *" ColumnSpacing="10">
+                        <Label Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_OptimalTemperature}"/>
+                        <Entry Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.OptimalValueTemperature}"/>
+                        <Label Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_DegreeCelsiusUnit}"/>
+                        <Switch Grid.Row="1" IsToggled="{Binding LimitSettings.TemperatureLow.Enabled}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_LowTemperature}"/>
+                        <Entry Grid.Row="1" Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.TemperatureLow.Value}"/>
+                        <Label Grid.Row="1" Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_DegreeCelsiusUnit}"/>
+                        <Label Grid.Row="2" Text="{x:Static lang:AppResources.limitPlanPage_Event}"/>
+                        <Picker Grid.Row="2" Grid.Column="1" Title="{x:Static lang:AppResources.limitPlanPage_SelectEvent}" ItemsSource="{Binding Events}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding TemperatureLowEvent}"/>
+                        <Switch Grid.Row="3" IsToggled="{Binding LimitSettings.TemperatureHigh.Enabled}"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_HighTemperature}"/>
+                        <Entry Grid.Row="3" Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.TemperatureHigh.Value}"/>
+                        <Label Grid.Row="3" Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_DegreeCelsiusUnit}"/>
+                        <Label Grid.Row="4" Text="{x:Static lang:AppResources.limitPlanPage_Event}"/>
+                        <Picker Grid.Row="4" Grid.Column="1" Title="{x:Static lang:AppResources.limitPlanPage_SelectEvent}" ItemsSource="{Binding Events}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding TemperatureHighEvent}"/>
+                    </Grid>
+                </Frame>
+                
+                <!-- CO2 -->
+                <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.limitPlanPage_Co2}"/>
+                <Frame Padding="8">
+                    <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,3*,*,*" ColumnSpacing="10">
+                        <Label Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_OptimalCo2}"/>
+                        <Entry Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.OptimalValueCo2}"/>
+                        <Label Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_PpmUnit}"/>
+                        <Switch Grid.Row="1" IsToggled="{Binding LimitSettings.Co2.Enabled}"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_ThresholdCo2}"/>
+                        <Entry Grid.Row="1" Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.Co2.Value}"/>
+                        <Label Grid.Row="1" Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_PpmUnit}"/>
+                        <Label Grid.Row="2" Text="{x:Static lang:AppResources.limitPlanPage_Event}"/>
+                        <Picker Grid.Row="2" Grid.Column="1" Title="{x:Static lang:AppResources.limitPlanPage_SelectEvent}" ItemsSource="{Binding Events}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Co2Event}"/>
+                    </Grid>
+                </Frame>
+                <Button Text="{x:Static lang:AppResources.limitPlanPage_Save}" Command="{Binding SaveCommand}"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

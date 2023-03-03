@@ -5,16 +5,22 @@
              xmlns:api="clr-namespace:NNDIP.ApiClient;assembly=NNDIP.ApiClient"
              xmlns:sensor="clr-namespace:NNDIP.Maui.Models.Sensor"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
-             xmlns:models="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
-             Title="Dashboard">
+             Title="{x:Static lang:AppResources.dashboardPage_PageTitle}">
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*">
+            <Image Grid.Column="1" Source="dashboard.png" HeightRequest="40" WidthRequest="40"/>
+            <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_PageTitle}" />
+        </Grid>
+    </Shell.TitleView>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
-            <VerticalStackLayout BackgroundColor="AliceBlue">
+            <VerticalStackLayout>
 
                 <!-- DEVICE STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
-                    <Label FontSize="Title" Text="Device status"/>
+                    <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_DeviceStatus}"/>
                     <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
                             <Image HeightRequest="40" WidthRequest="40">
@@ -28,7 +34,7 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Grid.Column="1" VerticalOptions="Center" Text="Air Condition"/>
+                            <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_AirCondition}"/>
                             <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" >
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitMode">
@@ -53,7 +59,7 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Grid.Column="1" VerticalOptions="Center" Text="Ventilator"/>
+                            <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_Ventilator}"/>
                             <Image Grid.Column="2" HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitFanSpeed">
@@ -78,21 +84,21 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
-                            <Label Grid.Column="1" VerticalOptions="Center" Text="Recuperation"/>
+                            <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_Recuperation}"/>
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
 
                 <!-- SENSOR STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
-                    <Label FontSize="Title" Text="Sensor status"/>
+                    <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_SensorStatus}"/>
                     <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}">
                         <CollectionView.GroupHeaderTemplate>
                             <DataTemplate x:DataType="sensor:SensorGroup">
                                 <HorizontalStackLayout Padding="0,8" Spacing="10">
-                                    <Label VerticalOptions="Center" FontSize="Title" Text="{Binding Sensor.Name}"/>
-                                    <Label VerticalOptions="Center" FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}"/>
-                                    <Image VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Source="{Binding GroupIcon}" />
+                                    <Label Style="{StaticResource labelTitleStyle}" Text="{Binding Sensor.Name}"/>
+                                    <Label FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}"/>
+                                    <Image HeightRequest="20" WidthRequest="20" Source="{Binding GroupIcon}" />
                                     <HorizontalStackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
                                     </HorizontalStackLayout.GestureRecognizers>
@@ -112,7 +118,7 @@
                                                 </Binding>
                                             </Image.Source>
                                         </Image>
-                                        <Label Grid.Column="2" VerticalOptions="Center">
+                                        <Label Grid.Column="2">
                                             <Label.Text>
                                                 <MultiBinding StringFormat="{}{0} {1}">
                                                     <Binding Path="Value" />
@@ -128,17 +134,21 @@
                 </VerticalStackLayout>
 
                 <!-- CHART -->
-                <VerticalStackLayout Padding="8" Spacing="5">
-                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,3*" >
-                        <Label VerticalOptions="Center" Text="Unit:" />
-                        <Picker Grid.Column="1" Title="Select an unit"/>
-                        <Label Grid.Row="1" VerticalOptions="Center" Text="Sensor:" />
-                        <Picker Grid.Row="1" Grid.Column="1" Title="Select a sensor" ItemsSource="{Binding SensorGroups}" ItemDisplayBinding="{Binding Sensor.Name}"/>
-                        <Label Grid.Row="2" VerticalOptions="Center" Text="From:" />
-                        <DatePicker Grid.Row="2" Grid.Column="1" />
-                        <Label Grid.Row="3" VerticalOptions="Center" Text="To:" />
-                        <DatePicker Grid.Row="3" Grid.Column="1" />
-                    </Grid>
+                <VerticalStackLayout Padding="8">
+                    <Frame Padding="8">
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="*,2*,*,2*" RowSpacing="10">
+                            <Label Text="{x:Static lang:AppResources.dashboardPage_Unit}" />
+                            <Picker Grid.Column="1" Title="{x:Static lang:AppResources.dashboardPage_SelectUnit}"/>
+                            <Label Grid.Column="2" Text="{x:Static lang:AppResources.dashboardPage_Sensor}" />
+                            <Picker Grid.Column="3" Title="{x:Static lang:AppResources.dashboardPage_SelectSensor}" ItemsSource="{Binding SensorGroups}" ItemDisplayBinding="{Binding Sensor.Name}"/>
+                            <Label Grid.Row="2" Text="{x:Static lang:AppResources.dashboardPage_Date}" />
+                            <DatePicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Date="{Binding DatePickerDate}"/>
+                            <HorizontalStackLayout Grid.Row="2" Grid.Column="3" Spacing="5">
+                                <Button Text="+" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding PlusCommand}"/>
+                                <Button Text="−" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding MinusCommand}"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </Frame>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

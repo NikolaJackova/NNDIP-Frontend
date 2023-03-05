@@ -38,6 +38,12 @@ namespace NNDIP.Maui.Models
                                     Title = AppResources.limitPlanPage_PageTitle,
                                     ContentTemplate = new DataTemplate(typeof(LimitPlanPage)),
                                 },
+                                new ShellContent
+                                {
+                                    Icon = Icons.Dashboard,
+                                    Title = AppResources.timePlanPage_PageTitle,
+                                    ContentTemplate = new DataTemplate(typeof(TimePlanPage)),
+                                }
                             }
             };
             if (!Shell.Current.Items.Contains(flyoutItem))

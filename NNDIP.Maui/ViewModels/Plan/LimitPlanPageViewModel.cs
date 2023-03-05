@@ -70,6 +70,9 @@ namespace NNDIP.Maui.ViewModels.Plan
         [RelayCommand]
         async void Save()
         {
+            LimitSettings.TemperatureHigh.EventId = TemperatureHighEvent.Id;
+            LimitSettings.TemperatureLow.EventId = TemperatureLowEvent.Id;
+            LimitSettings.Co2.EventId = Co2Event.Id;
             await RestService.API.ApiLimitPlanSettingsPutAsync(LimitSettings);
             Load();
         }

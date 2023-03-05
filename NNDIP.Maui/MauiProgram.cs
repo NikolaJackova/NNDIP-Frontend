@@ -28,12 +28,15 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoadingPage>();
         builder.Services.AddSingleton<DashboardPage>();
         builder.Services.AddSingleton<LimitPlanPage>();
+        builder.Services.AddSingleton<TimePlanPage>();
+        builder.Services.AddSingleton<AddUpdateTimePlanPage>();
 
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
         builder.Services.AddSingleton<DashboardPageViewModel>();
         builder.Services.AddSingleton<LimitPlanPageViewModel>();
-
+        builder.Services.AddSingleton<TimePlanPageViewModel>();
+        builder.Services.AddSingleton<AddUpdateTimePlanPageViewModel>();
         return builder.Build();
 	}
 }

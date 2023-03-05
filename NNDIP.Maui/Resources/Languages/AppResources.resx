@@ -216,4 +216,40 @@
   <data name="loginPage_Welcome" xml:space="preserve">
     <value>Welcome!</value>
   </data>
+  <data name="timePlanEditPage_Event" xml:space="preserve">
+    <value>Event:</value>
+  </data>
+  <data name="timePlanEditPage_From" xml:space="preserve">
+    <value>From:</value>
+  </data>
+  <data name="timePlanEditPage_Name" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="timePlanEditPage_PageTitle" xml:space="preserve">
+    <value>Time Plan</value>
+  </data>
+  <data name="timePlanEditPage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="timePlanEditPage_SelectEvent" xml:space="preserve">
+    <value>Select an event</value>
+  </data>
+  <data name="timePlanEditPage_To" xml:space="preserve">
+    <value>To:</value>
+  </data>
+  <data name="timePlanPage_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="timePlanPage_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="timePlanPage_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="timePlanPage_PageTitle" xml:space="preserve">
+    <value>Time Plan</value>
+  </data>
+  <data name="timePlanPage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using NNDIP.Maui.ViewModels;
+using NNDIP.Maui.Views.Plan;
 
 namespace NNDIP.Maui;
 
@@ -8,5 +9,6 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
         BindingContext = new AppShellViewModel();
+        Routing.RegisterRoute(nameof(AddUpdateTimePlanPage), typeof(AddUpdateTimePlanPage));
     }
 }

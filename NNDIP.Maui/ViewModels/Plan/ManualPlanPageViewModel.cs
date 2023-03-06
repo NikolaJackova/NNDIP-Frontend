@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using NNDIP.ApiClient;
 using NNDIP.Maui.Services;
+using NNDIP.Maui.Views.Plan;
 using NNDIP.Maui.Views.Startup;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace NNDIP.Maui.ViewModels.Plan
 
         [ObservableProperty]
         private ObservableCollection<ManualPlanDto> _manualPlans;
+
         public async void Load()
         {
             try
@@ -43,6 +45,35 @@ namespace NNDIP.Maui.ViewModels.Plan
         {
             Load();
             IsRefreshing = false;
+        }
+
+        [RelayCommand]
+        void Save()
+        {
+            Load();
+        }
+
+        [RelayCommand]
+        public async void AddManualPlan()
+        {
+            await Shell.Current.GoToAsync(nameof(AddUpdateManualPlanPage));
+        }
+
+        [RelayCommand]
+        public async void EditManualPlan(ManualPlanDto manualPlanDto)
+        {
+            Dictionary<string, object> navParam = new Dictionary<string, object>
+            {
+                { nameof(ManualPlanDto), manualPlanDto }
+            };
+            await Shell.Current.GoToAsync(nameof(AddUpdateManualPlanPage), navParam);
+        }
+
+        [RelayCommand]
+        public async void DeleteManualPlan(ManualPlanDto manualPlanDto)
+        {
+            await RestService.API.ApiManualPlanDeleteAsync(manualPlanDto.Id);
+            Load();
         }
         #endregion
     }

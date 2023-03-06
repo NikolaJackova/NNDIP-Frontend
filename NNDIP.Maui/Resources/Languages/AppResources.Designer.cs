@@ -358,6 +358,96 @@ namespace NNDIP.Maui.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        public static string manualPlanEditPage_Event {
+            get {
+                return ResourceManager.GetString("manualPlanEditPage_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string manualPlanEditPage_Name {
+            get {
+                return ResourceManager.GetString("manualPlanEditPage_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Plan.
+        /// </summary>
+        public static string manualPlanEditPage_PageTitle {
+            get {
+                return ResourceManager.GetString("manualPlanEditPage_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string manualPlanEditPage_Save {
+            get {
+                return ResourceManager.GetString("manualPlanEditPage_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an event.
+        /// </summary>
+        public static string manualPlanEditPage_SelectEvent {
+            get {
+                return ResourceManager.GetString("manualPlanEditPage_SelectEvent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string manualPlanPage_Add {
+            get {
+                return ResourceManager.GetString("manualPlanPage_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string manualPlanPage_Delete {
+            get {
+                return ResourceManager.GetString("manualPlanPage_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string manualPlanPage_Edit {
+            get {
+                return ResourceManager.GetString("manualPlanPage_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Plan.
+        /// </summary>
+        public static string manualPlanPage_PageTitle {
+            get {
+                return ResourceManager.GetString("manualPlanPage_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string manualPlanPage_Save {
+            get {
+                return ResourceManager.GetString("manualPlanPage_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event:.
         /// </summary>
         public static string timePlanEditPage_Event {

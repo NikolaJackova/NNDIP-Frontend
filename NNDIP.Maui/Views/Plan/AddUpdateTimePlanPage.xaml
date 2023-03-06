@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NNDIP.Maui.Views.Plan.AddUpdateTimePlanPage"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
-             xmlns:converters="clr-namespace:NNDIP.Maui.Converters" 
              Title="{x:Static lang:AppResources.timePlanEditPage_PageTitle}">
     <VerticalStackLayout Padding="8" Spacing="10">
         <Frame Padding="8">

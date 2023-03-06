@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NNDIP.ApiClient;
-using NNDIP.Maui.Resources.Languages;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
 using System;
@@ -13,21 +12,19 @@ using System.Threading.Tasks;
 
 namespace NNDIP.Maui.ViewModels.Plan
 {
-    [QueryProperty("TimePlan", nameof(TimePlanDto))]
-    public partial class AddUpdateTimePlanPageViewModel : BaseViewModel
+    [QueryProperty("ManualPlan", nameof(ManualPlanDto))]
+    public partial class AddUpdateManualPlanPageViewModel : BaseViewModel
     {
         [ObservableProperty]
-        public TimePlanDto _timePlan = new TimePlanDto()
+        public ManualPlanDto _manualPlan = new ManualPlanDto()
         {
-
             IdNavigation = new SimplePlanDto()
         };
-
         [ObservableProperty]
         private ObservableCollection<SimpleEventDto> _events;
 
         [ObservableProperty]
-        private SimpleEventDto _timePlanEvent;
+        private SimpleEventDto _manualPlanEvent;
 
         public async void Load()
         {
@@ -48,45 +45,45 @@ namespace NNDIP.Maui.ViewModels.Plan
         }
         private void SetSelectedEvents()
         {
-            if (TimePlan is not null)
+            if (ManualPlan is not null)
             {
-                TimePlanEvent = Events.FirstOrDefault(item => item.Id == TimePlan.IdNavigation.EventId);
+                ManualPlanEvent = Events.FirstOrDefault(item => item.Id == ManualPlan.IdNavigation.EventId);
+            }
+            else
+            {
+                ManualPlanEvent = Events.FirstOrDefault();
             }
         }
 
         #region Commands
         [RelayCommand]
-        public async void AddUpdateTimePlan()
+        public async void AddUpdateManualPlan()
         {
-            if (TimePlan.Id > 0)
+            if (ManualPlan.Id > 0)
             {
-                await RestService.API.ApiTimePlanPutAsync(TimePlan.Id, new UpdateTimePlanDto()
+                await RestService.API.ApiManualPlanPutAsync(ManualPlan.Id, new UpdateManualPlanDto()
                 {
-                    Id = TimePlan.Id,
-                    FromTime = TimePlan.FromTime,
-                    ToTime = TimePlan.ToTime,
+                    Id = ManualPlan.Id,
                     IdNavigation = new UpdatePlanDto()
                     {
-                        Id = TimePlan.Id,
-                        Enabled = TimePlan.IdNavigation.Enabled,
-                        Name = TimePlan.IdNavigation.Name,
-                        EventId = TimePlan.IdNavigation.EventId,
-                        PlanType = TimePlan.IdNavigation.PlanType,
-                        Priority = TimePlan.IdNavigation.Priority
+                        Id = ManualPlan.Id,
+                        Enabled = ManualPlan.IdNavigation.Enabled,
+                        Name = ManualPlan.IdNavigation.Name,
+                        EventId = ManualPlan.IdNavigation.EventId,
+                        PlanType = ManualPlan.IdNavigation.PlanType,
+                        Priority = ManualPlan.IdNavigation.Priority
                     }
                 });
             }
             else
             {
-                await RestService.API.ApiTimePlanPostAsync(new AddTimePlanDto()
+                await RestService.API.ApiManualPlanPostAsync(new AddManualPlanDto()
                 {
-                    FromTime = TimePlan.FromTime,
-                    ToTime = TimePlan.ToTime,
                     IdNavigation = new AddPlanDto()
                     {
                         Enabled = 1,
-                        EventId = TimePlanEvent.Id,
-                        Name = TimePlan.IdNavigation.Name
+                        EventId = ManualPlanEvent.Id,
+                        Name = ManualPlan.IdNavigation.Name
                     }
                 });
             }

@@ -31,6 +31,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<TimePlanPage>();
         builder.Services.AddSingleton<AddUpdateTimePlanPage>();
         builder.Services.AddSingleton<ManualPlanPage>();
+        builder.Services.AddSingleton<AddUpdateManualPlanPage>();
 
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
@@ -39,6 +40,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<TimePlanPageViewModel>();
         builder.Services.AddSingleton<AddUpdateTimePlanPageViewModel>();
         builder.Services.AddSingleton<ManualPlanPageViewModel>();
+        builder.Services.AddSingleton<AddUpdateManualPlanPageViewModel>();
+
         return builder.Build();
 	}
 }

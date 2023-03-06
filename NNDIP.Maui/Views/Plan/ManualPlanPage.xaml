@@ -2,11 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NNDIP.Maui.Views.Plan.ManualPlanPage"
-             Title="ManualPlanPage">
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
+             xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Plan"
+             xmlns:models="clr-namespace:NNDIP.Maui.Models"
+             Title="{x:Static lang:AppResources.manualPlanPage_PageTitle}">
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView>
             <VerticalStackLayout Padding="8" Spacing="10">
-                <Button Text="{x:Static lang:AppResources.timePlanPage_Add}" Command="{Binding AddTimePlanCommand}"/>
+                <Button Text="{x:Static lang:AppResources.manualPlanPage_Add}" Command="{Binding AddManualPlanCommand}"/>
                 <Frame Padding="8">
                     <CollectionView ItemsSource="{Binding ManualPlans}">
                         <CollectionView.ItemTemplate>
@@ -14,11 +17,11 @@
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
-                                            <SwipeItem Text="Edit" IconImageSource="{x:Static models:Icons.Edit}" 
+                                            <SwipeItem Text="{x:Static lang:AppResources.manualPlanPage_Edit}" IconImageSource="{x:Static models:Icons.Edit}" 
                                            CommandParameter="{Binding .}"
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:TimePlanPageViewModel}},Path=EditTimePlanCommand}" />
-                                            <SwipeItem Text="Delete" IconImageSource="{x:Static models:Icons.Delete}" CommandParameter="{Binding .}"
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:TimePlanPageViewModel}},Path=DeleteTimePlanCommand}" />
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ManualPlanPageViewModel}},Path=EditManualPlanCommand}" />
+                                            <SwipeItem Text="{x:Static lang:AppResources.manualPlanPage_Delete}" IconImageSource="{x:Static models:Icons.Delete}" CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ManualPlanPageViewModel}},Path=DeleteManualPlanCommand}" />
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
                                     <Grid ColumnDefinitions="*,3*">
@@ -30,7 +33,7 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Frame>
-                <Button Text="{x:Static lang:AppResources.timePlanPage_Save}" Command="{Binding SaveCommand}"/>
+                <Button Text="{x:Static lang:AppResources.manualPlanPage_Save}" Command="{Binding SaveCommand}"/>
             </VerticalStackLayout>
         </ScrollView>
     </RefreshView>

@@ -17,10 +17,10 @@
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
-                                            <SwipeItem Text="Edit" IconImageSource="{x:Static models:Icons.Edit}" 
+                                            <SwipeItem Text="{x:Static lang:AppResources.timePlanPage_Edit}" IconImageSource="{x:Static models:Icons.Edit}" 
                                            CommandParameter="{Binding .}"
                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:TimePlanPageViewModel}},Path=EditTimePlanCommand}" />
-                                            <SwipeItem Text="Delete" IconImageSource="{x:Static models:Icons.Delete}" CommandParameter="{Binding .}"
+                                            <SwipeItem Text="{x:Static lang:AppResources.timePlanPage_Delete}" IconImageSource="{x:Static models:Icons.Delete}" CommandParameter="{Binding .}"
                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:TimePlanPageViewModel}},Path=DeleteTimePlanCommand}" />
                                         </SwipeItems>
                                     </SwipeView.LeftItems>

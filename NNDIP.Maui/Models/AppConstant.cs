@@ -43,6 +43,12 @@ namespace NNDIP.Maui.Models
                                     Icon = Icons.Dashboard,
                                     Title = AppResources.timePlanPage_PageTitle,
                                     ContentTemplate = new DataTemplate(typeof(TimePlanPage)),
+                                },
+                                new ShellContent
+                                {
+                                    Icon = Icons.Dashboard,
+                                    Title = AppResources.manualPlanPage_PageTitle,
+                                    ContentTemplate = new DataTemplate(typeof(ManualPlanPage)),
                                 }
                             }
             };

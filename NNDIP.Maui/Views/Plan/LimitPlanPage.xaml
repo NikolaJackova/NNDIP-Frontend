@@ -11,8 +11,8 @@
                 <!-- WINTER/SUMMER PLAN -->
                 <Frame Padding="8">
                     <Grid ColumnDefinitions="*,*">
-                        <RadioButton Content="{x:Static lang:AppResources.limitPlanPage_Summer}" IsChecked="{Binding LimitSettings.IsSummerActive}"/>
-                        <RadioButton Grid.Column="1" Content="{x:Static lang:AppResources.limitPlanPage_Winter}" IsChecked="{Binding LimitSettings.IsWinterActive}"/>
+                        <RadioButton Content="{x:Static lang:AppResources.limitPlanPage_Summer}" IsChecked="{Binding SummerPeriod.Active}"/>
+                        <RadioButton Grid.Column="1" Content="{x:Static lang:AppResources.limitPlanPage_Winter}" IsChecked="{Binding WinterPeriod.Active}"/>
                     </Grid>
                 </Frame>
                 

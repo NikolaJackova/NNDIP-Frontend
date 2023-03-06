@@ -216,6 +216,36 @@
   <data name="loginPage_Welcome" xml:space="preserve">
     <value>Welcome!</value>
   </data>
+  <data name="manualPlanEditPage_Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="manualPlanEditPage_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="manualPlanEditPage_PageTitle" xml:space="preserve">
+    <value>Manual Plan</value>
+  </data>
+  <data name="manualPlanEditPage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="manualPlanEditPage_SelectEvent" xml:space="preserve">
+    <value>Select an event</value>
+  </data>
+  <data name="manualPlanPage_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="manualPlanPage_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="manualPlanPage_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="manualPlanPage_PageTitle" xml:space="preserve">
+    <value>Manual Plan</value>
+  </data>
+  <data name="manualPlanPage_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="timePlanEditPage_Event" xml:space="preserve">
     <value>Event:</value>
   </data>

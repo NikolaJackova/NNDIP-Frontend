@@ -15,7 +15,7 @@ namespace NNDIP.Maui.ViewModels
         [RelayCommand]
         async void SignOut()
         {
-            SecureStorageService.Remove();
+            AuthenticationService.RemoveJwtToken();
             RestService.ClearAuthorization();
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }

@@ -28,10 +28,6 @@ namespace NNDIP.Maui.ViewModels.Startup
         {
             if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
             {
-                var userDetails = new UserInfo
-                {
-                    Username = Username
-                };
                 TokenDto tokenDto;
                 try
                 {
@@ -47,10 +43,9 @@ namespace NNDIP.Maui.ViewModels.Startup
                     return;
                 }
 
-                SecureStorageService.Remove();
-                SecureStorageService.Set(tokenDto.Token);
+                AuthenticationService.RemoveJwtToken();
+                AuthenticationService.SetJwtToken(tokenDto.Token);
                 RestService.SetAuthorization(tokenDto.Token);
-                App.UserDetails = userDetails;
                 await AppConstant.AddFlyoutMenusDetails();
             }
         }

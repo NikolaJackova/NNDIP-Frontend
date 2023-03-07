@@ -10,7 +10,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Android.Provider.CalendarContract;
 
 namespace NNDIP.Maui.ViewModels.Plan
 {
@@ -30,12 +29,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             }
             catch (ApiClientException ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-                if (ex.StatusCode == 401)
-                {
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                }
-                return;
+                await ExceptionHandlingService.HandleException(ex);
             }
         }
 
@@ -45,12 +39,6 @@ namespace NNDIP.Maui.ViewModels.Plan
         {
             Load();
             IsRefreshing = false;
-        }
-
-        [RelayCommand]
-        void Save()
-        {
-            Load();
         }
 
         [RelayCommand]
@@ -72,8 +60,44 @@ namespace NNDIP.Maui.ViewModels.Plan
         [RelayCommand]
         public async void DeleteManualPlan(ManualPlanDto manualPlanDto)
         {
-            await RestService.API.ApiManualPlanDeleteAsync(manualPlanDto.Id);
+            try
+            {
+                await RestService.API.ApiManualPlanDeleteAsync(manualPlanDto.Id);
+            }
+            catch (ApiClientException ex)
+            {
+                await ExceptionHandlingService.HandleException(ex);
+                return;
+            }
             Load();
+        }
+
+        [RelayCommand]
+        public async void Toggled(ManualPlanDto manualPlanDto)
+        {
+            if (manualPlanDto is not null)
+            {
+                try
+                {
+                    await RestService.API.ApiManualPlanPutAsync(manualPlanDto.Id, new UpdateManualPlanDto()
+                    {
+                        Id = manualPlanDto.Id,
+                        IdNavigation = new UpdatePlanDto()
+                        {
+                            Id = manualPlanDto.Id,
+                            Enabled = manualPlanDto.IdNavigation.Enabled,
+                            EventId = manualPlanDto.IdNavigation.EventId,
+                            Name = manualPlanDto.IdNavigation.Name,
+                            Priority = manualPlanDto.IdNavigation.Priority,
+                            PlanType = manualPlanDto.IdNavigation.PlanType
+                        }
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await ExceptionHandlingService.HandleException(ex);
+                }
+            }
         }
         #endregion
     }

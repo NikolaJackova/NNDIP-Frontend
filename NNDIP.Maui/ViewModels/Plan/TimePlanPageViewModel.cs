@@ -30,14 +30,10 @@ namespace NNDIP.Maui.ViewModels.Plan
             }
             catch (ApiClientException ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-                if (ex.StatusCode == 401)
-                {
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                }
-                return;
+                await ExceptionHandlingService.HandleException(ex);
             }
         }
+
 
         #region Commands
         [RelayCommand]
@@ -45,12 +41,6 @@ namespace NNDIP.Maui.ViewModels.Plan
         {
             Load();
             IsRefreshing = false;
-        }
-
-        [RelayCommand]
-        void Save()
-        {
-            Load();
         }
 
         [RelayCommand]
@@ -72,8 +62,46 @@ namespace NNDIP.Maui.ViewModels.Plan
         [RelayCommand]
         public async void DeleteTimePlan(TimePlanDto timePlanDto)
         {
-            await RestService.API.ApiTimePlanDeleteAsync(timePlanDto.Id);
+            try
+            {
+                await RestService.API.ApiTimePlanDeleteAsync(timePlanDto.Id);
+            }
+            catch (ApiClientException ex)
+            {
+                await ExceptionHandlingService.HandleException(ex);
+                return;
+            }
             Load();
+        }
+
+        [RelayCommand]
+        public async void Toggled(TimePlanDto timePlanDto)
+        {
+            if (timePlanDto is not null)
+            {
+                try
+                {
+                    await RestService.API.ApiTimePlanPutAsync(timePlanDto.Id, new UpdateTimePlanDto()
+                    {
+                        Id = timePlanDto.Id,
+                        FromTime = timePlanDto.FromTime,
+                        ToTime = timePlanDto.ToTime,
+                        IdNavigation = new UpdatePlanDto()
+                        {
+                            Id = timePlanDto.Id,
+                            Enabled = timePlanDto.IdNavigation.Enabled,
+                            EventId = timePlanDto.IdNavigation.EventId,
+                            Name = timePlanDto.IdNavigation.Name,
+                            Priority = timePlanDto.IdNavigation.Priority,
+                            PlanType = timePlanDto.IdNavigation.PlanType
+                        }
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await ExceptionHandlingService.HandleException(ex);
+                }
+            }
         }
         #endregion
     }

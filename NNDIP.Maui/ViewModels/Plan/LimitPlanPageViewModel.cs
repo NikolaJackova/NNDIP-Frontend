@@ -65,12 +65,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             }
             catch (ApiClientException ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-                if (ex.StatusCode == 401)
-                {
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                }
-                return;
+                await ExceptionHandlingService.HandleException(ex);
             }
         }
 
@@ -83,14 +78,14 @@ namespace NNDIP.Maui.ViewModels.Plan
 
         #region Commands
         [RelayCommand]
-        void Refresh()
+        public void Refresh()
         {
             Load();
             IsRefreshing = false;
         }
 
         [RelayCommand]
-        async void Save()
+        public async void Save()
         {
             LimitSettings.TemperatureHigh.EventId = TemperatureHighEvent.Id;
             LimitSettings.TemperatureLow.EventId = TemperatureLowEvent.Id;
@@ -103,7 +98,41 @@ namespace NNDIP.Maui.ViewModels.Plan
             {
                 LimitSettings.YearPeriodDto = SummerPeriod;
             }
-            await RestService.API.ApiLimitPlanSettingsPutAsync(LimitSettings);
+            try
+            {
+                await RestService.API.ApiLimitPlanSettingsPutAsync(LimitSettings);
+            }
+            catch (ApiClientException ex)
+            {
+                await ExceptionHandlingService.HandleException(ex);
+                return;
+            }
+            Load();
+        }
+
+        [RelayCommand]
+        public async void CheckedChanged()
+        {
+            UpdateYearPeriodDto updateYearPeriodDto = new UpdateYearPeriodDto()
+            {
+                Active = 1
+            };
+            if (SummerPeriod.Active == 1)
+            {
+                updateYearPeriodDto.Id = SummerPeriod.Id;
+            } else
+            {
+                updateYearPeriodDto.Id = WinterPeriod.Id;
+            }
+            try
+            {
+                await RestService.API.ApiYearPeriodPutAsync(updateYearPeriodDto.Id, updateYearPeriodDto);
+            }
+            catch (ApiClientException ex)
+            {
+                await ExceptionHandlingService.HandleException(ex);
+                return;
+            }
             Load();
         }
         #endregion

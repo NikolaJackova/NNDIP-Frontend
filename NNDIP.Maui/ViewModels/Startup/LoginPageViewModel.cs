@@ -43,7 +43,7 @@ namespace NNDIP.Maui.ViewModels.Startup
                 }
                 catch (ApiClientException ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                    await ExceptionHandlingService.HandleException(ex);
                     return;
                 }
 

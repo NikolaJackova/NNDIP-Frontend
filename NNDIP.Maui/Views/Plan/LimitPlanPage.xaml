@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NNDIP.Maui.Views.Plan.LimitPlanPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
-             Title="{x:Static lang:AppResources.limitPlanPage_PageTitle}">
+             Title="{x:Static lang:AppResources.limitPlanPage_PageTitle}"
+             x:Name="limitPlanPage">
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
             <VerticalStackLayout Padding="8" Spacing="10">
@@ -11,7 +13,14 @@
                 <!-- WINTER/SUMMER PLAN -->
                 <Frame Padding="8">
                     <Grid ColumnDefinitions="*,*">
-                        <RadioButton Content="{x:Static lang:AppResources.limitPlanPage_Summer}" IsChecked="{Binding SummerPeriod.Active}"/>
+                        <RadioButton Content="{x:Static lang:AppResources.limitPlanPage_Summer}" IsChecked="{Binding SummerPeriod.Active}">
+                            <RadioButton.Behaviors>
+                                <toolkit:EventToCommandBehavior
+                                                    EventName="CheckedChanged"
+                                                    Command="{Binding Source={x:Reference limitPlanPage},Path=BindingContext.CheckedChangedCommand}"
+                                                    CommandParameter="{Binding .}" />
+                            </RadioButton.Behaviors>
+                        </RadioButton>
                         <RadioButton Grid.Column="1" Content="{x:Static lang:AppResources.limitPlanPage_Winter}" IsChecked="{Binding WinterPeriod.Active}"/>
                     </Grid>
                 </Frame>

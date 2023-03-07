@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="NNDIP.Maui.Views.Plan.ManualPlanPage"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Plan"
              xmlns:models="clr-namespace:NNDIP.Maui.Models"
-             Title="{x:Static lang:AppResources.manualPlanPage_PageTitle}">
+             Title="{x:Static lang:AppResources.manualPlanPage_PageTitle}"
+             x:Name="manualPlanPage">
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView>
             <VerticalStackLayout Padding="8" Spacing="10">
@@ -25,7 +27,14 @@
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
                                     <Grid ColumnDefinitions="*,3*">
-                                        <Switch IsToggled="{Binding IdNavigation.Enabled}" HorizontalOptions="Start"/>
+                                        <Switch HorizontalOptions="Start" IsToggled="{Binding IdNavigation.Enabled}">
+                                            <Switch.Behaviors>
+                                                <toolkit:EventToCommandBehavior
+                                                    EventName="Toggled"
+                                                    Command="{Binding Source={x:Reference manualPlanPage},Path=BindingContext.ToggledCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                            </Switch.Behaviors>
+                                        </Switch>
                                         <Label Grid.Column="1" Text="{Binding IdNavigation.Name}"/>
                                     </Grid>
                                 </SwipeView>
@@ -33,7 +42,6 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Frame>
-                <Button Text="{x:Static lang:AppResources.manualPlanPage_Save}" Command="{Binding SaveCommand}"/>
             </VerticalStackLayout>
         </ScrollView>
     </RefreshView>

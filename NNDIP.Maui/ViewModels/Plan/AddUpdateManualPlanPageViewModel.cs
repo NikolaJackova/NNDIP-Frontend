@@ -16,10 +16,7 @@ namespace NNDIP.Maui.ViewModels.Plan
     public partial class AddUpdateManualPlanPageViewModel : BaseViewModel
     {
         [ObservableProperty]
-        public ManualPlanDto _manualPlan = new ManualPlanDto()
-        {
-            IdNavigation = new SimplePlanDto()
-        };
+        public ManualPlanDto _manualPlan;
         [ObservableProperty]
         private ObservableCollection<SimpleEventDto> _events;
 
@@ -28,24 +25,23 @@ namespace NNDIP.Maui.ViewModels.Plan
 
         public async void Load()
         {
+            ManualPlan ??= new ManualPlanDto()
+                {
+                    IdNavigation = new SimplePlanDto()
+                };
             try
             {
                 Events = new ObservableCollection<SimpleEventDto>(await RestService.API.ApiEventGetAsync());
-                SetSelectedEvents();
             }
             catch (ApiClientException ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-                if (ex.StatusCode == 401)
-                {
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                }
-                return;
+                await ExceptionHandlingService.HandleException(ex);
             }
+            SetSelectedEvents();
         }
         private void SetSelectedEvents()
         {
-            if (ManualPlan is not null)
+            if (ManualPlan.Id > 0)
             {
                 ManualPlanEvent = Events.FirstOrDefault(item => item.Id == ManualPlan.IdNavigation.EventId);
             }
@@ -61,31 +57,47 @@ namespace NNDIP.Maui.ViewModels.Plan
         {
             if (ManualPlan.Id > 0)
             {
-                await RestService.API.ApiManualPlanPutAsync(ManualPlan.Id, new UpdateManualPlanDto()
+                try
                 {
-                    Id = ManualPlan.Id,
-                    IdNavigation = new UpdatePlanDto()
+                    await RestService.API.ApiManualPlanPutAsync(ManualPlan.Id, new UpdateManualPlanDto()
                     {
                         Id = ManualPlan.Id,
-                        Enabled = ManualPlan.IdNavigation.Enabled,
-                        Name = ManualPlan.IdNavigation.Name,
-                        EventId = ManualPlan.IdNavigation.EventId,
-                        PlanType = ManualPlan.IdNavigation.PlanType,
-                        Priority = ManualPlan.IdNavigation.Priority
-                    }
-                });
+                        IdNavigation = new UpdatePlanDto()
+                        {
+                            Id = ManualPlan.Id,
+                            Enabled = ManualPlan.IdNavigation.Enabled,
+                            Name = ManualPlan.IdNavigation.Name,
+                            EventId = ManualPlanEvent.Id,
+                            PlanType = ManualPlan.IdNavigation.PlanType,
+                            Priority = ManualPlan.IdNavigation.Priority
+                        }
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await ExceptionHandlingService.HandleException(ex);
+                    return;
+                }
             }
             else
             {
-                await RestService.API.ApiManualPlanPostAsync(new AddManualPlanDto()
+                try
                 {
-                    IdNavigation = new AddPlanDto()
+                    await RestService.API.ApiManualPlanPostAsync(new AddManualPlanDto()
                     {
-                        Enabled = 1,
-                        EventId = ManualPlanEvent.Id,
-                        Name = ManualPlan.IdNavigation.Name
-                    }
-                });
+                        IdNavigation = new AddPlanDto()
+                        {
+                            Enabled = 1,
+                            EventId = ManualPlanEvent.Id,
+                            Name = ManualPlan.IdNavigation.Name
+                        }
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await ExceptionHandlingService.HandleException(ex);
+                    return;
+                }
             }
             await Shell.Current.GoToAsync("..");
         }

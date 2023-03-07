@@ -46,10 +46,12 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+	  <CodesignResourceRules>Platforms\iOS\Entitlements.plist</CodesignResourceRules>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
@@ -89,6 +91,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 	  <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.701" />
 	  <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.1" />

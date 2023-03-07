@@ -23,13 +23,13 @@
                     <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_DeviceStatus}"/>
                     <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
-                            <Image HeightRequest="40" WidthRequest="40">
+                            <Image HeightRequest="30" WidthRequest="30">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.IsACUnitOn">
                                         <Binding.Converter>
                                             <converters:BoolToObjectConverter x:TypeArguments="x:String"
-                                                             TrueObject="on_button.png"
-                                                             FalseObject="off_button.png" />
+                                                             TrueObject="yes.png"
+                                                             FalseObject="no.png" />
                                         </Binding.Converter>
                                     </Binding>
                                 </Image.Source>
@@ -48,13 +48,13 @@
                     </Frame>
                     <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
-                            <Image HeightRequest="40" WidthRequest="40">
+                            <Image HeightRequest="30" WidthRequest="30">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.IsFanOn">
                                         <Binding.Converter>
                                             <converters:BoolToObjectConverter x:TypeArguments="x:String"
-                                                             TrueObject="on_button.png"
-                                                             FalseObject="off_button.png" />
+                                                             TrueObject="yes.png"
+                                                             FalseObject="no.png" />
                                         </Binding.Converter>
                                     </Binding>
                                 </Image.Source>
@@ -73,13 +73,13 @@
                     </Frame>
                     <Frame Padding="8">
                         <Grid ColumnDefinitions="*, 3*, 2*">
-                            <Image HeightRequest="40" WidthRequest="40">
+                            <Image HeightRequest="30" WidthRequest="30">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.IsRecuperationOn">
                                         <Binding.Converter>
                                             <converters:BoolToObjectConverter x:TypeArguments="x:String"
-                                                             TrueObject="on_button.png"
-                                                             FalseObject="off_button.png" />
+                                                             TrueObject="yes.png"
+                                                             FalseObject="no.png" />
                                         </Binding.Converter>
                                     </Binding>
                                 </Image.Source>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="NNDIP.Maui.Views.Plan.TimePlanPage"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Plan"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              xmlns:models="clr-namespace:NNDIP.Maui.Models"
-             Title="{x:Static lang:AppResources.timePlanPage_PageTitle}">
+             Title="{x:Static lang:AppResources.timePlanPage_PageTitle}"
+             x:Name="timePlanPage">
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
             <VerticalStackLayout Padding="8" Spacing="10">
@@ -25,17 +27,21 @@
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
                                     <Grid ColumnDefinitions="*,3*">
-                                        <Switch IsToggled="{Binding IdNavigation.Enabled}" HorizontalOptions="Start"/>
+                                        <Switch IsToggled="{Binding IdNavigation.Enabled}" HorizontalOptions="Start">
+                                            <Switch.Behaviors>
+                                                <toolkit:EventToCommandBehavior
+                                                    EventName="Toggled"
+                                                    Command="{Binding Source={x:Reference timePlanPage},Path=BindingContext.ToggledCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                            </Switch.Behaviors>
+                                        </Switch>
                                         <Label Grid.Column="1" Text="{Binding IdNavigation.Name}"/>
                                     </Grid>
                                 </SwipeView>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-
                     </CollectionView>
                 </Frame>
-
-                <Button Text="{x:Static lang:AppResources.timePlanPage_Save}" Command="{Binding SaveCommand}"/>
             </VerticalStackLayout>
         </ScrollView>
     </RefreshView>

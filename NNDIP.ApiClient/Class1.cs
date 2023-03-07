@@ -127,7 +127,7 @@ namespace NNDIP.ApiClient
         System.Threading.Tasks.Task<ManualPlanDto> ApiManualPlanGetAsync(long id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiClientException">A server side error occurred.</exception>
         System.Threading.Tasks.Task ApiManualPlanPutAsync(long id, UpdateManualPlanDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -167,7 +167,7 @@ namespace NNDIP.ApiClient
         System.Threading.Tasks.Task<TimePlanDto> ApiTimePlanGetAsync(long id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiClientException">A server side error occurred.</exception>
         System.Threading.Tasks.Task ApiTimePlanPutAsync(long id, UpdateTimePlanDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
@@ -187,9 +187,9 @@ namespace NNDIP.ApiClient
         System.Threading.Tasks.Task<YearPeriodDto> ApiYearPeriodGetAsync(long id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiClientException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ApiYearPeriodPutAsync(int id, UpdateYearPeriodDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task ApiYearPeriodPutAsync(long id, UpdateYearPeriodDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
@@ -1700,7 +1700,7 @@ namespace NNDIP.ApiClient
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiClientException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task ApiManualPlanPutAsync(long id, UpdateManualPlanDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -1744,7 +1744,7 @@ namespace NNDIP.ApiClient
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 204)
                         {
                             return;
                         }
@@ -2248,7 +2248,7 @@ namespace NNDIP.ApiClient
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiClientException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task ApiTimePlanPutAsync(long id, UpdateTimePlanDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
@@ -2292,7 +2292,7 @@ namespace NNDIP.ApiClient
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 204)
                         {
                             return;
                         }
@@ -2520,9 +2520,9 @@ namespace NNDIP.ApiClient
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
+        /// <returns>No Content</returns>
         /// <exception cref="ApiClientException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ApiYearPeriodPutAsync(int id, UpdateYearPeriodDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task ApiYearPeriodPutAsync(long id, UpdateYearPeriodDto body = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -2564,7 +2564,7 @@ namespace NNDIP.ApiClient
                         ProcessResponse(client_, response_);
 
                         var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
+                        if (status_ == 204)
                         {
                             return;
                         }

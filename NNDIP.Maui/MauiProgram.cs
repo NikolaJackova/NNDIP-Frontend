@@ -7,6 +7,7 @@ using NNDIP.Maui.ViewModels.Startup;
 using NNDIP.Maui.Controls;
 using NNDIP.Maui.Views.Plan;
 using NNDIP.Maui.ViewModels.Plan;
+using CommunityToolkit.Maui;
 
 namespace NNDIP.Maui;
 
@@ -18,6 +19,7 @@ public static class MauiProgram
 		builder
             .UseMauiApp<App>()
             //.ConfigureSyncfusionCore()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

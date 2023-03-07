@@ -17,11 +17,7 @@ namespace NNDIP.Maui.ViewModels.Plan
     public partial class AddUpdateTimePlanPageViewModel : BaseViewModel
     {
         [ObservableProperty]
-        public TimePlanDto _timePlan = new TimePlanDto()
-        {
-
-            IdNavigation = new SimplePlanDto()
-        };
+        public TimePlanDto _timePlan;
 
         [ObservableProperty]
         private ObservableCollection<SimpleEventDto> _events;
@@ -31,26 +27,29 @@ namespace NNDIP.Maui.ViewModels.Plan
 
         public async void Load()
         {
+            TimePlan ??= new TimePlanDto()
+                {
+                    IdNavigation = new SimplePlanDto()
+                };
             try
             {
                 Events = new ObservableCollection<SimpleEventDto>(await RestService.API.ApiEventGetAsync());
-                SetSelectedEvents();
             }
             catch (ApiClientException ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-                if (ex.StatusCode == 401)
-                {
-                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-                }
-                return;
+                await ExceptionHandlingService.HandleException(ex);
             }
+            SetSelectedEvents();
         }
         private void SetSelectedEvents()
         {
-            if (TimePlan is not null)
+            if (TimePlan.Id > 0)
             {
                 TimePlanEvent = Events.FirstOrDefault(item => item.Id == TimePlan.IdNavigation.EventId);
+            }
+            else
+            {
+                TimePlanEvent = Events.FirstOrDefault();
             }
         }
 
@@ -60,35 +59,51 @@ namespace NNDIP.Maui.ViewModels.Plan
         {
             if (TimePlan.Id > 0)
             {
-                await RestService.API.ApiTimePlanPutAsync(TimePlan.Id, new UpdateTimePlanDto()
+                try
                 {
-                    Id = TimePlan.Id,
-                    FromTime = TimePlan.FromTime,
-                    ToTime = TimePlan.ToTime,
-                    IdNavigation = new UpdatePlanDto()
+                    await RestService.API.ApiTimePlanPutAsync(TimePlan.Id, new UpdateTimePlanDto()
                     {
                         Id = TimePlan.Id,
-                        Enabled = TimePlan.IdNavigation.Enabled,
-                        Name = TimePlan.IdNavigation.Name,
-                        EventId = TimePlan.IdNavigation.EventId,
-                        PlanType = TimePlan.IdNavigation.PlanType,
-                        Priority = TimePlan.IdNavigation.Priority
-                    }
-                });
+                        FromTime = TimePlan.FromTime,
+                        ToTime = TimePlan.ToTime,
+                        IdNavigation = new UpdatePlanDto()
+                        {
+                            Id = TimePlan.Id,
+                            Enabled = TimePlan.IdNavigation.Enabled,
+                            Name = TimePlan.IdNavigation.Name,
+                            EventId = TimePlanEvent.Id,
+                            PlanType = TimePlan.IdNavigation.PlanType,
+                            Priority = TimePlan.IdNavigation.Priority
+                        }
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await ExceptionHandlingService.HandleException(ex);
+                    return;
+                }
             }
             else
             {
-                await RestService.API.ApiTimePlanPostAsync(new AddTimePlanDto()
+                try
                 {
-                    FromTime = TimePlan.FromTime,
-                    ToTime = TimePlan.ToTime,
-                    IdNavigation = new AddPlanDto()
+                    await RestService.API.ApiTimePlanPostAsync(new AddTimePlanDto()
                     {
-                        Enabled = 1,
-                        EventId = TimePlanEvent.Id,
-                        Name = TimePlan.IdNavigation.Name
-                    }
-                });
+                        FromTime = TimePlan.FromTime,
+                        ToTime = TimePlan.ToTime,
+                        IdNavigation = new AddPlanDto()
+                        {
+                            Enabled = 1,
+                            EventId = TimePlanEvent.Id,
+                            Name = TimePlan.IdNavigation.Name
+                        }
+                    });
+                }
+                catch (ApiClientException ex)
+                {
+                    await ExceptionHandlingService.HandleException(ex);
+                    return;
+                }
             }
             await Shell.Current.GoToAsync("..");
         }

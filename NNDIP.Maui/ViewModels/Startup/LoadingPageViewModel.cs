@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NNDIP.Maui.Models;
+using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
 
 namespace NNDIP.Maui.ViewModels.Startup
@@ -12,7 +13,7 @@ namespace NNDIP.Maui.ViewModels.Startup
         }
         private async void CheckUserLoginDetails()
         {
-            string userDetailsStr = Preferences.Get(nameof(App.UserDetails), "");
+            string userDetailsStr = await SecureStorageService.Get();
 
             if (string.IsNullOrWhiteSpace(userDetailsStr))
             {

@@ -19,9 +19,10 @@ namespace NNDIP.Maui.Services
         private static IApiClient CreateApiClient()
         {
             HttpClient http = new();
-            if (Preferences.ContainsKey(nameof(App.UserDetails)))
+            string result = Task.Run(SecureStorageService.Get).Result;
+            if (result is not null)
             {
-                http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.UserDetails.Token);
+                http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", result);
             }
             return new ApiClient.ApiClient(URI, http);
         }

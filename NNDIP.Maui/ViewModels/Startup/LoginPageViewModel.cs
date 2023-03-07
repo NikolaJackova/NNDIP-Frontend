@@ -47,13 +47,8 @@ namespace NNDIP.Maui.ViewModels.Startup
                     return;
                 }
 
-                if (Preferences.ContainsKey(nameof(App.UserDetails)))
-                {
-                    Preferences.Remove(nameof(App.UserDetails));
-                }
-                userDetails.Token = tokenDto.Token;
-                string userDetailStr = JsonConvert.SerializeObject(userDetails);
-                Preferences.Set(nameof(App.UserDetails), userDetailStr);
+                SecureStorageService.Remove();
+                SecureStorageService.Set(tokenDto.Token);
                 RestService.SetAuthorization(tokenDto.Token);
                 App.UserDetails = userDetails;
                 await AppConstant.AddFlyoutMenusDetails();

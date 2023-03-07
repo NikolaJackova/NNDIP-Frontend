@@ -9,6 +9,5 @@ namespace NNDIP.Maui.Models
     public class UserInfo
     {
         public string Username { get; set; }
-        public string Token { get; set; }
     }
 }

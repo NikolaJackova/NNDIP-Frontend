@@ -47,7 +47,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # cd NNDIP.Maui
+      cd NNDIP.Maui
       dotnet restore NNDIP.Maui.csproj
 # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
 - task: Bash@3

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="NNDIP.Maui.Views.Plan.ManualPlanPage"
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
+             xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Plan"
+             xmlns:models="clr-namespace:NNDIP.Maui.Models"
+             Title="{x:Static lang:AppResources.manualPlanPage_PageTitle}"
+             x:Name="manualPlanPage">
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView>
+            <VerticalStackLayout Padding="8" Spacing="10">
+                <Button Text="{x:Static lang:AppResources.manualPlanPage_Add}" Command="{Binding AddManualPlanCommand}"/>
+                <Frame Padding="8">
+                    <CollectionView ItemsSource="{Binding ManualPlans}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="{x:Static lang:AppResources.manualPlanPage_Edit}" IconImageSource="{x:Static models:Icons.Edit}" 
+                                           CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ManualPlanPageViewModel}},Path=EditManualPlanCommand}" />
+                                            <SwipeItem Text="{x:Static lang:AppResources.manualPlanPage_Delete}" IconImageSource="{x:Static models:Icons.Delete}" CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ManualPlanPageViewModel}},Path=DeleteManualPlanCommand}" />
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+                                    <Grid ColumnDefinitions="*,3*">
+                                        <Switch HorizontalOptions="Start" IsToggled="{Binding IdNavigation.Enabled}">
+                                            <Switch.Behaviors>
+                                                <toolkit:EventToCommandBehavior
+                                                    EventName="Toggled"
+                                                    Command="{Binding Source={x:Reference manualPlanPage},Path=BindingContext.ToggledCommand}"
+                                                    CommandParameter="{Binding .}" />
+                                            </Switch.Behaviors>
+                                        </Switch>
+                                        <Label Grid.Column="1" Text="{Binding IdNavigation.Name}"/>
+                                    </Grid>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

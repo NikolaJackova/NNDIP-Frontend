@@ -49,11 +49,7 @@ public partial class DashboardPageViewModel : BaseViewModel
         }
         catch (ApiClientException ex)
         {
-            await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
-            if (ex.StatusCode == 401)
-            {
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            }
+            await ExceptionHandlingService.HandleException(ex);
             return;
         }
         IEnumerable<SensorGroup> groupedData = SensorsData.Select(sensor => new SensorGroup(new Sensor()

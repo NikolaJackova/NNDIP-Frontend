@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using NNDIP.Maui.Models;
+using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace NNDIP.Maui.ViewModels.Startup
 {
@@ -12,9 +14,8 @@ namespace NNDIP.Maui.ViewModels.Startup
         }
         private async void CheckUserLoginDetails()
         {
-            string userDetailsStr = Preferences.Get(nameof(App.UserDetails), "");
-
-            if (string.IsNullOrWhiteSpace(userDetailsStr))
+            string token = await AuthenticationService.GetJwtToken();
+            if (token is null)
             {
                 if (DeviceInfo.Platform == DevicePlatform.WinUI)
                 {
@@ -30,8 +31,6 @@ namespace NNDIP.Maui.ViewModels.Startup
             }
             else
             {
-                var userInfo = JsonConvert.DeserializeObject<UserInfo>(userDetailsStr);
-                App.UserDetails = userInfo;
                 await AppConstant.AddFlyoutMenusDetails();
             }
         }

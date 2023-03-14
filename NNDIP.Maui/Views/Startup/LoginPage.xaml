@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              x:Class="NNDIP.Maui.Views.Startup.LoginPage"
+             xmlns:models="clr-namespace:NNDIP.Maui.Models"
              Title="{x:Static lang:AppResources.loginPage_PageTitle}">
     <VerticalStackLayout 
             Spacing="25" 
@@ -18,7 +19,7 @@
 
         <StackLayout Orientation="Horizontal">
             <Frame ZIndex="1" HasShadow="True" HeightRequest="56" WidthRequest="56" CornerRadius="28">
-                <Image Source="user.png" HeightRequest="20" WidthRequest="20" />
+                <Image Source="{x:Static models:Icons.User}" HeightRequest="20" WidthRequest="20" />
             </Frame>
             <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand">
                 <Entry Text="{Binding Username}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="{x:Static lang:AppResources.loginPage_Username}" Keyboard="Text" />
@@ -27,7 +28,7 @@
 
         <StackLayout Orientation="Horizontal">
             <Frame ZIndex="1" HasShadow="True" HeightRequest="56" WidthRequest="56" CornerRadius="28">
-                <Image Source="lock.png" HeightRequest="20" WidthRequest="20" />
+                <Image Source="{x:Static models:Icons.Lock}" HeightRequest="20" WidthRequest="20" />
             </Frame>
             <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand">
                 <Entry Text="{Binding Password}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="{x:Static lang:AppResources.loginPage_Password}" IsPassword="True" />

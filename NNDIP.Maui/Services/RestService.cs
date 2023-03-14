@@ -11,7 +11,7 @@ namespace NNDIP.Maui.Services
     {
         //TODO uri put somewhere else
         //public static string URI { get; set; } = "http://10.0.2.2:8081";
-        public static string URI { get; set; } = "http://192.168.5.20:8081";
+        public static string URI { get; set; } = "http://192.168.5.30:8081";
 
         private static IApiClient _API = CreateApiClient();
         public static IApiClient API { get => _API; }
@@ -19,9 +19,10 @@ namespace NNDIP.Maui.Services
         private static IApiClient CreateApiClient()
         {
             HttpClient http = new();
-            if (Preferences.ContainsKey(nameof(App.UserDetails)))
+            string result = Task.Run(AuthenticationService.GetJwtToken).Result;
+            if (result is not null)
             {
-                http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", App.UserDetails.Token);
+                http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", result);
             }
             return new ApiClient.ApiClient(URI, http);
         }

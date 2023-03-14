@@ -28,10 +28,6 @@ namespace NNDIP.Maui.ViewModels.Startup
         {
             if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
             {
-                var userDetails = new UserInfo
-                {
-                    Username = Username
-                };
                 TokenDto tokenDto;
                 try
                 {
@@ -43,19 +39,13 @@ namespace NNDIP.Maui.ViewModels.Startup
                 }
                 catch (ApiClientException ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                    await ExceptionHandlingService.HandleException(ex);
                     return;
                 }
 
-                if (Preferences.ContainsKey(nameof(App.UserDetails)))
-                {
-                    Preferences.Remove(nameof(App.UserDetails));
-                }
-                userDetails.Token = tokenDto.Token;
-                string userDetailStr = JsonConvert.SerializeObject(userDetails);
-                Preferences.Set(nameof(App.UserDetails), userDetailStr);
+                AuthenticationService.RemoveJwtToken();
+                AuthenticationService.SetJwtToken(tokenDto.Token);
                 RestService.SetAuthorization(tokenDto.Token);
-                App.UserDetails = userDetails;
                 await AppConstant.AddFlyoutMenusDetails();
             }
         }

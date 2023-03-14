@@ -34,10 +34,22 @@ namespace NNDIP.Maui.Models
                                 },
                                 new ShellContent
                                 {
-                                    Icon = Icons.Dashboard,
+                                    Icon = Icons.LimitPlan,
                                     Title = AppResources.limitPlanPage_PageTitle,
                                     ContentTemplate = new DataTemplate(typeof(LimitPlanPage)),
                                 },
+                                new ShellContent
+                                {
+                                    Icon = Icons.TimePlan,
+                                    Title = AppResources.timePlanPage_PageTitle,
+                                    ContentTemplate = new DataTemplate(typeof(TimePlanPage)),
+                                },
+                                new ShellContent
+                                {
+                                    Icon = Icons.ManualPlan,
+                                    Title = AppResources.manualPlanPage_PageTitle,
+                                    ContentTemplate = new DataTemplate(typeof(ManualPlanPage)),
+                                }
                             }
             };
             if (!Shell.Current.Items.Contains(flyoutItem))

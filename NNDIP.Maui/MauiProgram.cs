@@ -7,6 +7,7 @@ using NNDIP.Maui.ViewModels.Startup;
 using NNDIP.Maui.Controls;
 using NNDIP.Maui.Views.Plan;
 using NNDIP.Maui.ViewModels.Plan;
+using CommunityToolkit.Maui;
 
 namespace NNDIP.Maui;
 
@@ -18,6 +19,7 @@ public static class MauiProgram
 		builder
             .UseMauiApp<App>()
             //.ConfigureSyncfusionCore()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -28,11 +30,19 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoadingPage>();
         builder.Services.AddSingleton<DashboardPage>();
         builder.Services.AddSingleton<LimitPlanPage>();
+        builder.Services.AddSingleton<TimePlanPage>();
+        builder.Services.AddSingleton<AddUpdateTimePlanPage>();
+        builder.Services.AddSingleton<ManualPlanPage>();
+        builder.Services.AddSingleton<AddUpdateManualPlanPage>();
 
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
         builder.Services.AddSingleton<DashboardPageViewModel>();
         builder.Services.AddSingleton<LimitPlanPageViewModel>();
+        builder.Services.AddSingleton<TimePlanPageViewModel>();
+        builder.Services.AddSingleton<AddUpdateTimePlanPageViewModel>();
+        builder.Services.AddSingleton<ManualPlanPageViewModel>();
+        builder.Services.AddSingleton<AddUpdateManualPlanPageViewModel>();
 
         return builder.Build();
 	}

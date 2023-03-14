@@ -15,11 +15,8 @@ namespace NNDIP.Maui.ViewModels
         [RelayCommand]
         async void SignOut()
         {
-            if (Preferences.ContainsKey(nameof(App.UserDetails)))
-            {
-                Preferences.Remove(nameof(App.UserDetails));
-                RestService.ClearAuthorization();
-            }
+            AuthenticationService.RemoveJwtToken();
+            RestService.ClearAuthorization();
             await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
         #endregion

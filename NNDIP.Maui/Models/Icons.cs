@@ -74,5 +74,11 @@ namespace NNDIP.Maui.Models
         public const string DownArrow = "down_arrow.png";
         public const string Lock = "lock.png";
         public const string User = "user.png";
+        public const string Delete = "delete.png";
+        public const string Edit = "edit.png";
+
+        public const string TimePlan = "time_plan.png";
+        public const string LimitPlan = "limit_plan.png";
+        public const string ManualPlan = "manual_plan.png";
     }
 }

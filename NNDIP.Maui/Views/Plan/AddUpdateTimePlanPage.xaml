@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NNDIP.Maui.Views.Plan.AddUpdateTimePlanPage"
+             xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
+             Title="{x:Static lang:AppResources.timePlanEditPage_PageTitle}">
+    <VerticalStackLayout Padding="8" Spacing="10">
+        <Frame Padding="8">
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                <Label Text="{x:Static lang:AppResources.timePlanEditPage_Name}"/>
+                <Entry Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding TimePlan.IdNavigation.Name}"/>
+                <Label Grid.Row="1" Text="{x:Static lang:AppResources.timePlanEditPage_From}"/>
+                <TimePicker Grid.Row="1" Grid.Column="1" Time="{Binding TimePlan.FromTime}" />
+                <Label Grid.Row="1" Grid.Column="2" Text="{x:Static lang:AppResources.timePlanEditPage_To}"/>
+                <TimePicker Grid.Row="1" Grid.Column="3" Time="{Binding TimePlan.ToTime}"/>
+                <Label Grid.Row="2" Text="{x:Static lang:AppResources.timePlanEditPage_Event}"/>
+                <Picker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Title="{x:Static lang:AppResources.timePlanEditPage_SelectEvent}" ItemsSource="{Binding Events}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding TimePlanEvent}"/>
+            </Grid>
+        </Frame>
+
+        <Button Text="{x:Static lang:AppResources.timePlanEditPage_Save}" Command="{Binding AddUpdateTimePlanCommand}"/>
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -55,7 +55,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd NNDIP.Maui
+      # cd NNDIP.Maui
       dotnet publish -f net7.0-ios -c Release
 - task: CopyFiles@2
   inputs:

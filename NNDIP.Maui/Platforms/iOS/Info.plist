@@ -38,6 +38,6 @@
 		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string></string>
+	<string>com.upce.nndip.maui</string>
 </dict>
 </plist>

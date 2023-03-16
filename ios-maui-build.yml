@@ -47,7 +47,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd NNDIP.Maui
+      cd NNDIP.Maui/
       dotnet restore NNDIP.Maui.csproj
 # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
 - task: Bash@3
@@ -55,7 +55,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      cd NNDIP.Maui
+      cd NNDIP.Maui/
       dotnet publish NNDIP.Maui.csproj -f net7.0-ios -c Release -r ios-arm64
 - task: CopyFiles@2
   inputs:

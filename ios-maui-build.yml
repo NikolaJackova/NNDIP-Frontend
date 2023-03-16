@@ -42,21 +42,22 @@ steps:
       dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
       dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
 
-- task: Bash@3
-  displayName: Restore nuget
-  inputs:
-    targetType: 'inline'
-    script: |
-      cd NNDIP.Maui/
-      dotnet restore NNDIP.Maui.csproj
+# - task: Bash@3
+#   displayName: Restore nuget
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       cd NNDIP.Maui/
+#       dotnet restore NNDIP.Maui.csproj
 # https://docs.microsoft.com/en-us/dotnet/maui/ios/deployment/overview
 - task: Bash@3
   displayName: Build iOS App
   inputs:
     targetType: 'inline'
     script: |
-      # cd NNDIP.Maui/
-      dotnet publish NNDIP.Maui.csproj -f net7.0-ios -c Release -r ios-arm64
+      cd NNDIP.Maui/
+      # dotnet publish NNDIP.Maui.csproj -f net7.0-ios -c Release -r ios-arm64
+      dotnet publish NNDIP.Maui.csproj -f net7.0-ios -c Release -r ios-arm64 /p:ApplicationId=com.upce.nndip.maui /p:ArchiveOnBuild=true /p:EnableAssemblyILStripping=false
 - task: CopyFiles@2
   inputs:
     Contents: |

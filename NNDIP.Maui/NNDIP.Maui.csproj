@@ -70,11 +70,6 @@
 	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios16.0|AnyCPU'">
-	  <MtouchUseLlvm>False</MtouchUseLlvm>
-	  <AotAssemblies>True</AotAssemblies>
-	</PropertyGroup>
-
 	<PropertyGroup>
    	  <UseInterpreter>true</UseInterpreter>
 	</PropertyGroup>

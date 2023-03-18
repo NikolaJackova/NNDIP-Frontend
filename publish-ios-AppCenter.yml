@@ -25,7 +25,7 @@ steps:
 
 - task: AppCenterDistribute@3
   inputs:
-    serverEndpoint: 'AppCenter'
+    serverEndpoint: 'AppCenter-iOS'
     appSlug: 'st58237-upce.cz/NNDIP'
     appFile: '**/*.ipa'
     destinationType: 'groups'

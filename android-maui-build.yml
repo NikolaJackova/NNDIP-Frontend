@@ -10,9 +10,6 @@ pool:
   vmImage: windows-2022
 
 variables:
-  buildConfiguration: 'Release'
-  outputDirectory: '$(Build.BinariesDirectory)/$(BuildConfiguration)'
-  dotNetVersion: 7.x
   group: maui-android-pipeline
 
 steps:
@@ -20,7 +17,7 @@ steps:
   name: keystore
   displayName: Download keystore 
   inputs:
-    secureFile: '$(key.keystore)'
+    secureFile: '$(keyStoreFile)'
 
 - script: |
     echo $(AndroidSigningKeyAlias)
@@ -30,7 +27,7 @@ steps:
   displayName: .NET Version
   inputs:
     packageType: 'sdk'
-    version: '$(dotNetVersion)'
+    version: '7.x'
 
 - task: Bash@3
   displayName: Install MAUI
@@ -57,7 +54,7 @@ steps:
     script: |
       echo $(AndroidSigningKeyAlias)
       cd NNDIP.Maui/
-      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyAlias=$(System.DefaultWorkingDirectory)\\$(key.keystore)
+      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyAlias=$(System.DefaultWorkingDirectory)\\$(keyStoreFile)
 # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
 - task: CopyFiles@2

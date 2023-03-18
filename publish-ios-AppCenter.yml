@@ -27,6 +27,6 @@ steps:
   inputs:
     serverEndpoint: 'AppCenter-iOS'
     appSlug: 'st58237-upce.cz/NNDIP'
-    appFile: '**/*.ipa'
+    appFile: '$(Pipeline.Workspace)/*.ipa'
     destinationType: 'groups'
     releaseNotesInput: 'new realease of iOS NNDIP'

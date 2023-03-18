@@ -21,8 +21,6 @@ steps:
 
 - script: |
     mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)\NNDIP.Maui
-    cd NNDIP.Maui
-    dir
 
 - task: UseDotNet@2
   displayName: .NET Version

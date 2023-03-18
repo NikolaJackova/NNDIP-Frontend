@@ -42,10 +42,6 @@
 	  <AndroidKeyStore>True</AndroidKeyStore>
 	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
 	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
-	  <AndroidSigningKeyStore></AndroidSigningKeyStore>
-	  <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
-	  <AndroidSigningKeyPass></AndroidSigningKeyPass>
-	  <AndroidSigningStorePass></AndroidSigningStorePass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">

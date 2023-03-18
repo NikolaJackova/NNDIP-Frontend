@@ -29,3 +29,4 @@ steps:
     appSlug: 'st58237-upce.cz/NNDIP'
     appFile: '**/*.ipa'
     destinationType: 'groups'
+    releaseNotesInput: 'new realease of iOS NNDIP'

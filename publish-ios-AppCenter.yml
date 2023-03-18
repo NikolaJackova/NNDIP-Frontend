@@ -1,0 +1,31 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: DownloadPipelineArtifact@2
+  inputs:
+    source: 'specific' # Options: current, specific
+    project: 'NNDIP'
+    pipeline: '4'
+    runVersion: 'latest' # Required when source == Specific# Options: latest, latestFromBranch, specific
+    #runBranch: 'refs/heads/master' # Required when source == Specific && RunVersion == LatestFromBranch
+    #runId: # Required when source == Specific && RunVersion == Specific
+    #tags: # Optional
+    #artifact: # Optional
+    itemPattern: '**/*.ipa'
+    path: '$(Pipeline.Workspace)'
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'AppCenter'
+    appSlug: 'st58237-upce.cz/NNDIP'
+    appFile: '**/*.ipa'
+    destinationType: 'groups'

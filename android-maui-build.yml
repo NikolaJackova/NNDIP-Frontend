@@ -20,6 +20,7 @@ steps:
     secureFile: '$(keyStoreFile)'
 
 - script: |
+    dir
     mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)\NNDIP-Frontend\NNDIP.Maui
 
 - task: UseDotNet@2

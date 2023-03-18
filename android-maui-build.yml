@@ -20,8 +20,6 @@ steps:
     secureFile: 'key.keystore'
 
 - script: |
-    echo 'test'
-    echo $(AndroidSigningKeyAlias)
     mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)
 
 - task: UseDotNet@2
@@ -35,7 +33,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo $(AndroidSigningKeyAlias)
       dotnet nuget locals all --clear 
       dotnet workload install maui --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
       dotnet workload install android ios maccatalyst tvos macos maui wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
@@ -54,7 +51,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo $(AndroidSigningKeyAlias)
       cd NNDIP.Maui/
       dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyAlias=$(System.DefaultWorkingDirectory)\\'key.keystore'
 # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app

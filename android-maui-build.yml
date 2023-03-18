@@ -44,8 +44,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      echo $(AndroidSigningKeyAlias)
       cd NNDIP.Maui/
-      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass='$(AndroidSigningStorePass)' /p:AndroidSigningKeyPass='$(AndroidSigningKeyPass)' /p:AndroidSigningKeyAlias='$(AndroidSigningKeyAlias)' /p:AndroidSigningKeyAlias='$(keyStoreFile)'
+      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyAlias=$(keyStoreFile)
 # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
 - task: CopyFiles@2

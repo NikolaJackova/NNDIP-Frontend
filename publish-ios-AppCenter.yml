@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- none
 
 pool:
   vmImage: ubuntu-latest
@@ -27,6 +27,6 @@ steps:
   inputs:
     serverEndpoint: 'AppCenter-iOS'
     appSlug: 'st58237-upce.cz/NNDIP'
-    appFile: '$(Pipeline.Workspace)/*.ipa'
+    appFile: '$(Pipeline.Workspace)/**/*.ipa'
     destinationType: 'groups'
     releaseNotesInput: 'new realease of iOS NNDIP'

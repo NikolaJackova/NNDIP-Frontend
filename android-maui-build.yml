@@ -17,7 +17,7 @@ steps:
   name: keystore
   displayName: Download keystore 
   inputs:
-    secureFile: '$(keyStoreFile)'
+    secureFile: 'key.keystore'
 
 - script: |
     echo $(AndroidSigningKeyAlias)

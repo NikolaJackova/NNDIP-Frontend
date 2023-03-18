@@ -16,6 +16,15 @@ variables:
   group: maui-android-pipeline
 
 steps:
+- task: DownloadSecureFile@1
+  name: keystore
+  displayName: Download keystore 
+  inputs:
+    secureFile: '$(keyStoreFile)'
+
+- script: |
+    mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)
+
 - task: UseDotNet@2
   displayName: .NET Version
   inputs:
@@ -39,6 +48,7 @@ steps:
       cd NNDIP.Maui/
       dotnet restore NNDIP.Maui.csproj
 # https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+
 - task: Bash@3
   displayName: Build Android App
   inputs:
@@ -46,7 +56,7 @@ steps:
     script: |
       echo $(AndroidSigningKeyAlias)
       cd NNDIP.Maui/
-      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyAlias=$(keyStoreFile)
+      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyPass=$(AndroidSigningKeyPass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyAlias=$(System.DefaultWorkingDirectory)\\$(keyStoreFile)
 # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
 - task: CopyFiles@2

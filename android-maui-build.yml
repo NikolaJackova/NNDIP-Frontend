@@ -10,7 +10,7 @@ pool:
   vmImage: windows-2022
 
 variables:
-  group: maui-android-pipeline
+  - group: maui-android-pipeline
 
 steps:
 - task: DownloadSecureFile@1

@@ -17,9 +17,10 @@ steps:
   name: keystore
   displayName: Download keystore 
   inputs:
-    secureFile: 'key.keystore'
+    secureFile: $(keyStoreFile)
 
 - script: |
+    echo 'test'
     echo $(AndroidSigningKeyAlias)
     mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)
 

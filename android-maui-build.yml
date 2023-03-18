@@ -23,6 +23,7 @@ steps:
     secureFile: '$(keyStoreFile)'
 
 - script: |
+    echo $(AndroidSigningKeyAlias)
     mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)
 
 - task: UseDotNet@2

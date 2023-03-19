@@ -58,7 +58,7 @@ steps:
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
     Contents: |
-      '**/*-Signed.aab'
+      '**\publish\**\*-Signed.aab'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1

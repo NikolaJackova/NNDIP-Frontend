@@ -26,7 +26,7 @@ steps:
 - task: AppCenterDistribute@3
   inputs:
     serverEndpoint: 'AppCenter-Android'
-    appSlug: 'st58237-upce.cz/NNDIP'
+    appSlug: 'st58237-upce.cz/NNDIP-1'
     appFile: '$(Pipeline.Workspace)/**/*-Signed.aab'
     destinationType: 'groups'
     releaseNotesInput: 'new realease of Android NNDIP'

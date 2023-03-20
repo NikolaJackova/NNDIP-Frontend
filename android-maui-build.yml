@@ -20,8 +20,8 @@ steps:
     secureFile: '$(keyStoreFile)'
 
 - script: |
-    mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)
-
+    mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)\NNDIP.Maui
+    
 - task: UseDotNet@2
   displayName: .NET Version
   inputs:
@@ -51,14 +51,14 @@ steps:
     targetType: 'inline'
     script: |
       cd NNDIP.Maui/
-      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release //p:AndroidSigningStorePass="$(AndroidSigningStorePass)" //p:AndroidSigningKeyPass="$(AndroidSigningKeyPass)" //p:AndroidSigningKeyAlias="$(AndroidSigningKeyAlias)" //p:AndroidSigningKeyAlias="$(System.DefaultWorkingDirectory)\\$(keyStoreFile)"
+      dotnet publish NNDIP.Maui.csproj -f net7.0-android -c Release //p:AndroidSigningStorePass="$(AndroidSigningStorePass)" //p:AndroidSigningKeyPass="$(AndroidSigningKeyPass)" //p:AndroidSigningKeyAlias="$(AndroidSigningKeyAlias)" //p:AndroidSigningKeyStore="$(keyStoreFile)" //p:AndroidKeyStore="true"
 # Signing Android App : https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-android-app
 
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Agent.BuildDirectory)'
     Contents: |
-      '**/*-Signed.aab'
+      **\publish\**\*-Signed.aab
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1

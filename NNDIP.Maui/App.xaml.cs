@@ -13,7 +13,7 @@ public partial class App : Application
 	{
 		InitializeComponent();
         MainPage = new AppShell();
-        AppCenter.Start("ios=c0569519-d7d8-41ba-b887-770f6a36062e;android=a7a21ff8-a7f0-4e21-8be2-f848e7265d17", typeof(Analytics), typeof(Crashes), typeof(Distribute));
+        AppCenter.Start("ios=4a0546f6-e03d-4cfe-ae83-07dd9610df86;android=24354f58-b2aa-4205-8c4c-fefd3dc0eb3f", typeof(Analytics), typeof(Crashes));
         AppCenter.LogLevel = LogLevel.Verbose;
         AuthenticationService.Init();
     }

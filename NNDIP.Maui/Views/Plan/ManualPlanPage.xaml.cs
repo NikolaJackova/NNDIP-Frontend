@@ -14,6 +14,6 @@ public partial class ManualPlanPage : ContentPage
     {
         base.OnAppearing();
         ManualPlanPageViewModel viewModel = BindingContext as ManualPlanPageViewModel;
-        viewModel.Load();
+        viewModel.IsRefreshing = true;
     }
 }

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:converters="clr-namespace:NNDIP.Maui.Converters" 
              xmlns:api="clr-namespace:NNDIP.ApiClient;assembly=NNDIP.ApiClient"
              xmlns:sensor="clr-namespace:NNDIP.Maui.Models.Sensor"
              xmlns:viewModels="clr-namespace:NNDIP.Maui.ViewModels.Dashboard"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
              x:Class="NNDIP.Maui.Views.Dashboard.DashboardPage"
-             Title="{x:Static lang:AppResources.dashboardPage_PageTitle}">
+             Title="{x:Static lang:AppResources.dashboardPage_PageTitle}"
+             x:Name="dashboardPage">
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*">
             <Image Grid.Column="1" Source="dashboard.png" HeightRequest="40" WidthRequest="40"/>
@@ -138,17 +141,67 @@
                     <Frame Padding="8">
                         <Grid RowDefinitions="*,*" ColumnDefinitions="*,2*,*,2*" RowSpacing="10">
                             <Label Text="{x:Static lang:AppResources.dashboardPage_Unit}" />
-                            <Picker Grid.Column="1" Title="{x:Static lang:AppResources.dashboardPage_SelectUnit}"/>
+                            <Picker Grid.Column="1" Title="{x:Static lang:AppResources.dashboardPage_SelectUnit}" ItemsSource="{Binding Units}" ItemDisplayBinding="{Binding TypeName}" SelectedItem="{Binding SelectedUnit}">
+                                <Picker.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                                        EventName="SelectedIndexChanged"
+                                        Command="{Binding Source={x:Reference dashboardPage},Path=BindingContext.UnitSelectedIndexChangedCommand}"/>
+                                </Picker.Behaviors>
+                            </Picker>
                             <Label Grid.Column="2" Text="{x:Static lang:AppResources.dashboardPage_Sensor}" />
-                            <Picker Grid.Column="3" Title="{x:Static lang:AppResources.dashboardPage_SelectSensor}" ItemsSource="{Binding SensorGroups}" ItemDisplayBinding="{Binding Sensor.Name}"/>
+                            <Picker Grid.Column="3" Title="{x:Static lang:AppResources.dashboardPage_SelectSensor}" ItemsSource="{Binding Sensors}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedSensor}">
+                                <Picker.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                                        EventName="SelectedIndexChanged"
+                                        Command="{Binding Source={x:Reference dashboardPage},Path=BindingContext.SensorSelectedIndexChangedCommand}"/>
+                                </Picker.Behaviors>
+                            </Picker>
                             <Label Grid.Row="2" Text="{x:Static lang:AppResources.dashboardPage_Date}" />
-                            <DatePicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Date="{Binding DatePickerDate}"/>
+                            <DatePicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Date="{Binding DatePickerDate}">
+                                <DatePicker.Behaviors>
+                                    <toolkit:EventToCommandBehavior
+                                        EventName="DateSelected"
+                                        Command="{Binding Source={x:Reference dashboardPage},Path=BindingContext.DateSelectedCommand}"/>
+                                </DatePicker.Behaviors>
+                            </DatePicker>
                             <HorizontalStackLayout Grid.Row="2" Grid.Column="3" Spacing="5">
                                 <Button Text="+" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding PlusCommand}"/>
                                 <Button Text="−" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding MinusCommand}"/>
                             </HorizontalStackLayout>
                         </Grid>
                     </Frame>
+                    <ActivityIndicator IsVisible="{Binding IsChartLoading}" IsRunning="{Binding IsChartLoading}" Color ="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}"/>
+                    <chart:SfCartesianChart IsVisible="{Binding Path=IsChartLoading, Converter={converters:InverseBoolConverter}}">
+                        <chart:SfCartesianChart.Resources>
+                            <chart:ChartAxisLabelStyle x:Key="xAxisLabelStyle" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" LabelFormat="HH:mm"/>
+                            <chart:ChartAxisLabelStyle x:Key="yAxisLabelStyle" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}"/>
+                        </chart:SfCartesianChart.Resources>
+                        
+                        <chart:SfCartesianChart.XAxes>
+                            <chart:DateTimeAxis LabelStyle="{StaticResource xAxisLabelStyle}" ShowMajorGridLines="False"/>
+                        </chart:SfCartesianChart.XAxes>
+
+                        <chart:SfCartesianChart.YAxes>
+                            <chart:NumericalAxis LabelStyle="{StaticResource yAxisLabelStyle}"/>
+                        </chart:SfCartesianChart.YAxes>
+
+                        <chart:SfCartesianChart.Series>
+                            <chart:LineSeries
+                                ItemsSource="{Binding Data}"
+                                XBindingPath="DataTimestamp.DateTime"
+                                YBindingPath="{Binding TypeName}"
+                                EnableTooltip="True"
+                                Fill="{AppThemeBinding Light={StaticResource Yellow100Accent}, Dark={StaticResource Yellow100Accent}}"/>
+                        </chart:SfCartesianChart.Series>
+                        
+                        <chart:SfCartesianChart.TooltipBehavior>
+                            <chart:ChartTooltipBehavior/>
+                        </chart:SfCartesianChart.TooltipBehavior>
+
+                        <chart:SfCartesianChart.ZoomPanBehavior>
+                            <chart:ChartZoomPanBehavior EnablePinchZooming="True"/>
+                        </chart:SfCartesianChart.ZoomPanBehavior>
+                    </chart:SfCartesianChart>
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>

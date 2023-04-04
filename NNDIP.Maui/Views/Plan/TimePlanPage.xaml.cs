@@ -14,6 +14,6 @@ public partial class TimePlanPage : ContentPage
     {
         base.OnAppearing();
         TimePlanPageViewModel viewModel = BindingContext as TimePlanPageViewModel;
-        viewModel.Load();
+        viewModel.IsRefreshing = true;
     }
 }

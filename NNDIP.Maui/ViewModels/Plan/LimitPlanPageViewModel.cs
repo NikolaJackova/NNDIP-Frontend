@@ -42,7 +42,7 @@ namespace NNDIP.Maui.ViewModels.Plan
         [ObservableProperty]
         private bool _isRefreshing;
 
-        public async void Load()
+        public async Task Load()
         {
             try
             {
@@ -78,9 +78,9 @@ namespace NNDIP.Maui.ViewModels.Plan
 
         #region Commands
         [RelayCommand]
-        public void Refresh()
+        public async void Refresh()
         {
-            Load();
+            await Load();
             IsRefreshing = false;
         }
 

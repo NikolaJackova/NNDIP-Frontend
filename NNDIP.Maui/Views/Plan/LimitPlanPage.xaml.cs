@@ -14,6 +14,6 @@ public partial class LimitPlanPage : ContentPage
     {
         base.OnAppearing();
         LimitPlanPageViewModel viewModel = BindingContext as LimitPlanPageViewModel;
-        viewModel.Load();
+        viewModel.IsRefreshing = true;
     }
 }

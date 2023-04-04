@@ -21,7 +21,7 @@ namespace NNDIP.Maui.ViewModels.Plan
         [ObservableProperty]
         private ObservableCollection<ManualPlanDto> _manualPlans;
 
-        public async void Load()
+        public async Task Load()
         {
             try
             {
@@ -35,9 +35,9 @@ namespace NNDIP.Maui.ViewModels.Plan
 
         #region Commands
         [RelayCommand]
-        void Refresh()
+        async void Refresh()
         {
-            Load();
+            await Load();
             IsRefreshing = false;
         }
 

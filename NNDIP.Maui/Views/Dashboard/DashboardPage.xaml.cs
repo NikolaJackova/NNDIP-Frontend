@@ -14,6 +14,6 @@ public partial class DashboardPage : ContentPage
         base.OnAppearing();
         DashboardPageViewModel viewModel = BindingContext as DashboardPageViewModel;
         viewModel.SetDefault();
-        viewModel.Load();
+        viewModel.IsRefreshing = true;
     }
 }

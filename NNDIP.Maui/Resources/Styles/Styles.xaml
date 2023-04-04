@@ -396,5 +396,4 @@
         <Setter Property="FontSize" Value="20" />
         <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
-
 </ResourceDictionary>

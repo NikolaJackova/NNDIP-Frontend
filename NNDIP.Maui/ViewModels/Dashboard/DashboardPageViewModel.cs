@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using NNDIP.ApiClient;
 using NNDIP.Maui.Controls;
 using NNDIP.Maui.Models;
+using NNDIP.Maui.Models.Data;
 using NNDIP.Maui.Models.Sensor;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
@@ -30,7 +31,27 @@ public partial class DashboardPageViewModel : BaseViewModel
     [ObservableProperty]
     private DateTime? _datePickerDate;
 
-    private ICollection<DataDto> _data;
+    [ObservableProperty]
+    private ObservableCollection<DataDto> _data;
+
+    [ObservableProperty]
+    private Sensor _selectedSensor;
+
+    [ObservableProperty]
+    private ObservableCollection<Sensor> _sensors = new ObservableCollection<Sensor>();
+
+    [ObservableProperty]
+    private bool _isChartLoading;
+
+    [ObservableProperty]
+    private ObservableCollection<Unit> _units = new ObservableCollection<Unit>();
+
+    [ObservableProperty]
+    private Unit _selectedUnit;
+
+    [ObservableProperty]
+    private string _typeName;
+    private bool CallDataRefresh { get; set; } = true;
     #endregion
 
     public DashboardPageViewModel()
@@ -39,13 +60,12 @@ public partial class DashboardPageViewModel : BaseViewModel
         SensorGroups = new ObservableCollection<SensorGroup>();
     }
 
-    public async void Load()
+    public async Task Load()
     {
         try
         {
             AddressStateResult = await RestService.API.ApiAddressStateResultsAsync();
             SensorsData = new ObservableCollection<SensorsDataDto>(await RestService.API.ApiSensorDataAsync());
-            _data = await RestService.API.ApiDataHistoricalGetAsync(1, new DateTimeOffset(new DateTime(2022, 10, 6)), new DateTimeOffset(new DateTime(2022, 10, 7)));
         }
         catch (ApiClientException ex)
         {
@@ -65,46 +85,115 @@ public partial class DashboardPageViewModel : BaseViewModel
             {
                 SensorGroups.Add(item);
             }
+            if (!Sensors.Any(sensor => sensor.Id == item.Sensor.Id))
+            {
+                Sensors.Add(item.Sensor);
+            }
+        }
+        SetUnits();
+        SelectedUnit ??= Units.FirstOrDefault();
+        if (SelectedSensor is null)
+        {
+            CallDataRefresh = false;
+            SelectedSensor = Sensors.FirstOrDefault();
+            CallDataRefresh = true;
+        }
+        await RefreshData();
+    }
+
+    private void SetUnits()
+    {
+        foreach (var sensor in SensorsData)
+        {
+            foreach (var data in sensor.Data)
+            {
+                if (!Units.Any(unit => unit.TypeName == data.TypeName))
+                {
+                    Units.Add(new Unit()
+                    {
+                        TypeName = data.TypeName,
+                        UnitMeas = data.UnitMeas
+                    });
+                }
+            }
         }
     }
+
     public void SetDefault()
     {
-        DatePickerDate = DateTime.Today;
+        if (DatePickerDate is null)
+        {
+            CallDataRefresh = false;
+            DatePickerDate = DateTime.Today;
+            CallDataRefresh = true;
+        }
+    }
+
+    public async Task RefreshData()
+    {
+        if (CallDataRefresh && SelectedSensor is not null)
+        {
+            IsChartLoading = true;
+            Data = new ObservableCollection<DataDto>(await RestService.API.ApiDataHistoricalGetAsync(SelectedSensor.Id, new DateTimeOffset(DatePickerDate.Value), new DateTimeOffset(DatePickerDate.Value.AddDays(1))));
+            IsChartLoading = false;
+        }
     }
 
     #region Commands
     [RelayCommand]
-    void Refresh()
+    async void Refresh()
     {
-        Load();
+        await Load();
         IsRefreshing = false;
     }
 
     public ICommand AddOrRemoveGroupDataCommand => new Command<SensorGroup>((sensorGroup) =>
     {
-        if (sensorGroup.GroupIcon == "down_arrow.png")
+        if (sensorGroup.GroupIcon == Icons.DownArrow)
         {
             sensorGroup.Clear();
-            sensorGroup.GroupIcon = "up_arrow.png";
+            sensorGroup.GroupIcon = Icons.UpArrow;
         }
         else
         {
             ICollection<SimpleDataDto> recordsTobeAdded = SensorsData.Where(sensor => sensor.Id == sensorGroup.Sensor.Id).Select(item => item.Data).FirstOrDefault();
             sensorGroup.AddRange(recordsTobeAdded);
-            sensorGroup.GroupIcon = "down_arrow.png";
+            sensorGroup.GroupIcon = Icons.DownArrow;
         }
     });
 
     [RelayCommand]
-    void Plus()
+    async void Plus()
     {
         DatePickerDate = DatePickerDate is null ? DateTime.Today.AddDays(1) : DatePickerDate.Value.AddDays(1);
+
+        await RefreshData();
     }
 
     [RelayCommand]
-    void Minus()
+    async void Minus()
     {
         DatePickerDate = DatePickerDate is null ? DateTime.Today.AddDays(-1) : DatePickerDate.Value.AddDays(-1);
+
+        await RefreshData();
+    }
+
+    [RelayCommand]
+    async void DateSelected()
+    {
+        await RefreshData();
+    }
+
+    [RelayCommand]
+    async void SensorSelectedIndexChanged()
+    {
+        await RefreshData();
+    }
+
+    [RelayCommand]
+    void UnitSelectedIndexChanged()
+    {
+        TypeName = char.ToUpper(SelectedUnit.TypeName.First()) + SelectedUnit.TypeName.Substring(1).ToLower();
     }
     #endregion
 }

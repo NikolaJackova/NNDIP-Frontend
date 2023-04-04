@@ -3,7 +3,7 @@ using NNDIP.Maui.Views.Startup;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.ViewModels.Dashboard;
 using NNDIP.Maui.ViewModels.Startup;
-//using Syncfusion.Maui.Core.Hosting;
+using Syncfusion.Maui.Core.Hosting;
 using NNDIP.Maui.Controls;
 using NNDIP.Maui.Views.Plan;
 using NNDIP.Maui.ViewModels.Plan;
@@ -18,7 +18,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            //.ConfigureSyncfusionCore()
+            .ConfigureSyncfusionCore()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
 			{

@@ -28,11 +28,6 @@ steps:
     certSecureFile: '$(p12FileName)'
     certPwd: '$(p12Password)'
     keychain: 'temp'
-- task: UseDotNet@2
-  displayName: .NET Version
-  inputs:
-    packageType: 'sdk'
-    version: '7.x'
 
 - task: DownloadSecureFile@1
   name: secrets
@@ -43,7 +38,14 @@ steps:
 - script: |
     mv $(secrets.secureFilePath) $(System.DefaultWorkingDirectory)/NNDIP.Maui
     ls
-    ls /NNDIP.Maui
+    cd NNDIP.Maui
+    ls
+
+- task: UseDotNet@2
+  displayName: .NET Version
+  inputs:
+    packageType: 'sdk'
+    version: '7.x'
 
 - task: Bash@3
   displayName: Install MAUI

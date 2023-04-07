@@ -8,13 +8,19 @@ using NNDIP.Maui.Controls;
 using NNDIP.Maui.Views.Plan;
 using NNDIP.Maui.ViewModels.Plan;
 using CommunityToolkit.Maui;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace NNDIP.Maui;
 
 public static class MauiProgram
 {
+    private const string Namespace = "NNDIP.Maui";
+    private const string File = "secrets.json";
 	public static MauiApp CreateMauiApp()
 	{
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{Namespace}.{File}");
+       
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -24,7 +30,8 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+			})
+            .Configuration.AddJsonStream(stream);
 
         builder.Services.AddSingleton<LoginPage>();
         builder.Services.AddSingleton<LoadingPage>();

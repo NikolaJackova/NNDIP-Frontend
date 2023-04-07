@@ -366,3 +366,4 @@ FodyWeavers.xsd
 *.env
 *.cmd
 *.keystore
+secrets.json

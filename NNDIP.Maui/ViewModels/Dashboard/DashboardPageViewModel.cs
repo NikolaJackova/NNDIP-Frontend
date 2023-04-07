@@ -51,6 +51,9 @@ public partial class DashboardPageViewModel : BaseViewModel
 
     [ObservableProperty]
     private string _typeName;
+
+    [ObservableProperty]
+    private string _unitMeasTitle;
     private bool CallDataRefresh { get; set; } = true;
     #endregion
 
@@ -107,11 +110,11 @@ public partial class DashboardPageViewModel : BaseViewModel
         {
             foreach (var data in sensor.Data)
             {
-                if (!Units.Any(unit => unit.TypeName == data.TypeName))
+                if (!Units.Any(unit => unit.TypeName.ToUpper() == data.TypeName.ToUpper()))
                 {
                     Units.Add(new Unit()
                     {
-                        TypeName = data.TypeName,
+                        TypeName = char.ToUpper(data.TypeName.First()) + data.TypeName.Substring(1).ToLower(),
                         UnitMeas = data.UnitMeas
                     });
                 }
@@ -194,6 +197,7 @@ public partial class DashboardPageViewModel : BaseViewModel
     void UnitSelectedIndexChanged()
     {
         TypeName = char.ToUpper(SelectedUnit.TypeName.First()) + SelectedUnit.TypeName.Substring(1).ToLower();
+        UnitMeasTitle = SelectedUnit.UnitMeas;
     }
     #endregion
 }

@@ -170,19 +170,24 @@
                             </HorizontalStackLayout>
                         </Grid>
                     </Frame>
-                    <ActivityIndicator IsVisible="{Binding IsChartLoading}" IsRunning="{Binding IsChartLoading}" Color ="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}"/>
+
+                    <ActivityIndicator IsVisible="{Binding IsChartLoading}" IsRunning="{Binding IsChartLoading}"/>
                     <chart:SfCartesianChart IsVisible="{Binding Path=IsChartLoading, Converter={converters:InverseBoolConverter}}">
                         <chart:SfCartesianChart.Resources>
                             <chart:ChartAxisLabelStyle x:Key="xAxisLabelStyle" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" LabelFormat="HH:mm"/>
                             <chart:ChartAxisLabelStyle x:Key="yAxisLabelStyle" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}"/>
                         </chart:SfCartesianChart.Resources>
-                        
+
                         <chart:SfCartesianChart.XAxes>
                             <chart:DateTimeAxis LabelStyle="{StaticResource xAxisLabelStyle}" ShowMajorGridLines="False"/>
                         </chart:SfCartesianChart.XAxes>
 
                         <chart:SfCartesianChart.YAxes>
-                            <chart:NumericalAxis LabelStyle="{StaticResource yAxisLabelStyle}"/>
+                            <chart:NumericalAxis LabelStyle="{StaticResource yAxisLabelStyle}">
+                                <chart:NumericalAxis.Title>
+                                    <chart:ChartAxisTitle Text="{Binding UnitMeasTitle}" TextColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}"/>
+                                </chart:NumericalAxis.Title>
+                            </chart:NumericalAxis>
                         </chart:SfCartesianChart.YAxes>
 
                         <chart:SfCartesianChart.Series>
@@ -193,7 +198,7 @@
                                 EnableTooltip="True"
                                 Fill="{AppThemeBinding Light={StaticResource Yellow100Accent}, Dark={StaticResource Yellow100Accent}}"/>
                         </chart:SfCartesianChart.Series>
-                        
+
                         <chart:SfCartesianChart.TooltipBehavior>
                             <chart:ChartTooltipBehavior/>
                         </chart:SfCartesianChart.TooltipBehavior>

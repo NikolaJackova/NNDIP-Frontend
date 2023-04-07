@@ -42,7 +42,8 @@ steps:
 
 - script: |
     mv $(secrets.secureFilePath) $(System.DefaultWorkingDirectory)\NNDIP.Maui
-    dir
+    ls
+    ls \NNDIP.Maui
 
 - task: Bash@3
   displayName: Install MAUI

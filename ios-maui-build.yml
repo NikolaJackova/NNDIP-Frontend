@@ -37,9 +37,6 @@ steps:
 
 - script: |
     mv $(secrets.secureFilePath) $(System.DefaultWorkingDirectory)/NNDIP.Maui
-    ls
-    cd NNDIP.Maui
-    ls
 
 - task: UseDotNet@2
   displayName: .NET Version

@@ -20,10 +20,10 @@ namespace NNDIP.Maui.Converters
         {
             return (string)value switch
             {
-                "Quiet" => Speed1,
-                "Low" => Speed2,
-                "Medium" => Speed3,
-                "High" => Speed4,
+                "QUIET" => Speed1,
+                "LOW" => Speed2,
+                "MEDIUM" => Speed3,
+                "HIGH" => Speed4,
                 _ => Speed0,
             };
         }
@@ -33,19 +33,19 @@ namespace NNDIP.Maui.Converters
             string speed = (string)value;
             if (speed.Equals(Speed1))
             {
-                return "Quiet";
+                return "QUIET";
             }
             else if (speed.Equals(Speed2))
             {
-                return "Low";
+                return "LOW";
             }
             else if (speed.Equals(Speed3))
             {
-                return "Medium";
+                return "MEDIUM";
             }
             else if (speed.Equals(Speed4))
             {
-                return "High";
+                return "HIGH";
             }
             else
             {

@@ -21,7 +21,16 @@ steps:
 
 - script: |
     mv $(keystore.secureFilePath) $(System.DefaultWorkingDirectory)\NNDIP.Maui
-    
+
+- task: DownloadSecureFile@1
+  name: secrets
+  displayName: Download secrets 
+  inputs:
+    secureFile: '$(secretsFile)'
+
+- script: |
+    mv $(secrets.secureFilePath) $(System.DefaultWorkingDirectory)\NNDIP.Maui
+
 - task: UseDotNet@2
   displayName: .NET Version
   inputs:

@@ -17,6 +17,7 @@ steps:
 
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/apps/mobile/app-signing?view=azure-devops&tabs=apple-install-during-build#sign-your-apple-ios-macos-tvos-or-watchos-app
 # Setup Secret Pipeline Variable or Library Secrets Variable for iOS Certificate Password
+    
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
@@ -27,6 +28,16 @@ steps:
     certSecureFile: '$(p12FileName)'
     certPwd: '$(p12Password)'
     keychain: 'temp'
+
+- task: DownloadSecureFile@1
+  name: secrets
+  displayName: Download secrets 
+  inputs:
+    secureFile: '$(secretsFile)'
+
+- script: |
+    mv $(secrets.secureFilePath) $(System.DefaultWorkingDirectory)/NNDIP.Maui
+
 - task: UseDotNet@2
   displayName: .NET Version
   inputs:

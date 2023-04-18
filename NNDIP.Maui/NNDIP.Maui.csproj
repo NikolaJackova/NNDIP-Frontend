@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios16.0;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
@@ -73,6 +73,11 @@
 	<PropertyGroup>
    	  <UseInterpreter>true</UseInterpreter>
    	  <UserSecretsId>a947733c-e19d-4aee-8ed3-22e26499e619</UserSecretsId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+	  <CodesignKey>Apple Development: Created via API (PXNUG2V68K)</CodesignKey>
+	  <CodesignProvision>VS: com.upce.nndip.maui Development</CodesignProvision>
 	</PropertyGroup>
 
 	<ItemGroup>

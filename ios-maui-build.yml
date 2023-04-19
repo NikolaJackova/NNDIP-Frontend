@@ -69,7 +69,7 @@ steps:
     script: |
       cd NNDIP.Maui/
       # dotnet publish NNDIP.Maui.csproj -f net7.0-ios -c Release -r ios-arm64
-      dotnet publish NNDIP.Maui.csproj -f net7.0-ios16.0 -c Release -r ios-arm64 /p:ApplicationId=com.upce.nndip.maui /p:ArchiveOnBuild=true /p:EnableAssemblyILStripping=false
+      dotnet publish NNDIP.Maui.csproj -f net7.0-ios -c Release -r ios-arm64 /p:ApplicationId=com.upce.nndip.maui /p:ArchiveOnBuild=true /p:EnableAssemblyILStripping=false
 - task: CopyFiles@2
   inputs:
     Contents: |

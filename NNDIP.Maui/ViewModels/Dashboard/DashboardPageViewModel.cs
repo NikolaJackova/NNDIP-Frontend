@@ -86,6 +86,7 @@ public partial class DashboardPageViewModel : BaseViewModel
         {
             if (!SensorGroups.Any(groupedData => groupedData.Sensor.Id == item.Sensor.Id))
             {
+                await Task.Delay(100);
                 SensorGroups.Add(item);
             }
             if (!Sensors.Any(sensor => sensor.Id == item.Sensor.Id))
@@ -150,7 +151,7 @@ public partial class DashboardPageViewModel : BaseViewModel
         IsRefreshing = false;
     }
 
-    public ICommand AddOrRemoveGroupDataCommand => new Command<SensorGroup>((sensorGroup) =>
+    public ICommand AddOrRemoveGroupDataCommand => new Command<SensorGroup>(async (sensorGroup) =>
     {
         if (sensorGroup.GroupIcon == Icons.DownArrow)
         {

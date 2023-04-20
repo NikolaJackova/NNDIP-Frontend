@@ -7,7 +7,7 @@ trigger:
 - none
 
 pool:
-  vmImage: 'macos-12'
+  vmImage: 'macos-11'
 
 variables:
   - group: maui-ios-pipeline

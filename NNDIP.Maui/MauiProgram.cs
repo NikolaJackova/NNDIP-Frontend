@@ -41,6 +41,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<AddUpdateTimePlanPage>();
         builder.Services.AddSingleton<ManualPlanPage>();
         builder.Services.AddSingleton<AddUpdateManualPlanPage>();
+        builder.Services.AddSingleton<ManualPlanPageIOS>();
+        builder.Services.AddSingleton<TimePlanPageIOS>();
 
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();

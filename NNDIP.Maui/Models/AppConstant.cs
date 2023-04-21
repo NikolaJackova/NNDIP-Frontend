@@ -42,13 +42,21 @@ namespace NNDIP.Maui.Models
                                 {
                                     Icon = Icons.TimePlan,
                                     Title = AppResources.timePlanPage_PageTitle,
+#if IOS
+                                    ContentTemplate = new DataTemplate(typeof(TimePlanPageIOS)),
+#else
                                     ContentTemplate = new DataTemplate(typeof(TimePlanPage)),
+#endif
                                 },
                                 new ShellContent
                                 {
                                     Icon = Icons.ManualPlan,
                                     Title = AppResources.manualPlanPage_PageTitle,
+#if IOS
+                                    ContentTemplate = new DataTemplate(typeof(ManualPlanPageIOS)),
+#else
                                     ContentTemplate = new DataTemplate(typeof(ManualPlanPage)),
+#endif
                                 }
                             }
             };

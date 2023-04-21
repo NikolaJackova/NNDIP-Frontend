@@ -86,7 +86,9 @@ public partial class DashboardPageViewModel : BaseViewModel
         {
             if (!SensorGroups.Any(groupedData => groupedData.Sensor.Id == item.Sensor.Id))
             {
-                await Task.Delay(100);
+#if IOS
+                await Task.Delay(150);
+#endif
                 SensorGroups.Add(item);
             }
             if (!Sensors.Any(sensor => sensor.Id == item.Sensor.Id))

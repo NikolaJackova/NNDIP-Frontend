@@ -118,8 +118,8 @@
 	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 	  <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-	  <PackageReference Include="Syncfusion.Maui.Charts" Version="21.1.38" />
-	  <PackageReference Include="Syncfusion.Maui.Core" Version="21.1.38" />
+	  <PackageReference Include="Syncfusion.Maui.Charts" Version="21.1.41" />
+	  <PackageReference Include="Syncfusion.Maui.Core" Version="21.1.41" />
 	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
 	</ItemGroup>
 
@@ -132,6 +132,12 @@
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Plan\ManualPlanPageIOS.xaml.cs">
+	    <DependentUpon>ManualPlanPageIOS.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Plan\TimePlanPageIOS.xaml.cs">
+	    <DependentUpon>TimePlanPageIOS.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -158,7 +164,13 @@
 	  <MauiXaml Update="Views\Plan\LimitPlanPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Plan\ManualPlanPageIOS.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Plan\ManualPlanPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Plan\TimePlanPageIOS.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Plan\TimePlanPage.xaml">

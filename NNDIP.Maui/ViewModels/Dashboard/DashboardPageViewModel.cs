@@ -70,7 +70,7 @@ public partial class DashboardPageViewModel : BaseViewModel
             AddressStateResult = await RestService.API.ApiAddressStateResultsAsync();
             SensorsData = new ObservableCollection<SensorsDataDto>(await RestService.API.ApiSensorDataAsync());
         }
-        catch (ApiClientException ex)
+        catch (Exception ex)
         {
             await ExceptionHandlingService.HandleException(ex);
             return;
@@ -140,7 +140,15 @@ public partial class DashboardPageViewModel : BaseViewModel
         if (CallDataRefresh && SelectedSensor is not null)
         {
             IsChartLoading = true;
-            Data = new ObservableCollection<DataDto>(await RestService.API.ApiDataHistoricalGetAsync(SelectedSensor.Id, new DateTimeOffset(DatePickerDate.Value), new DateTimeOffset(DatePickerDate.Value.AddDays(1))));
+            try
+            {
+                Data = new ObservableCollection<DataDto>(await RestService.API.ApiDataHistoricalGetAsync(SelectedSensor.Id, new DateTimeOffset(DatePickerDate.Value), new DateTimeOffset(DatePickerDate.Value.AddDays(1))));
+            }
+            catch (Exception ex)
+            {
+                await ExceptionHandlingService.HandleException(ex);
+                return;
+            }
             IsChartLoading = false;
         }
     }
@@ -155,16 +163,19 @@ public partial class DashboardPageViewModel : BaseViewModel
 
     public ICommand AddOrRemoveGroupDataCommand => new Command<SensorGroup>(async (sensorGroup) =>
     {
-        if (sensorGroup.GroupIcon == Icons.DownArrow)
+        if (DeviceInfo.Platform != DevicePlatform.iOS)
         {
-            sensorGroup.Clear();
-            sensorGroup.GroupIcon = Icons.UpArrow;
-        }
-        else
-        {
-            ICollection<SimpleDataDto> recordsTobeAdded = SensorsData.Where(sensor => sensor.Id == sensorGroup.Sensor.Id).Select(item => item.Data).FirstOrDefault();
-            sensorGroup.AddRange(recordsTobeAdded);
-            sensorGroup.GroupIcon = Icons.DownArrow;
+            if (sensorGroup.GroupIcon == Icons.DownArrow)
+            {
+                sensorGroup.Clear();
+                sensorGroup.GroupIcon = Icons.UpArrow;
+            }
+            else
+            {
+                ICollection<SimpleDataDto> recordsTobeAdded = SensorsData.Where(sensor => sensor.Id == sensorGroup.Sensor.Id).Select(item => item.Data).FirstOrDefault();
+                sensorGroup.AddRange(recordsTobeAdded);
+                sensorGroup.GroupIcon = Icons.DownArrow;
+            }
         }
     });
 

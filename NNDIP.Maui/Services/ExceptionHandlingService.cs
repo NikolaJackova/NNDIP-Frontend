@@ -10,12 +10,14 @@ namespace NNDIP.Maui.Services
 {
     public static class ExceptionHandlingService
     {
-        public static async Task HandleException(ApiClientException ex)
+        public static async Task HandleException(Exception ex)
         {
-
-            if (ex.StatusCode == 401)
+            if (ex is ApiClientException)
             {
-                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                if (((ApiClientException)ex).StatusCode == 401)
+                {
+                    await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                }
             }
             else
             {

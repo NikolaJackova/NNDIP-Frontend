@@ -37,7 +37,7 @@ namespace NNDIP.Maui.ViewModels.Startup
                         Password = Password
                     });
                 }
-                catch (ApiClientException ex)
+                catch (Exception ex)
                 {
                     await ExceptionHandlingService.HandleException(ex);
                     return;

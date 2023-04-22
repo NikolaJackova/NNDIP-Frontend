@@ -28,7 +28,7 @@
                 <!-- TEMPERATURE -->
                 <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.limitPlanPage_Temperature}"/>
                 <Frame Padding="8">
-                    <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,3*,*, *" ColumnSpacing="10">
+                    <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,3*,*, *" ColumnSpacing="10" RowSpacing="{OnPlatform iOS=8}">
                         <Label Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_OptimalTemperature}"/>
                         <Entry Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.OptimalValueTemperature}"/>
                         <Label Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_DegreeCelsiusUnit}"/>
@@ -50,7 +50,7 @@
                 <!-- CO2 -->
                 <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.limitPlanPage_Co2}"/>
                 <Frame Padding="8">
-                    <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,3*,*,*" ColumnSpacing="10">
+                    <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,3*,*,*" ColumnSpacing="10" RowSpacing="{OnPlatform iOS=8}">
                         <Label Grid.Column="1" Text="{x:Static lang:AppResources.limitPlanPage_OptimalCo2}"/>
                         <Entry Grid.Column="2" Keyboard="Numeric" HorizontalTextAlignment="End" Text="{Binding LimitSettings.OptimalValueCo2}"/>
                         <Label Grid.Column="3" Text="{x:Static lang:AppResources.limitPlanPage_PpmUnit}"/>

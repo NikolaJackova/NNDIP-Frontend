@@ -33,7 +33,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             {
                 Events = new ObservableCollection<SimpleEventDto>(await RestService.API.ApiEventGetAsync());
             }
-            catch (ApiClientException ex)
+            catch (Exception ex)
             {
                 await ExceptionHandlingService.HandleException(ex);
             }
@@ -73,7 +73,7 @@ namespace NNDIP.Maui.ViewModels.Plan
                         }
                     });
                 }
-                catch (ApiClientException ex)
+                catch (Exception ex)
                 {
                     await ExceptionHandlingService.HandleException(ex);
                     return;
@@ -93,7 +93,7 @@ namespace NNDIP.Maui.ViewModels.Plan
                         }
                     });
                 }
-                catch (ApiClientException ex)
+                catch (Exception ex)
                 {
                     await ExceptionHandlingService.HandleException(ex);
                     return;

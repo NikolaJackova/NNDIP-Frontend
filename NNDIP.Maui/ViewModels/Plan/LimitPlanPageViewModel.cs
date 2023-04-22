@@ -63,7 +63,7 @@ namespace NNDIP.Maui.ViewModels.Plan
                 SetSelectedEvents();
 
             }
-            catch (ApiClientException ex)
+            catch (Exception ex)
             {
                 await ExceptionHandlingService.HandleException(ex);
             }
@@ -102,7 +102,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             {
                 await RestService.API.ApiLimitPlanSettingsPutAsync(LimitSettings);
             }
-            catch (ApiClientException ex)
+            catch (Exception ex)
             {
                 await ExceptionHandlingService.HandleException(ex);
                 return;
@@ -128,7 +128,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             {
                 await RestService.API.ApiYearPeriodPutAsync(updateYearPeriodDto.Id, updateYearPeriodDto);
             }
-            catch (ApiClientException ex)
+            catch (Exception ex)
             {
                 await ExceptionHandlingService.HandleException(ex);
                 return;

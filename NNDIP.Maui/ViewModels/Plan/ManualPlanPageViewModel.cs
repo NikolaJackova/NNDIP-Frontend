@@ -27,7 +27,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             {
                 ManualPlans = new ObservableCollection<ManualPlanDto>(await RestService.API.ApiManualPlanGetAsync());
             }
-            catch (ApiClientException ex)
+            catch (Exception ex)
             {
                 await ExceptionHandlingService.HandleException(ex);
             }
@@ -64,7 +64,7 @@ namespace NNDIP.Maui.ViewModels.Plan
             {
                 await RestService.API.ApiManualPlanDeleteAsync(manualPlanDto.Id);
             }
-            catch (ApiClientException ex)
+            catch (Exception ex)
             {
                 await ExceptionHandlingService.HandleException(ex);
                 return;
@@ -93,7 +93,7 @@ namespace NNDIP.Maui.ViewModels.Plan
                         }
                     });
                 }
-                catch (ApiClientException ex)
+                catch (Exception ex)
                 {
                     await ExceptionHandlingService.HandleException(ex);
                 }

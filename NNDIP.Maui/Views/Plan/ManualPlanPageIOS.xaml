@@ -13,7 +13,7 @@
             <VerticalStackLayout Padding="8" Spacing="10">
                 <Button Text="{x:Static lang:AppResources.manualPlanPage_Add}" Command="{Binding AddManualPlanCommand}"/>
                 <Frame Padding="8">
-                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding ManualPlans}">
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding ManualPlans}" Spacing="12">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <SwipeView>

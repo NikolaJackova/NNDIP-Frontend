@@ -13,7 +13,7 @@
             <VerticalStackLayout Padding="8" Spacing="10">
                 <Button Text="{x:Static lang:AppResources.timePlanPage_Add}" Command="{Binding AddTimePlanCommand}"/>
                 <Frame Padding="8">
-                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding TimePlans}">
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding TimePlans}" Spacing="12">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <SwipeView>

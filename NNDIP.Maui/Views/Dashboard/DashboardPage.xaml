@@ -91,51 +91,51 @@
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
-                
+
                 <!-- SENSOR STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
                     <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_SensorStatus}"/>
                     <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}" HeightRequest="{OnPlatform iOS=280}">
                         <CollectionView.GroupHeaderTemplate>
-                                <DataTemplate x:DataType="sensor:SensorGroup">
-                                    <HorizontalStackLayout Padding="0,8" Spacing="10">
-                                        <Label Style="{StaticResource labelTitleStyle}" Text="{Binding Sensor.Name}"/>
-                                        <Label FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}"/>
-                                        <Image IsVisible="{OnPlatform iOS=False}" HeightRequest="20" WidthRequest="20" Source="{Binding GroupIcon}" />
-                                        <HorizontalStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
-                                        </HorizontalStackLayout.GestureRecognizers>
-                                    </HorizontalStackLayout>
-                                </DataTemplate>
-                            </CollectionView.GroupHeaderTemplate>
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="api:SimpleDataDto">
+                            <DataTemplate x:DataType="sensor:SensorGroup">
+                                <HorizontalStackLayout Padding="0,8" Spacing="10">
+                                    <Label Style="{StaticResource labelTitleStyle}" Text="{Binding Sensor.Name}"/>
+                                    <Label FontSize="Default" Text="{Binding Sensor.DataTimestamp.LocalDateTime}"/>
+                                    <Image IsVisible="{OnPlatform iOS=False}" HeightRequest="20" WidthRequest="20" Source="{Binding GroupIcon}" />
+                                    <HorizontalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:DashboardPageViewModel}},Path=AddOrRemoveGroupDataCommand}" CommandParameter="{Binding .}" />
+                                    </HorizontalStackLayout.GestureRecognizers>
+                                </HorizontalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.GroupHeaderTemplate>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="api:SimpleDataDto">
                                 <Frame Padding="8" Margin="0,0,0,5">
                                     <Grid ColumnDefinitions="*, 3*, 2*">
-                                            <Image HeightRequest="40" WidthRequest="40">
-                                                <Image.Source>
-                                                    <Binding Path="TypeName">
-                                                        <Binding.Converter>
-                                                            <converters:SensorDataTypeToObjectConverter />
-                                                        </Binding.Converter>
-                                                    </Binding>
-                                                </Image.Source>
-                                            </Image>
-                                            <Label Grid.Column="2">
-                                                <Label.Text>
-                                                    <MultiBinding StringFormat="{}{0} {1}">
-                                                        <Binding Path="Value" />
-                                                        <Binding Path="UnitMeas" />
-                                                    </MultiBinding>
-                                                </Label.Text>
-                                            </Label>
-                                        </Grid>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                                        <Image HeightRequest="40" WidthRequest="40">
+                                            <Image.Source>
+                                                <Binding Path="TypeName">
+                                                    <Binding.Converter>
+                                                        <converters:SensorDataTypeToObjectConverter />
+                                                    </Binding.Converter>
+                                                </Binding>
+                                            </Image.Source>
+                                        </Image>
+                                        <Label Grid.Column="2">
+                                            <Label.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="Value" />
+                                                    <Binding Path="UnitMeas" />
+                                                </MultiBinding>
+                                            </Label.Text>
+                                        </Label>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </VerticalStackLayout>
-                
+
                 <!-- CHART -->
                 <VerticalStackLayout Padding="8">
                     <Frame Padding="8">
@@ -165,8 +165,8 @@
                                 </DatePicker.Behaviors>
                             </DatePicker>
                             <HorizontalStackLayout Grid.Row="2" Grid.Column="3" Spacing="5">
-                                <Button Text="+" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding PlusCommand}"/>
                                 <Button Text="−" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding MinusCommand}"/>
+                                <Button Text="+" BorderWidth="1" BorderColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Tertiary}}" Command="{Binding PlusCommand}"/>
                             </HorizontalStackLayout>
                         </Grid>
                     </Frame>

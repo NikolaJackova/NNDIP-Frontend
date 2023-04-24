@@ -8,10 +8,12 @@ using NNDIP.Maui.ViewModels.Plan;
 using CommunityToolkit.Maui;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+#if IOS || MACCATALYST
 using Microsoft.Maui.Handlers;
 using UIKit;
 using Foundation;
 using Microsoft.Maui.Platform;
+#endif
 
 namespace NNDIP.Maui;
 
@@ -34,12 +36,13 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			})
             .Configuration.AddJsonStream(stream);
-
-		ScrollViewHandler.Mapper.AppendToMapping("ContentSize", (handler, view) =>
+#if IOS || MACCATALYST
+        ScrollViewHandler.Mapper.AppendToMapping("ContentSize", (handler, view) =>
 		{
             handler.PlatformView.UpdateContentSize(handler.VirtualView.ContentSize);
 			handler.PlatformArrange(handler.PlatformView.Frame.ToRectangle());
 		});
+#endif
 
         builder.Services.AddSingleton<LoginPage>();
         builder.Services.AddSingleton<LoadingPage>();

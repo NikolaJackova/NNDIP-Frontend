@@ -13,13 +13,13 @@
              x:Name="dashboardPage">
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*">
-            <Image Grid.Column="1" Source="dashboard.png" HeightRequest="40" WidthRequest="40"/>
             <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_PageTitle}" />
+            <Image Grid.Column="1" Source="dashboard.png" HeightRequest="40" WidthRequest="40"/>
         </Grid>
     </Shell.TitleView>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
-            <VerticalStackLayout>
+            <VerticalStackLayout MaximumWidthRequest="{OnPlatform iOS=-1}">
 
                 <!-- DEVICE STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
@@ -95,7 +95,7 @@
                 <!-- SENSOR STATUS -->
                 <VerticalStackLayout Padding="8" Spacing="5">
                     <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_SensorStatus}"/>
-                    <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}" HeightRequest="{OnPlatform iOS=280}">
+                    <CollectionView IsGrouped="True" ItemsSource="{Binding SensorGroups}" HeightRequest="{OnPlatform iOS=280}" MaximumWidthRequest="{OnPlatform iOS=-1}">
                         <CollectionView.GroupHeaderTemplate>
                             <DataTemplate x:DataType="sensor:SensorGroup">
                                 <HorizontalStackLayout Padding="0,8" Spacing="10">

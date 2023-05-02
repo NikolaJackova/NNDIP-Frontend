@@ -308,7 +308,7 @@
     </Style>
 
     <Style TargetType="Switch">
-        <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="ThumbColor" Value="{OnPlatform iOS={AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}, Default={AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}}" />
         <Setter Property="OnColor" Value="{OnPlatform iOS={AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}, Default={AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}}" />
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -335,7 +335,7 @@
                     <VisualState x:Name="Off">
                         <VisualState.Setters>
                             <Setter Property="OnColor" Value="{OnPlatform iOS={AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}, Default={AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}}" />
-                            <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+                            <Setter Property="ThumbColor" Value="{OnPlatform iOS={AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}, Default={AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

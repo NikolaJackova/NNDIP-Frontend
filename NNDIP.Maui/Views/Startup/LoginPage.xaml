@@ -10,8 +10,6 @@
             Padding="30,0" 
             VerticalOptions="Center">
 
-        <Image Source="dotnet_bot.svg" HeightRequest="150" WidthRequest="150" />
-
         <VerticalStackLayout Spacing="5">
             <Label Text="{x:Static lang:AppResources.loginPage_Welcome}" FontSize="28" HorizontalTextAlignment="Center" />
             <Label Text="{x:Static lang:AppResources.loginPage_LoginToAccount}" FontSize="18" HorizontalTextAlignment="Center" />

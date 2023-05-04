@@ -1,13 +1,11 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Newtonsoft.Json;
 using NNDIP.ApiClient;
 using NNDIP.Maui.Controls;
 using NNDIP.Maui.Models;
 using NNDIP.Maui.Models.Data;
 using NNDIP.Maui.Models.Sensor;
 using NNDIP.Maui.Services;
-using NNDIP.Maui.Views.Startup;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 

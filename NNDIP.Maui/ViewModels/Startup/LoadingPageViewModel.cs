@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using NNDIP.Maui.Models;
+﻿using NNDIP.Maui.Models;
 using NNDIP.Maui.Services;
 using NNDIP.Maui.Views.Startup;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace NNDIP.Maui.ViewModels.Startup
 {

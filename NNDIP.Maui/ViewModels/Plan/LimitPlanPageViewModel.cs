@@ -3,16 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using NNDIP.ApiClient;
 using NNDIP.Maui.Enums;
 using NNDIP.Maui.Services;
-using NNDIP.Maui.Views.Startup;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace NNDIP.Maui.ViewModels.Plan
 {

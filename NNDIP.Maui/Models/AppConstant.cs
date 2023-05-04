@@ -2,11 +2,6 @@
 using NNDIP.Maui.Resources.Languages;
 using NNDIP.Maui.Views.Dashboard;
 using NNDIP.Maui.Views.Plan;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NNDIP.Maui.Models
 {

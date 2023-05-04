@@ -1,11 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using NNDIP.Maui.Views.Startup;
 using NNDIP.Maui.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NNDIP.Maui.ViewModels
 {

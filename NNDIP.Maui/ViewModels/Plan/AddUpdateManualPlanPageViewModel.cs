@@ -2,13 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using NNDIP.ApiClient;
 using NNDIP.Maui.Services;
-using NNDIP.Maui.Views.Startup;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NNDIP.Maui.ViewModels.Plan
 {

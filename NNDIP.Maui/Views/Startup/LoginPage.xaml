@@ -29,7 +29,8 @@
                 <Image Source="{x:Static models:Icons.Lock}" HeightRequest="20" WidthRequest="20" />
             </Frame>
             <Frame HeightRequest="45" Margin="-20,0,0,0" Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding Password}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="{x:Static lang:AppResources.loginPage_Password}" IsPassword="True" />
+                <Entry Text="{Binding Password}" Margin="20,0,0,0" VerticalOptions="Center" 
+                       Placeholder="{x:Static lang:AppResources.loginPage_Password}" IsPassword="True" />
             </Frame>
         </StackLayout>
 

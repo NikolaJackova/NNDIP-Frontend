@@ -10,14 +10,4 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\AddressState\" />
-    <Folder Include="Dtos\Authentication\" />
-    <Folder Include="Dtos\Data\" />
-    <Folder Include="Dtos\Event\" />
-    <Folder Include="Dtos\YearPeriod\" />
-    <Folder Include="Dtos\Sensor\" />
-    <Folder Include="Dtos\Plan\" />
-  </ItemGroup>
-
 </Project>

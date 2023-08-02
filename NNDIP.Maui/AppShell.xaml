@@ -3,6 +3,7 @@
     x:Class="NNDIP.Maui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
     xmlns:local="clr-namespace:NNDIP.Maui"
     xmlns:startupPages="clr-namespace:NNDIP.Maui.Views.Startup"
     Shell.TabBarIsVisible="False">
@@ -18,7 +19,7 @@
 
     <Shell.FlyoutFooter>
         <StackLayout Padding="20">
-            <Button Text="Sign Out" Command="{Binding SignOutCommand}" />
+            <Button Text="{x:Static lang:AppResources.shellMenu_SignOut}" Command="{Binding SignOutCommand}" />
         </StackLayout>
     </Shell.FlyoutFooter>
 

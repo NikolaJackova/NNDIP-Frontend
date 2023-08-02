@@ -12,6 +12,11 @@ namespace NNDIP.Maui.Services
                 if (((ApiClientException)ex).StatusCode == 401)
                 {
                     await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+                    return;
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ((ApiClientException)ex).Response, "Ok");
                 }
             }
             else

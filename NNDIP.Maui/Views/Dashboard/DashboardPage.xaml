@@ -39,6 +39,9 @@
                             </Image>
                             <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_AirCondition}"/>
                             <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" >
+                                <Image.IsVisible>
+                                    <Binding Path="AddressStateResult.IsACUnitOn"/>
+                                </Image.IsVisible>
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitMode">
                                         <Binding.Converter>
@@ -64,6 +67,9 @@
                             </Image>
                             <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_Ventilator}"/>
                             <Image Grid.Column="2" HeightRequest="40" WidthRequest="40">
+                                <Image.IsVisible>
+                                    <Binding Path="AddressStateResult.IsFanOn"/>
+                                </Image.IsVisible>
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitFanSpeed">
                                         <Binding.Converter>

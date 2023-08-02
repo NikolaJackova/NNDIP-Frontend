@@ -98,7 +98,7 @@ namespace NNDIP.Maui.ViewModels.Plan
                 await ExceptionHandlingService.HandleException(ex);
                 return;
             }
-            Load();
+            IsRefreshing = true;
         }
 
         [RelayCommand]

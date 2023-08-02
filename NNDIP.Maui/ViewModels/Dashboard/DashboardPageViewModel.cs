@@ -80,22 +80,27 @@ public partial class DashboardPageViewModel : BaseViewModel
             SensorType = sensor.SensorType,
             DataTimestamp = sensor.DataTimestamp
         }, sensor.Data.ToList()));
+        SensorGroups = new ObservableCollection<SensorGroup>();
         foreach (var item in groupedData)
         {
-            if (!SensorGroups.Any(groupedData => groupedData.Sensor.Id == item.Sensor.Id))
-            {
 #if IOS
-                await Task.Delay(150);
+            await Task.Delay(150);
 #endif
-                SensorGroups.Add(item);
-            }
+            SensorGroups.Add(item);
             if (!Sensors.Any(sensor => sensor.Id == item.Sensor.Id))
             {
                 Sensors.Add(item.Sensor);
             }
         }
         SetUnits();
-        SelectedUnit ??= Units.FirstOrDefault();
+        if (Units.Any(unit => unit.UnitMeas == "°C"))
+        {
+            SelectedUnit ??= Units.Where(unit => unit.UnitMeas == "°C").First();
+        }
+        else
+        {
+            SelectedUnit ??= Units.FirstOrDefault();
+        }
         if (SelectedSensor is null)
         {
             CallDataRefresh = false;

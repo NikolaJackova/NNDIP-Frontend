@@ -70,7 +70,7 @@ namespace NNDIP.Maui.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date.
+        ///   Looks up a localized string similar to Date:.
         /// </summary>
         public static string dashboardPage_Date {
             get {
@@ -444,6 +444,15 @@ namespace NNDIP.Maui.Resources.Languages {
         public static string manualPlanPage_Save {
             get {
                 return ResourceManager.GetString("manualPlanPage_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string shellMenu_SignOut {
+            get {
+                return ResourceManager.GetString("shellMenu_SignOut", resourceCulture);
             }
         }
         

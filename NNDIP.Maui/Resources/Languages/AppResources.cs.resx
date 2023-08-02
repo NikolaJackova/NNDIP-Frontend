@@ -118,37 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="dashboardPage_AirCondition" xml:space="preserve">
-    <value>Air Condition</value>
+    <value>Klimatizace</value>
   </data>
   <data name="dashboardPage_Date" xml:space="preserve">
-    <value>Date:</value>
+    <value>Datum:</value>
   </data>
   <data name="dashboardPage_DeviceStatus" xml:space="preserve">
-    <value>Device status</value>
+    <value>Stav zařízení</value>
   </data>
   <data name="dashboardPage_PageTitle" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Hlavní stránka</value>
   </data>
   <data name="dashboardPage_Recuperation" xml:space="preserve">
-    <value>Recuperation</value>
+    <value>Rekuperace</value>
   </data>
   <data name="dashboardPage_SelectSensor" xml:space="preserve">
-    <value>Select a sensor</value>
+    <value>Zvolte senzor</value>
   </data>
   <data name="dashboardPage_SelectUnit" xml:space="preserve">
-    <value>Select an unit</value>
+    <value>Zvolte jednotku</value>
   </data>
   <data name="dashboardPage_Sensor" xml:space="preserve">
-    <value>Sensor:</value>
+    <value>Senzor:</value>
   </data>
   <data name="dashboardPage_SensorStatus" xml:space="preserve">
-    <value>Sensor status</value>
+    <value>Stav senzorů</value>
   </data>
   <data name="dashboardPage_Unit" xml:space="preserve">
-    <value>Unit:</value>
+    <value>Jedn.:</value>
   </data>
   <data name="dashboardPage_Ventilator" xml:space="preserve">
-    <value>Ventilator</value>
+    <value>Ventilátor</value>
   </data>
   <data name="limitPlanPage_Co2" xml:space="preserve">
     <value>CO2</value>
@@ -157,22 +157,22 @@
     <value>°C</value>
   </data>
   <data name="limitPlanPage_Event" xml:space="preserve">
-    <value>Event:</value>
+    <value>Udál.:</value>
   </data>
   <data name="limitPlanPage_HighTemperature" xml:space="preserve">
-    <value>High value</value>
+    <value>Horní hranice</value>
   </data>
   <data name="limitPlanPage_LowTemperature" xml:space="preserve">
-    <value>Low value</value>
+    <value>Spodní hranice</value>
   </data>
   <data name="limitPlanPage_OptimalCo2" xml:space="preserve">
-    <value>Optimal value</value>
+    <value>Optimální hodnota</value>
   </data>
   <data name="limitPlanPage_OptimalTemperature" xml:space="preserve">
-    <value>Optimal value</value>
+    <value>Optimální hodnota</value>
   </data>
   <data name="limitPlanPage_PageTitle" xml:space="preserve">
-    <value>Limit Plan</value>
+    <value>Limitní plán</value>
   </data>
   <data name="limitPlanPage_PercentageUnit" xml:space="preserve">
     <value>%</value>
@@ -181,108 +181,108 @@
     <value>ppm</value>
   </data>
   <data name="limitPlanPage_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Uložit</value>
   </data>
   <data name="limitPlanPage_SelectEvent" xml:space="preserve">
-    <value>Select an event</value>
+    <value>Zvolte událost</value>
   </data>
   <data name="limitPlanPage_Summer" xml:space="preserve">
-    <value>Summer</value>
+    <value>Léto</value>
   </data>
   <data name="limitPlanPage_Temperature" xml:space="preserve">
-    <value>Temperature</value>
+    <value>Teplota</value>
   </data>
   <data name="limitPlanPage_ThresholdCo2" xml:space="preserve">
-    <value>Threshold value</value>
+    <value>Hraniční hodnota</value>
   </data>
   <data name="limitPlanPage_Winter" xml:space="preserve">
-    <value>Winter</value>
+    <value>Zima</value>
   </data>
   <data name="loginPage_LoginToAccount" xml:space="preserve">
-    <value>Login to your account</value>
+    <value>Přihlaste se do svého účtu</value>
   </data>
   <data name="loginPage_PageTitle" xml:space="preserve">
-    <value>Login</value>
+    <value>Přihlásit se</value>
   </data>
   <data name="loginPage_Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Heslo</value>
   </data>
   <data name="loginPage_SignIn" xml:space="preserve">
-    <value>Sign In</value>
+    <value>Přihlásit se</value>
   </data>
   <data name="loginPage_Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Uživatelské jméno</value>
   </data>
   <data name="loginPage_Welcome" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Vítejte!</value>
   </data>
   <data name="manualPlanEditPage_Event" xml:space="preserve">
-    <value>Event</value>
+    <value>Událost</value>
   </data>
   <data name="manualPlanEditPage_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Název</value>
   </data>
   <data name="manualPlanEditPage_PageTitle" xml:space="preserve">
-    <value>Manual Plan</value>
+    <value>Manuální plán</value>
   </data>
   <data name="manualPlanEditPage_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Uložit</value>
   </data>
   <data name="manualPlanEditPage_SelectEvent" xml:space="preserve">
-    <value>Select an event</value>
+    <value>Zvolte událost</value>
   </data>
   <data name="manualPlanPage_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Přidat</value>
   </data>
   <data name="manualPlanPage_Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Smazat</value>
   </data>
   <data name="manualPlanPage_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Upravit</value>
   </data>
   <data name="manualPlanPage_PageTitle" xml:space="preserve">
-    <value>Manual Plan</value>
+    <value>Manuální plán</value>
   </data>
   <data name="manualPlanPage_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Uložit</value>
   </data>
   <data name="shellMenu_SignOut" xml:space="preserve">
-    <value>Sign Out</value>
+    <value>Odhlásit se</value>
   </data>
   <data name="timePlanEditPage_Event" xml:space="preserve">
-    <value>Event:</value>
+    <value>Událost:</value>
   </data>
   <data name="timePlanEditPage_From" xml:space="preserve">
-    <value>From:</value>
+    <value>Od:</value>
   </data>
   <data name="timePlanEditPage_Name" xml:space="preserve">
-    <value>Name:</value>
+    <value>Název:</value>
   </data>
   <data name="timePlanEditPage_PageTitle" xml:space="preserve">
-    <value>Time Plan</value>
+    <value>Časový plán</value>
   </data>
   <data name="timePlanEditPage_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Uložit</value>
   </data>
   <data name="timePlanEditPage_SelectEvent" xml:space="preserve">
-    <value>Select an event</value>
+    <value>Zvolte událost</value>
   </data>
   <data name="timePlanEditPage_To" xml:space="preserve">
-    <value>To:</value>
+    <value>Do:</value>
   </data>
   <data name="timePlanPage_Add" xml:space="preserve">
-    <value>Add</value>
+    <value>Přidat</value>
   </data>
   <data name="timePlanPage_Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Smazat</value>
   </data>
   <data name="timePlanPage_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Upravit</value>
   </data>
   <data name="timePlanPage_PageTitle" xml:space="preserve">
-    <value>Time Plan</value>
+    <value>Časový plán</value>
   </data>
   <data name="timePlanPage_Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Uložit</value>
   </data>
 </root>

@@ -4,6 +4,9 @@
              x:Class="NNDIP.Maui.Views.Plan.AddUpdateManualPlanPage"
              xmlns:lang="clr-namespace:NNDIP.Maui.Resources.Languages"
              Title="{x:Static lang:AppResources.manualPlanEditPage_PageTitle}">
+    <Shell.TitleView>
+        <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.manualPlanEditPage_PageTitle}" />
+    </Shell.TitleView>
     <VerticalStackLayout Padding="8" Spacing="10">
         <Frame Padding="8">
             <Grid RowDefinitions="*,*" ColumnDefinitions="*,*,*,*" ColumnSpacing="10">

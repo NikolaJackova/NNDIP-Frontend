@@ -12,7 +12,7 @@
              Title="{x:Static lang:AppResources.dashboardPage_PageTitle}"
              x:Name="dashboardPage">
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,*">
+        <Grid ColumnDefinitions="*,*" VerticalOptions="Center">
             <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_PageTitle}" />
             <Image Grid.Column="1" Source="dashboard.png" HeightRequest="40" WidthRequest="40"/>
         </Grid>

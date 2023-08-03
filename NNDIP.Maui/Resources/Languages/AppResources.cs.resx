@@ -217,10 +217,10 @@
     <value>Vítejte!</value>
   </data>
   <data name="manualPlanEditPage_Event" xml:space="preserve">
-    <value>Událost</value>
+    <value>Událost:</value>
   </data>
   <data name="manualPlanEditPage_Name" xml:space="preserve">
-    <value>Název</value>
+    <value>Název:</value>
   </data>
   <data name="manualPlanEditPage_PageTitle" xml:space="preserve">
     <value>Manuální plán</value>

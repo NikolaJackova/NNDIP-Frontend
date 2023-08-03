@@ -8,7 +8,7 @@ public partial class AddUpdateManualPlanPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = addUpdateManualPlanPageViewModel;
-	}
+    }
 
     override protected void OnAppearing()
     {

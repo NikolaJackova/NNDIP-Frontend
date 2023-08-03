@@ -8,6 +8,7 @@ using NNDIP.Maui.ViewModels.Plan;
 using CommunityToolkit.Maui;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Maui.Hosting;
 #if IOS || MACCATALYST
 using Microsoft.Maui.Handlers;
 using UIKit;
@@ -21,27 +22,33 @@ public static class MauiProgram
 {
     private const string Namespace = "NNDIP.Maui";
     private const string File = "secrets.json";
-	public static MauiApp CreateMauiApp()
-	{
+    public static MauiApp CreateMauiApp()
+    {
         using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream($"{Namespace}.{File}");
-       
+
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
             .ConfigureSyncfusionCore()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			})
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            .ConfigureMauiHandlers(handlers =>
+            {
+#if IOS
+                handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderers.CustomShellRenderer));
+#endif
+            })
             .Configuration.AddJsonStream(stream);
 #if IOS || MACCATALYST
         ScrollViewHandler.Mapper.AppendToMapping("ContentSize", (handler, view) =>
-		{
+        {
             handler.PlatformView.UpdateContentSize(handler.VirtualView.ContentSize);
-			handler.PlatformArrange(handler.PlatformView.Frame.ToRectangle());
-		});
+            handler.PlatformArrange(handler.PlatformView.Frame.ToRectangle());
+        });
 #endif
 
         builder.Services.AddSingleton<LoginPage>();
@@ -54,7 +61,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<AddUpdateManualPlanPage>();
         builder.Services.AddSingleton<ManualPlanPageIOS>();
         builder.Services.AddSingleton<TimePlanPageIOS>();
-        
+
         builder.Services.AddSingleton<LoginPageViewModel>();
         builder.Services.AddSingleton<LoadingPageViewModel>();
         builder.Services.AddSingleton<DashboardPageViewModel>();
@@ -64,6 +71,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<ManualPlanPageViewModel>();
         builder.Services.AddSingleton<AddUpdateManualPlanPageViewModel>();
 
+        builder.Services.AddLocalization();
+
         return builder.Build();
-	}
+    }
 }

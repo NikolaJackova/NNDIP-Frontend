@@ -8,6 +8,9 @@
              xmlns:models="clr-namespace:NNDIP.Maui.Models"
              Title="{x:Static lang:AppResources.timePlanPage_PageTitle}"
              x:Name="timePlanPage">
+    <Shell.TitleView>
+        <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.timePlanPage_PageTitle}" />
+    </Shell.TitleView>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">
             <VerticalStackLayout Padding="8" Spacing="10">

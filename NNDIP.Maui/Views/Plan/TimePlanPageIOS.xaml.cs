@@ -8,7 +8,7 @@ public partial class TimePlanPageIOS : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = timePlanPageViewModel;
-	}
+    }
 
     override protected void OnAppearing()
     {

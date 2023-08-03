@@ -358,7 +358,7 @@ namespace NNDIP.Maui.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event.
+        ///   Looks up a localized string similar to Event:.
         /// </summary>
         public static string manualPlanEditPage_Event {
             get {
@@ -367,7 +367,7 @@ namespace NNDIP.Maui.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Name:.
         /// </summary>
         public static string manualPlanEditPage_Name {
             get {

@@ -8,7 +8,7 @@ public partial class ManualPlanPageIOS : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = manualPlanPageViewModel;
-	}
+    }
 
     override protected void OnAppearing()
     {

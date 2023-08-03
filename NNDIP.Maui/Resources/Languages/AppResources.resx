@@ -217,10 +217,10 @@
     <value>Welcome!</value>
   </data>
   <data name="manualPlanEditPage_Event" xml:space="preserve">
-    <value>Event</value>
+    <value>Event:</value>
   </data>
   <data name="manualPlanEditPage_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>Name:</value>
   </data>
   <data name="manualPlanEditPage_PageTitle" xml:space="preserve">
     <value>Manual Plan</value>

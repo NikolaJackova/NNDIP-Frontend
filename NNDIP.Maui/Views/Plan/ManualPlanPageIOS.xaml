@@ -8,6 +8,9 @@
              xmlns:models="clr-namespace:NNDIP.Maui.Models"
              Title="{x:Static lang:AppResources.manualPlanPage_PageTitle}"
              x:Name="manualPlanPage">
+    <Shell.TitleView>
+        <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.manualPlanPage_PageTitle}" />
+    </Shell.TitleView>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView>
             <VerticalStackLayout Padding="8" Spacing="10">

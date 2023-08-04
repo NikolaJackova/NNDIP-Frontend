@@ -7,7 +7,7 @@ public partial class AppShell : Shell
 {
 	public AppShell()
 	{
-		InitializeComponent();
+        InitializeComponent();
         BindingContext = new AppShellViewModel();
         Routing.RegisterRoute(nameof(AddUpdateTimePlanPage), typeof(AddUpdateTimePlanPage));
         Routing.RegisterRoute(nameof(AddUpdateManualPlanPage), typeof(AddUpdateManualPlanPage));

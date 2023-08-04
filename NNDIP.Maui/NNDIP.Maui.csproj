@@ -31,53 +31,53 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
-	  <AndroidKeyStore>False</AndroidKeyStore>
-	  <AndroidUseAapt2>True</AndroidUseAapt2>
-	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-	  <AndroidPackageFormat>apk</AndroidPackageFormat>
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<AndroidKeyStore>False</AndroidKeyStore>
+		<AndroidUseAapt2>True</AndroidUseAapt2>
+		<AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
-	  <AndroidKeyStore>True</AndroidKeyStore>
-	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
-	  <CodesignResourceRules></CodesignResourceRules>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<CodesignResourceRules></CodesignResourceRules>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
-	  <CodesignResourceRules></CodesignResourceRules>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<CodesignResourceRules></CodesignResourceRules>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>com.upce.nndip.maui</ApplicationId>
+		<ApplicationId>com.upce.nndip.maui</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup>
-   	  <UseInterpreter>true</UseInterpreter>
-   	  <UserSecretsId>a947733c-e19d-4aee-8ed3-22e26499e619</UserSecretsId>
+		<UseInterpreter>true</UseInterpreter>
+		<UserSecretsId>a947733c-e19d-4aee-8ed3-22e26499e619</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-	  <CodesignKey>Apple Development: Created via API (PXNUG2V68K)</CodesignKey>
-	  <CodesignProvision>VS: com.upce.nndip.maui Development</CodesignProvision>
+		<CodesignKey>Apple Development: Created via API (PXNUG2V68K)</CodesignKey>
+		<CodesignProvision>VS: com.upce.nndip.maui Development</CodesignProvision>
 	</PropertyGroup>
 
 	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
@@ -106,88 +106,87 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="secrets.json" />
+		<None Remove="secrets.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="secrets.json" />
+		<EmbeddedResource Include="secrets.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-	  <PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.701" />
-	  <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
-	  <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.1" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-	  <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-	  <PackageReference Include="Syncfusion.Maui.Charts" Version="21.1.41" />
-	  <PackageReference Include="Syncfusion.Maui.Core" Version="21.1.41" />
-	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.1.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-beta.701" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="21.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="21.1.41" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\NNDIP.ApiClient\NNDIP.ApiClient.csproj" />
+		<ProjectReference Include="..\NNDIP.ApiClient\NNDIP.ApiClient.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\Languages\AppResources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>AppResources.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Plan\ManualPlanPageIOS.xaml.cs">
-	    <DependentUpon>ManualPlanPageIOS.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Plan\TimePlanPageIOS.xaml.cs">
-	    <DependentUpon>TimePlanPageIOS.xaml</DependentUpon>
-	  </Compile>
+		<Compile Update="Resources\Languages\AppResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>AppResources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Plan\ManualPlanPageIOS.xaml.cs">
+			<DependentUpon>ManualPlanPageIOS.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Plan\TimePlanPageIOS.xaml.cs">
+			<DependentUpon>TimePlanPageIOS.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Languages\AppResources.cs.resx">
-	    <Generator></Generator>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Languages\AppResources.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Resources\Languages\AppResources.cs.resx">
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\Languages\AppResources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Controls\FlyoutHeaderControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Dashboard\DashboardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\AddUpdateManualPlanPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\AddUpdateTimePlanPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\LimitPlanPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\ManualPlanPageIOS.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\ManualPlanPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\TimePlanPageIOS.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Plan\TimePlanPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Startup\LoadingPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Startup\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Controls\FlyoutHeaderControl.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Dashboard\DashboardPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\AddUpdateManualPlanPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\AddUpdateTimePlanPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\LimitPlanPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\ManualPlanPageIOS.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\ManualPlanPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\TimePlanPageIOS.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Plan\TimePlanPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Startup\LoadingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Startup\LoginPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 </Project>

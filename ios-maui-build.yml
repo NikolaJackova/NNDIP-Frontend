@@ -42,7 +42,7 @@ steps:
   displayName: .NET Version
   inputs:
     packageType: 'sdk'
-    version: '7.0.306'
+    version: '7.0.206'
 
 - task: Bash@3
   displayName: Install MAUI

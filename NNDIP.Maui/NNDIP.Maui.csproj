@@ -75,11 +75,6 @@
 		<UserSecretsId>a947733c-e19d-4aee-8ed3-22e26499e619</UserSecretsId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-		<CodesignKey>Apple Development: Created via API (PXNUG2V68K)</CodesignKey>
-		<CodesignProvision>VS: com.upce.nndip.maui Development</CodesignProvision>
-	</PropertyGroup>
-
 	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
 	  <CodesignKey>Apple Development: Created via API (PXNUG2V68K)</CodesignKey>
 	  <CodesignProvision>VS: com.upce.nndip.maui Development</CodesignProvision>

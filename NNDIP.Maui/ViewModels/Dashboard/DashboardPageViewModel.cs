@@ -23,6 +23,9 @@ public partial class DashboardPageViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<SensorGroup> _sensorGroups;
 
+    ObservableCollection<SensorGroup> workaroundGroups;
+    public ObservableCollection<SensorGroup> WorkaroundGroups { get => workaroundGroups; set => SetProperty(ref workaroundGroups, value); }
+
     [ObservableProperty]
     private bool _isRefreshing;
 
@@ -58,7 +61,7 @@ public partial class DashboardPageViewModel : BaseViewModel
     public DashboardPageViewModel()
     {
         Shell.Current.FlyoutHeader = new FlyoutHeaderControl();
-        SensorGroups = new ObservableCollection<SensorGroup>();
+        WorkaroundGroups = new ObservableCollection<SensorGroup>();
     }
 
     public async Task Load()
@@ -80,18 +83,16 @@ public partial class DashboardPageViewModel : BaseViewModel
             SensorType = sensor.SensorType,
             DataTimestamp = sensor.DataTimestamp
         }, sensor.Data.ToList()));
-        SensorGroups = new ObservableCollection<SensorGroup>();
+        WorkaroundGroups = new ObservableCollection<SensorGroup>();
         foreach (var item in groupedData)
         {
-#if IOS
-            await Task.Delay(150);
-#endif
-            SensorGroups.Add(item);
+            WorkaroundGroups.Add(item);
             if (!Sensors.Any(sensor => sensor.Id == item.Sensor.Id))
             {
                 Sensors.Add(item.Sensor);
             }
         }
+        SensorGroups = WorkaroundGroups;
         SetUnits();
         if (Units.Any(unit => unit.UnitMeas == "°C"))
         {

@@ -39,7 +39,7 @@ public static class MauiProgram
             .ConfigureMauiHandlers(handlers =>
             {
 #if IOS
-                handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderers.CustomShellRenderer));
+                //handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderers.CustomShellRenderer));
 #endif
             })
             .Configuration.AddJsonStream(stream);

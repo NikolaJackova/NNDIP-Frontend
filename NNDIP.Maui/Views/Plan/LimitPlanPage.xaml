@@ -7,9 +7,7 @@
              Title="{x:Static lang:AppResources.limitPlanPage_PageTitle}"
              x:Name="limitPlanPage">
     <Shell.TitleView>
-        <StackLayout VerticalOptions="Center">
-            <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.limitPlanPage_PageTitle}" />
-        </StackLayout>
+        <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.limitPlanPage_PageTitle}" />
     </Shell.TitleView>
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
         <ScrollView VerticalScrollBarVisibility="Always" VerticalOptions="FillAndExpand">

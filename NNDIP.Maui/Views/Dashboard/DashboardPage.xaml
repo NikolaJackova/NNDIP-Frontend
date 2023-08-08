@@ -12,7 +12,7 @@
              Title="{x:Static lang:AppResources.dashboardPage_PageTitle}"
              x:Name="dashboardPage">
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,*" VerticalOptions="Center">
+        <Grid ColumnDefinitions="*,*">
             <Label Style="{StaticResource labelTitleStyle}" Text="{x:Static lang:AppResources.dashboardPage_PageTitle}" />
             <Image Grid.Column="1" Source="dashboard.png" HeightRequest="40" WidthRequest="40"/>
         </Grid>
@@ -38,10 +38,7 @@
                                 </Image.Source>
                             </Image>
                             <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_AirCondition}"/>
-                            <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" >
-                                <Image.IsVisible>
-                                    <Binding Path="AddressStateResult.IsACUnitOn"/>
-                                </Image.IsVisible>
+                            <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" IsVisible="{Binding AddressStateResult.IsACUnitOn}">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitMode">
                                         <Binding.Converter>
@@ -66,10 +63,7 @@
                                 </Image.Source>
                             </Image>
                             <Label Grid.Column="1" Text="{x:Static lang:AppResources.dashboardPage_Ventilator}"/>
-                            <Image Grid.Column="2" HeightRequest="40" WidthRequest="40">
-                                <Image.IsVisible>
-                                    <Binding Path="AddressStateResult.IsFanOn"/>
-                                </Image.IsVisible>
+                            <Image Grid.Column="2" HeightRequest="40" WidthRequest="40" IsVisible="{Binding AddressStateResult.IsFanOn}">
                                 <Image.Source>
                                     <Binding Path="AddressStateResult.AcUnitFanSpeed">
                                         <Binding.Converter>

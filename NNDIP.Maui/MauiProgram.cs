@@ -39,7 +39,7 @@ public static class MauiProgram
             .ConfigureMauiHandlers(handlers =>
             {
 #if IOS
-                //handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderers.CustomShellRenderer));
+                handlers.AddHandler(typeof(Shell), typeof(Platforms.iOS.Renderers.CustomShellRenderer));
 #endif
             })
             .Configuration.AddJsonStream(stream);
@@ -70,8 +70,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<AddUpdateTimePlanPageViewModel>();
         builder.Services.AddSingleton<ManualPlanPageViewModel>();
         builder.Services.AddSingleton<AddUpdateManualPlanPageViewModel>();
-
-        builder.Services.AddLocalization();
 
         return builder.Build();
     }

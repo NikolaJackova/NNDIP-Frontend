@@ -10,7 +10,7 @@ pool:
   vmImage: 'macos-11'
 
 variables:
-  - group: maui-ios-pipeline
+  - group: maui-ios-build-Distribution
 
       
 steps:

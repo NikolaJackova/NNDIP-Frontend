@@ -77,6 +77,8 @@
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
 	  <ProvisioningType>manual</ProvisioningType>
+	  <CodesignKey>iPhone Distribution: NiXE Development s.r.o. (68L7QY7WD5)</CodesignKey>
+	  <CodesignProvision>VS: com.upce.nndip.maui Development</CodesignProvision>
 	</PropertyGroup>
 
 	<!--<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
